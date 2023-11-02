@@ -15,4 +15,3 @@ body:
       description: 수정한 부분을 적어주세요.
     validations:
       required: true
-  - type: textarea

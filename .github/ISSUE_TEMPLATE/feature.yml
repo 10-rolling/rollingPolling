@@ -17,4 +17,3 @@ body:
       placeholder: 기능에 대해서 나열해주세요.
     validations:
       required: true
-  - type: textarea
