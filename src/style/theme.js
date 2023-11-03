@@ -39,8 +39,8 @@ const theme = {
     '--gray-800': '#2B2B2B',
     '--gray-900': '#181818',
 
-    '--white': '#FFF',
-    '--black': '#000',
+    '--white': '#FFFFFF',
+    '--black': '#000000',
     '--Error': '#DC3A3A',
     '--Surface': '#F6F8FF',
   },
