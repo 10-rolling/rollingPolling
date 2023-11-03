@@ -1,7 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
-import Pretendard from './fonts/Pretendard-Regular.woff';
+import NotoSansKR from './fonts/NotoSansKR-Regular.woff';
 
 const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: "NotoSansKR";
+    src: url(${NotoSansKR}) format('woff');
+    font-style: normal;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -9,13 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: 16px;
-  }
-
-  @font-face {
-    font-family: "Pretendard";
-    src: url(${Pretendard}) format('woff');
-    font-style: normal;
+    font-size: 62.5%;
   }
 `;
 
