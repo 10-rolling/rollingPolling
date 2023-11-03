@@ -45,9 +45,9 @@ const theme = {
     Surface: '#F6F8FF',
   },
 
-  // ${({ theme }) => theme.background.배경이름};
-  background: {
-    main: '#FFFFFF',
+  fontWeight: {
+    normal: 400,
+    bold: 700,
   },
 };
 
