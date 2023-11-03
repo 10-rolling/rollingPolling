@@ -50,3 +50,5 @@ const theme = {
     main: '#FFFFFF',
   },
 };
+
+export default theme;

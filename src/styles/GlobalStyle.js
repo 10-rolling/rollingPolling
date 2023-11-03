@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import NotoSansKR from './fonts/NotoSansKR-Regular.woff';
+import NotoSansKR from 'assets/fonts/NotoSansKR-Regular.woff';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
