@@ -1,5 +1,11 @@
+import Toast from 'components/Toast/Toast';
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <Toast />
+    </>
+  );
 }
 
 export default App;
