@@ -45,6 +45,10 @@
           {
             "pattern": "styles/**",
             "group": "unknown"
+          },
+          {
+            "pattern": "assets/**",
+            "group": "unknown"
           }
         ],
         "pathGroupsExcludedImportTypes": ["unknown"],
