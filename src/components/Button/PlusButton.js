@@ -11,7 +11,7 @@ function PlusButton() {
 
 export default PlusButton;
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,6 +21,7 @@ const StyledWrapper = styled.div`
   height: 3.5rem;
 
   padding: 1rem;
+  border: 0;
   border-radius: 6.25rem;
   background-color: ${({ theme }) => theme.colors.gray500};
 

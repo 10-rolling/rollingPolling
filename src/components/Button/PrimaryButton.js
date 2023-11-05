@@ -18,7 +18,7 @@ PrimaryButton.propTypes = {
 
 export default PrimaryButton;
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -27,6 +27,7 @@ const StyledWrapper = styled.div`
   width: ${(props) => props.width};
 
   padding: ${(props) => SIZES[props.size].padding};
+  border: 0;
   border-radius: ${(props) => SIZES[props.size].borderRadius};
   background-color: ${({ theme }) => theme.colors.purple600};
   color: ${({ theme }) => theme.colors.white};
@@ -47,6 +48,7 @@ const StyledWrapper = styled.div`
   }
 
   &:focus {
+    outline: none;
     background-color: ${({ theme }) => theme.colors.purple800};
     border: 2px solid ${({ theme }) => theme.colors.purple900};
   }

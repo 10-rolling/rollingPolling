@@ -12,7 +12,7 @@ SecondaryButton.propTypes = {
 
 export default SecondaryButton;
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -43,6 +43,7 @@ const StyledWrapper = styled.div`
   }
 
   &:focus {
+    outline: none;
     border: 1px solid ${({ theme }) => theme.colors.purple900};
   }
 `;
