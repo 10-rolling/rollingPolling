@@ -26,9 +26,6 @@ function Input({
 export default Input;
 
 const StyledInput = styled.input`
-  display:block;
-  margin-top: 100px;
-  margin-left: 10px;
   
   width: 320px;
   height: 50px;
@@ -50,8 +47,7 @@ const StyledInput = styled.input`
 `;
 
 const StyleErrorMessage = styled.p`
-  margin-left: 10px;
   color: ${Error};
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: ${theme.fontWeight.normal};
 `;
