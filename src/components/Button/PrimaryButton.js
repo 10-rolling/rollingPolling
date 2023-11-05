@@ -27,7 +27,7 @@ const StyledWrapper = styled.div`
   width: ${(props) => props.width};
 
   padding: ${(props) => SIZES[props.size].padding};
-  border-radius: 0.75rem;
+  border-radius: ${(props) => SIZES[props.size].borderRadius};
   background-color: ${({ theme }) => theme.colors.purple600};
   color: ${({ theme }) => theme.colors.white};
 
