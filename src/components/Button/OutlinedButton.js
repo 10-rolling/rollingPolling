@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import { OUTLINED_SIZES } from 'constants/buttonSize.js';
 import styled from 'styled-components';
 
-function OutlinedButton({ children, size, width }) {
+function OutlinedButton({ children, size, width, img }) {
   return (
     <StyledWrapper size={size} width={width}>
+      {img && <img src={img} alt="Button Icon" />}
       {children}
     </StyledWrapper>
   );
@@ -34,6 +35,11 @@ const StyledWrapper = styled.button`
 
   font-size: ${(props) => OUTLINED_SIZES[props.size].fontSize};
   font-weight: ${(props) => OUTLINED_SIZES[props.size].fontWeight};
+
+  img {
+    width: ${(props) => OUTLINED_SIZES[props.size].imgSize};
+    height: ${(props) => OUTLINED_SIZES[props.size].imgSize};
+  }
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray100};
