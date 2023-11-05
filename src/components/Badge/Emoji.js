@@ -27,6 +27,5 @@ const StyledWrapper = styled.div`
 
 const StyledInWrapper = styled.div`
   color: ${({ theme }) => theme.colors.white};
-  font-size: 16px;
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  font-size: 1.6rem;
 `;
