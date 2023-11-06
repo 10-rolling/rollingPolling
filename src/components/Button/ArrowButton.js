@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import theme from 'styles/theme';
 
 function ArrowButton({ imgSrc }) {
   return (
@@ -9,10 +10,6 @@ function ArrowButton({ imgSrc }) {
   );
 }
 
-ArrowButton.propTypes = {
-  imgSrc: PropTypes.node.isRequired,
-};
-
 export default ArrowButton;
 
 const StyleWrapper = styled.button`
@@ -21,14 +18,14 @@ const StyleWrapper = styled.button`
   align-items: center;
   flex-shrink: 0;
 
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 40px;
+  height: 40px;
 
-  border: 1px solid ${({ theme }) => theme.colors.gray300};
-  border-radius: 5.25rem;
+  border: 1px solid ${theme.colors.gray300};
+  border-radius: 100px;
 
   img {
-    width: 1rem;
-    height: 1rem;
+    width: 16px;
+    height: 16px;
   }
 `;

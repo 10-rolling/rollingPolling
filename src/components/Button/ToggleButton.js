@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import theme from 'styles/theme';
 
 function ToggleButton({ onClick }) {
   const [isActive, setIsActive] = useState(false);
@@ -50,24 +51,26 @@ const StyledWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 15.25rem;
-  height: 2.5rem;
+  width: 244px;
+  height: 40px;
 `;
 
 const StyledToggleButton = styled.button`
   display: flex;
-  height: 2.5rem;
-  width: 100%;
-  padding: 0.5rem 1rem;
   justify-content: center;
   align-items: center;
-  gap: 0.625rem;
+  gap: 10px;
+
+  width: 100%;
+  height: 40px;
+
+  padding: 8px 16px;
+  outline: none;
+  border-radius: 6px;
+  border: 2px solid ${({ isActive }) => (isActive ? '#861DEE' : '#FFFFFF')};
+  background-color: ${theme.colors.white};
+  color: ${({ isActive }) => (isActive ? '#861DEE' : '#181818')};
+
   font-size: 1rem;
   font-weight: 700;
-
-  outline: none;
-  border-radius: 0.375rem;
-  border: 2px solid ${({ isActive }) => (isActive ? '#861DEE' : '#FFFFFF')};
-  background-color: ${({ theme }) => theme.colors.white};
-  color: ${({ isActive }) => (isActive ? '#861DEE' : '#181818')};
 `;

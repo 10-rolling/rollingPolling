@@ -1,14 +1,8 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 function SecondaryButton({ children, width }) {
   return <StyledWrapper width={width}>{children}</StyledWrapper>;
 }
-
-SecondaryButton.propTypes = {
-  children: PropTypes.node.isRequired,
-  width: PropTypes.node.isRequired,
-};
 
 export default SecondaryButton;
 
@@ -16,12 +10,12 @@ const StyledWrapper = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: 0.625rem;
+  gap: 10px;
 
   width: ${(props) => props.width};
 
-  padding: 0.4375rem 1rem;
-  border-radius: 0.375rem;
+  padding: 7px 16px;
+  border-radius: 6px;
   border: 1px solid ${({ theme }) => theme.colors.purple600};
   background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.purple700};

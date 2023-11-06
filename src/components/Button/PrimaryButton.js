@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import { SIZES } from 'constants/buttonSize.js';
+import { SIZES } from 'constants/buttonSize';
 import styled from 'styled-components';
+import theme from 'styles/theme';
 
 function PrimaryButton({ children, size, width }) {
   return (
@@ -10,46 +10,40 @@ function PrimaryButton({ children, size, width }) {
   );
 }
 
-PrimaryButton.propTypes = {
-  children: PropTypes.node.isRequired,
-  size: PropTypes.node.isRequired,
-  width: PropTypes.node.isRequired,
-};
-
 export default PrimaryButton;
 
 const StyledWrapper = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: 0.625rem;
+  gap: 10px;
 
   width: ${(props) => props.width};
 
   padding: ${(props) => SIZES[props.size].padding};
   border: 0;
   border-radius: ${(props) => SIZES[props.size].borderRadius};
-  background-color: ${({ theme }) => theme.colors.purple600};
-  color: ${({ theme }) => theme.colors.white};
+  background-color: ${theme.colors.purple600};
+  color: ${theme.colors.white};
 
   font-size: ${(props) => SIZES[props.size].fontSize};
   font-weight: ${(props) => SIZES[props.size].fontWeight};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.purple700};
+    background-color: ${theme.colors.purple700};
   }
 
   &:disabled {
-    background-color: ${({ theme }) => theme.colors.gray300};
+    background-color: ${theme.colors.gray300};
   }
 
   &:active {
-    background-color: ${({ theme }) => theme.colors.purple800};
+    background-color: ${theme.colors.purple800};
   }
 
   &:focus {
     outline: none;
-    background-color: ${({ theme }) => theme.colors.purple800};
-    border: 2px solid ${({ theme }) => theme.colors.purple900};
+    background-color: ${theme.colors.purple800};
+    border: 2px solid ${theme.colors.purple900};
   }
 `;

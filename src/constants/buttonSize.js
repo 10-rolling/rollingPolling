@@ -1,45 +1,45 @@
 export const SIZES = {
   large: {
-    padding: '0.875rem 1.5rem',
+    padding: '14px 24px',
     fontSize: '1.125rem',
     fontWeight: '700',
-    borderRadius: '0.75rem',
+    borderRadius: '12px',
   },
   small: {
-    padding: '0.4375rem 1rem',
+    padding: '7px 16px',
     fontSize: '1rem',
     fontWeight: '400',
-    borderRadius: '0.375rem',
+    borderRadius: '6px',
   },
 };
 
 export const OUTLINED_SIZES = {
-  first: {
-    padding: '0.875rem 1rem',
+  large: {
+    padding: '14px 16px',
     fontSize: '1.125rem',
     fontWeight: '700',
-    borderRadius: '0.75rem',
-    imgSize: '1.5rem',
+    borderRadius: '12px',
+    imgSize: '24px',
   },
-  second: {
-    padding: '0.5rem 1rem',
+  medium: {
+    padding: '8px 16px',
     fontSize: '1rem',
     fontWeight: '400',
-    borderRadius: '0.375rem',
-    imgSize: '1.5rem',
+    borderRadius: '6px',
+    imgSize: '24px',
   },
-  third: {
-    padding: '0.375rem 1rem',
+  small: {
+    padding: '6px 16px',
     fontSize: '1rem',
     fontWeight: '500',
-    borderRadius: '0.375rem',
-    imgSize: '1.5rem',
+    borderRadius: '6px',
+    imgSize: '24px',
   },
-  fourth: {
-    padding: '0.125rem 1rem',
+  smallest: {
+    padding: '2px 16px',
     fontSize: '0.875rem',
     fontWeight: '400',
-    borderRadius: '0.375rem',
-    imgSize: '1.25rem',
+    borderRadius: '6px',
+    imgSize: '20px',
   },
 };
