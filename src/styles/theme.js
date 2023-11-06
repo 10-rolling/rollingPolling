@@ -41,8 +41,8 @@ const theme = {
 
     white: '#FFFFFF',
     black: '#000000',
-    Error: '#DC3A3A',
-    Surface: '#F6F8FF',
+    error: '#DC3A3A',
+    surface: '#F6F8FF',
   },
 
   fontWeight: {

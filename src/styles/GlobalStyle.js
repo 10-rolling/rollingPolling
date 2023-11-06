@@ -1,5 +1,6 @@
 import NotoSansKR from 'assets/fonts/NotoSansKR-Regular.woff';
 import { createGlobalStyle } from 'styled-components';
+import theme from 'styles/theme';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -13,11 +14,11 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: "NotoSansKR";
-    font-weight: ${({ theme }) => theme.fontWeight.normal};
+    font-weight: ${theme.fontWeight.normal};
   }
 
   html {
-    font-size: 62.5%;
+    font-size: 100%;
   }
 `;
 
