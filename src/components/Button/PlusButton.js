@@ -1,11 +1,11 @@
-import plusImg from 'assets/icons/plus.svg';
+import plusIcon from 'assets/icons/plus.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 function PlusButton() {
   return (
     <StyledWrapper>
-      <img src={plusImg} alt="Plus Icon" />
+      <img src={plusIcon} alt="Plus" />
     </StyledWrapper>
   );
 }
