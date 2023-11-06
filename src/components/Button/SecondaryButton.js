@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-function SecondaryButton({ children, width }) {
-  return <StyledWrapper width={width}>{children}</StyledWrapper>;
+function SecondaryButton({ children, width, disabled }) {
+  return (
+    <StyledWrapper width={width} disabled={disabled}>
+      {children}
+    </StyledWrapper>
+  );
 }
 
 export default SecondaryButton;
@@ -23,20 +27,21 @@ const StyledWrapper = styled.button`
   font-size: 1rem;
   font-weight: 400;
 
-  &:hover {
+  &:not(:disabled):hover {
     border: 1px solid ${({ theme }) => theme.colors.purple700};
   }
 
   &:disabled {
     background-color: ${({ theme }) => theme.colors.gray300};
+    color: ${({ theme }) => theme.colors.white};
     border: 0;
   }
 
-  &:active {
+  &:not(:disabled):active {
     border: 1px solid ${({ theme }) => theme.colors.purple800};
   }
 
-  &:focus {
+  &:not(:disabled):focus {
     outline: none;
     border: 1px solid ${({ theme }) => theme.colors.purple900};
   }

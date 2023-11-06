@@ -2,9 +2,9 @@ import { OUTLINED_SIZES } from 'constants/buttonSize.js';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function OutlinedButton({ children, size, width, img }) {
+function OutlinedButton({ children, size, width, img, disabled }) {
   return (
-    <StyledWrapper size={size} width={width}>
+    <StyledWrapper size={size} width={width} disabled={disabled}>
       {img && <img src={img} alt="Button Icon" />}
       {children}
     </StyledWrapper>
@@ -35,7 +35,7 @@ const StyledWrapper = styled.button`
     height: ${(props) => OUTLINED_SIZES[props.size].imgSize};
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: ${theme.colors.gray100};
   }
 
@@ -43,11 +43,11 @@ const StyledWrapper = styled.button`
     background-color: ${theme.colors.gray300};
   }
 
-  &:active {
+  &:not(:disabled):active {
     background-color: ${theme.colors.gray100};
   }
 
-  &:focus {
+  &:not(:disabled):focus {
     outline: none;
     border: 1px solid ${theme.colors.gray500};
     background-color: ${theme.colors.white};

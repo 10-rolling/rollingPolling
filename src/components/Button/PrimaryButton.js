@@ -2,9 +2,9 @@ import { SIZES } from 'constants/buttonSize';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function PrimaryButton({ children, size, width }) {
+function PrimaryButton({ children, size, width, disabled }) {
   return (
-    <StyledWrapper size={size} width={width}>
+    <StyledWrapper size={size} width={width} disabled={disabled}>
       {children}
     </StyledWrapper>
   );
@@ -29,7 +29,7 @@ const StyledWrapper = styled.button`
   font-size: ${(props) => SIZES[props.size].fontSize};
   font-weight: ${(props) => SIZES[props.size].fontWeight};
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: ${theme.colors.purple700};
   }
 
@@ -37,11 +37,11 @@ const StyledWrapper = styled.button`
     background-color: ${theme.colors.gray300};
   }
 
-  &:active {
+  &:not(:disabled):active {
     background-color: ${theme.colors.purple800};
   }
 
-  &:focus {
+  &:not(:disabled):focus {
     outline: none;
     background-color: ${theme.colors.purple800};
     border: 2px solid ${theme.colors.purple900};

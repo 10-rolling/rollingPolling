@@ -2,10 +2,10 @@ import plusIcon from 'assets/icons/plus.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function PlusButton() {
+function PlusButton({ disabled }) {
   return (
     <StyledWrapper>
-      <img src={plusIcon} alt="Plus" />
+      <img src={plusIcon} alt="Plus" disabled={disabled} />
     </StyledWrapper>
   );
 }
@@ -31,7 +31,7 @@ const StyledWrapper = styled.button`
     height: 24px;
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: ${theme.colors.gray600};
   }
 
@@ -39,11 +39,11 @@ const StyledWrapper = styled.button`
     background-color: ${theme.colors.gray300};
   }
 
-  &:active {
+  &:not(:disabled):active {
     background-color: ${theme.colors.gray700};
   }
 
-  &:focus {
+  &:not(:disabled):focus {
     background-color: ${theme.colors.gray700};
     border: 1px solid ${theme.colors.gray800};
   }
