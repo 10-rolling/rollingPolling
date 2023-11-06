@@ -29,6 +29,7 @@ const StyledWrapper = styled.button`
 
   &:not(:disabled):hover {
     border: 1px solid ${({ theme }) => theme.colors.purple700};
+    background-color: ${({ theme }) => theme.colors.purple100};
   }
 
   &:disabled {
@@ -39,6 +40,7 @@ const StyledWrapper = styled.button`
 
   &:not(:disabled):active {
     border: 1px solid ${({ theme }) => theme.colors.purple800};
+    background-color: ${({ theme }) => theme.colors.purple100};
   }
 
   &:not(:disabled):focus {
