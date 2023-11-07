@@ -3,19 +3,18 @@ import theme from 'styles/theme';
 
 const PLACE_HOLDER_DEFAULT = 'placeholder';
 const ERROR_MESSAGE_DEFAULT = 'Error Message';
-const { gray100, gray300, gray500, gray700, Error } = theme.colors;
 
-//<Input iserror={hasError ? 'true' : 'false'}  ,  disabled />
+//<Input $isError={boolean}  ,  disabled />
 function Input({
   placeholder = PLACE_HOLDER_DEFAULT,
-  iserror,
+  $isError,
   errorMessage = ERROR_MESSAGE_DEFAULT,
   ...props
 }) {
   return (
-    <StyledInputContainer iserror={iserror}>
+    <StyledInputContainer $isError={$isError}>
       <StyledInput placeholder={placeholder} {...props} />
-      {iserror && <StyleErrorMessage>{errorMessage}</StyleErrorMessage>}
+      {$isError && <StyleErrorMessage>{errorMessage}</StyleErrorMessage>}
     </StyledInputContainer>
   );
 }
@@ -26,37 +25,40 @@ const StyledInput = styled.input`
   display:block;
   width: 320px;
   height: 50px;
-  
   border-radius: 8px;
   padding: 12px 16px;
   font-weight:${theme.fontWeight.normal}
   outline-style: solid;
   &:active {
-    border-color: ${gray700};
+    border-color: ${theme.colors.gray700};
   }
 `;
 
 const StyleErrorMessage = styled.p`
-  color: ${Error};
+  color: ${theme.colors.Error};
   font-size: 1.2rem;
   font-weight: ${theme.fontWeight.normal};
 `;
 
 const StyledInputContainer = styled.div`
   ${StyleErrorMessage} {
-    display: ${({ iserror }) => (iserror ? 'block' : 'none')};
+    display: ${({ $isError }) => ($isError ? 'block' : 'none')};
   }
   ${StyledInput} {
-    border: 1px solid ${({ iserror }) => (iserror ? `${Error}` : `${gray300}`)};
+    border: 1px solid
+      ${({ $isError }) =>
+        $isError ? `${theme.colors.Error}` : `${theme.colors.gray300}`};
 
-    &:focus {
-      outline-color: ${({ iserror }) => (iserror ? `${Error}` : `${gray500}`)};
+    &:not(:disabled):focus {
+      outline-color: ${({ $isError }) =>
+        $isError ? `${theme.colors.Error}` : `${theme.colors.gray500}`};
     }
-    &:hover {
-      border-color: ${({ iserror }) => (iserror ? `${Error}` : `${gray500}`)};
+    &:not(:disabled):hover {
+      border-color: ${({ $isError }) =>
+        $isError ? `${theme.colors.Error}` : `${theme.colors.gray500}`};
     }
     &:disabled {
-      background-color: ${gray100};
+      background-color: ${theme.colors.gray100};
     }
   }
 `;
