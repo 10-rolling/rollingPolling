@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import arrowDown from 'assets/icons/arrowDown.png';
-import arrowUp from 'assets/icons/arrowUp.png';
+import arrowDown from 'assets/icons/arrowDown.svg';
+import arrowUp from 'assets/icons/arrowUp.svg';
 
 import {
   DROPDOWN_ITEMS_DEFAULT,
@@ -9,18 +9,17 @@ import {
 } from 'constants/dropdownItem';
 import theme from 'styles/theme';
 
-const { gray100, gray300, gray500, gray700, Error, white } = theme.colors;
 const ERROR_MESSAGE_DEFAULT = 'Error Message';
 
-//<Dropdown iserror={hasError ? 'true' : 'false'}  ,  disabled />
+//<Dropdown $isError={boolean}  ,  disabled />
 function Dropdown({
   items = DROPDOWN_ITEMS_DEFAULT,
-  iserror,
+  $isError,
   errorMessage = ERROR_MESSAGE_DEFAULT,
   ...props
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(PLACE_HOLDER_DEFAULT);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -28,31 +27,28 @@ function Dropdown({
   const closeDropdown = () => {
     setIsOpen(false);
   };
-  const handleItemClick = (item) => {
-    setSelectedItem(item);
+
+  const handleItem = (item) => {
+    setSelectedItem(item.content);
+    closeDropdown();
   };
 
   return (
-    <StyledDropdownContainer iserror={iserror}>
-      <StyledDropdownButton
-        onClick={toggleDropdown}
-        onBlur={closeDropdown}
-        {...props}
-      >
-        {selectedItem ? selectedItem.content : PLACE_HOLDER_DEFAULT}
+    <StyledDropdownContainer $isError={$isError}>
+      <StyledDropdownButton onClick={toggleDropdown} {...props}>
+        {selectedItem}
         <StyledDropdownIcon src={isOpen ? arrowUp : arrowDown} />
       </StyledDropdownButton>
-      {iserror && <StyleErrorMessage>{errorMessage}</StyleErrorMessage>}
-      <StyledDropdownMenu open={isOpen}>
-        {items.map((item) => (
-          <StyledDropdownItem
-            key={item.id}
-            onClick={() => handleItemClick(item)}
-          >
-            {item.content}
-          </StyledDropdownItem>
-        ))}
-      </StyledDropdownMenu>
+      {$isError && <StyleErrorMessage>{errorMessage}</StyleErrorMessage>}
+      {isOpen && (
+        <StyledDropdownMenu>
+          {items.map((item) => (
+            <StyledDropdownItem key={item.id} onClick={() => handleItem(item)}>
+              {item.content}
+            </StyledDropdownItem>
+          ))}
+        </StyledDropdownMenu>
+      )}
     </StyledDropdownContainer>
   );
 }
@@ -62,37 +58,36 @@ export default Dropdown;
 const StyledDropdownButton = styled.button`
   display: flex;
   justify-content: space-between;
-
   width: 320px;
   height: 50px;
-
-  border-radius: 8px;
-  background-color: ${white};
   padding: 12px 16px;
-  cursor: pointer;
+  border-radius: 8px;
+  background-color: ${theme.colors.white};
+  color: ${theme.colors.gray500};
   font-size: 1.6rem;
-  color: ${gray500};
+  cursor: pointer;
 `;
 
 const StyledDropdownMenu = styled.ul`
-  list-style: none;
-  display: ${({ open }) => (open ? 'block' : 'none')};
   position: absolute;
+
   width: 100%;
-  box-shadow: 0px 2px 12px 0px #00000014;
-  padding: 0;
   margin-top: 10px;
+  padding: 0;
   border-radius: 8px;
-  background-color: ${white};
+  box-shadow: 0px 2px 12px 0px #00000014;
+
+  background-color: ${theme.colors.white};
+
+  list-style: none;
 `;
 
 const StyledDropdownItem = styled.li`
   padding: 10px;
   font-weight: ${theme.fontWeight.normal};
   font-size: 1.6rem;
-
   &:hover {
-    background-color: ${gray100};
+    background-color: ${theme.colors.gray100};
   }
 `;
 const StyledDropdownIcon = styled.img`
@@ -100,27 +95,31 @@ const StyledDropdownIcon = styled.img`
   height: 16px;
 `;
 const StyleErrorMessage = styled.p`
-  color: ${Error};
-  font-size: 1.2rem;
+  color: ${theme.colors.Error};
   font-weight: ${theme.fontWeight.normal};
+  font-size: 1.2rem;
 `;
 
 const StyledDropdownContainer = styled.div`
-  position: relative;
   display: inline-block;
-  ${StyledDropdownButton} {
-      border: 1px solid ${({ iserror }) =>
-        iserror ? `${Error}` : `${gray300}`};
+  position: relative;
 
-    &:focus,&:hover {
-      border-color: ${({ iserror }) => (iserror ? `${Error}` : `${gray500}`)};
+  ${StyledDropdownButton} {
+    border: 1px solid
+      ${({ $isError }) =>
+        $isError ? `${theme.colors.Error}` : `${theme.colors.gray300}`};
+
+    &:not(:disabled)&:focus,
+    &:not(:disabled)&:hover {
+      border-color: ${({ $isError }) =>
+        $isError ? `${theme.colors.Error}` : `${theme.colors.gray500}`};
     }
     &:active {
-      border: 2px solid
-      border-color: ${gray700};
+      border: 2px solid;
+      border-color: ${theme.colors.gray700};
     }
-    &:disabled{
-      background-color:${gray100}
+    &:disabled {
+      background-color: ${theme.colors.gray100};
     }
   }
 `;
