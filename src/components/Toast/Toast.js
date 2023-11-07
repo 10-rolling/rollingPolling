@@ -19,6 +19,11 @@ function Toast({ content = URL_COPY }) {
 export default Toast;
 
 const StyledToast = styled.div`
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
   display: flex;
   align-items: center;
   justify-content: center;
