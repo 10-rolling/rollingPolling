@@ -1,5 +1,5 @@
-import Close from 'assets/icons/close.svg';
-import Complete from 'assets/icons/completed.svg';
+import close from 'assets/icons/close.svg';
+import complete from 'assets/icons/complete.svg';
 import styled from 'styled-components';
 
 const URL_COPY = 'URL이 복사 되었습니다.';
@@ -8,7 +8,7 @@ function Toast({ content = URL_COPY }) {
   return (
     <StyledToast>
       <StyledToastContentWrapper>
-        <img src={Complete} alt="Complete 아이콘" />
+        <img src={complete} alt="완료 아이콘" />
         <StyledToastContent>{content}</StyledToastContent>
       </StyledToastContentWrapper>
       <StyledCloseButton />
@@ -56,7 +56,7 @@ const StyledCloseButton = styled.button`
   border: none;
 
   background: transparent;
-  background-image: url(${Close});
+  background-image: url(${close});
   background-repeat: no-repeat;
 
   &:hover {

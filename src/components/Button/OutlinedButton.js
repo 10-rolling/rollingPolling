@@ -5,7 +5,7 @@ import theme from 'styles/theme';
 function OutlinedButton({ children, size, width, img, disabled }) {
   return (
     <StyledWrapper size={size} width={width} disabled={disabled}>
-      {img && <img src={img} alt="Button Icon" />}
+      {img && <img src={img} alt="버튼 아이콘" />}
       {children}
     </StyledWrapper>
   );

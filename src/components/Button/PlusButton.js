@@ -1,11 +1,11 @@
-import plusIcon from 'assets/icons/plus.svg';
+import plus from 'assets/icons/plus.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 function PlusButton({ disabled }) {
   return (
     <StyledWrapper>
-      <img src={plusIcon} alt="Plus" disabled={disabled} />
+      <img src={plus} alt="플러스 버튼" disabled={disabled} />
     </StyledWrapper>
   );
 }
