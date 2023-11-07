@@ -1,19 +1,29 @@
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { ENTER_CONTENT } from 'constants/message';
+import useContent from 'hooks/useContent';
 import { styled } from 'styled-components';
 
 function Editor() {
+  const { setContent } = useContent();
   return (
-    <>
-      <EditorForm />
-    </>
+    <EditorForm>
+      <CKEditor
+        editor={ClassicEditor}
+        config={{ placeholder: ENTER_CONTENT }}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          setContent(data);
+        }}
+      />
+    </EditorForm>
   );
 }
 
 export default Editor;
 
-const EditorForm = styled(ReactQuill)`
-  width: 720px;
-  height: 260px;
-  margin-bottom: 45px;
+const EditorForm = styled.div`
+  .ck-editor__editable {
+    height: 250px;
+  }
 `;
