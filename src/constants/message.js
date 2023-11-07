@@ -1,0 +1,13 @@
+// error
+const DROPDOWN_ERROR_MESSAGE_DEFAULT = 'Error Message';
+const INPUT_ERROR_MESSAGE_DEFAULT = 'Error Message';
+
+const INPUT_PLACE_HOLDER_DEFAULT = 'placeholder';
+const URL_COPY = 'URL이 복사 되었습니다.';
+
+export {
+  DROPDOWN_ERROR_MESSAGE_DEFAULT,
+  INPUT_ERROR_MESSAGE_DEFAULT,
+  INPUT_PLACE_HOLDER_DEFAULT,
+  URL_COPY,
+};
