@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import Dropdown from 'components/Dropdown/Dropdown';
 import Editor from 'components/Editor/Editor';
@@ -22,7 +23,7 @@ import useContent from 'hooks/useContent';
 import useInputName from 'hooks/useInputName';
 import { styled } from 'styled-components';
 
-function Message({ profileImages }) {
+function Message({ id, profileImages }) {
   const [isNameCheck, setIsNameCheck] = useState(false);
   const [isCreate, setIsCreate] = useState(true);
   const { profileImg, setProfileImg } = useChangeProfileImg();
@@ -89,9 +90,11 @@ function Message({ profileImages }) {
         />
       </StyledWrapperIn>
       {/* 생성하기 */}
-      <PrimaryButton size="large" width="100%" disabled={isCreate}>
-        생성하기
-      </PrimaryButton>
+      <StyledLink to={`/post/${id}`}>
+        <PrimaryButton size="large" width="100%" disabled={isCreate}>
+          생성하기
+        </PrimaryButton>
+      </StyledLink>
     </StyledWrapper>
   );
 }
@@ -148,4 +151,8 @@ const StyledImgButton = styled.button`
 
 const StyledDropDown = styled(Dropdown)`
   font-size: 1rem;
+`;
+
+const StyledLink = styled(Link)`
+  width: 100%;
 `;

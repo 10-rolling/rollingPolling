@@ -1,3 +1,10 @@
+// error
+const DROPDOWN_ERROR_MESSAGE_DEFAULT = 'Error Message';
+const INPUT_ERROR_MESSAGE_DEFAULT = 'Error Message';
+
+const INPUT_PLACE_HOLDER_DEFAULT = 'placeholder';
+const URL_COPY = 'URL이 복사 되었습니다.';
+
 const FROM = 'From.';
 const PROFILE_IMG = '프로필 이미지';
 const RELATIONSHIP = '상대와의 관계';
@@ -7,6 +14,10 @@ const PROFILE_SELECT = '프로필 이미지를 선택해주세요!';
 const INPUT_NAME = '이름을 입력해 주세요.';
 
 export {
+  DROPDOWN_ERROR_MESSAGE_DEFAULT,
+  INPUT_ERROR_MESSAGE_DEFAULT,
+  INPUT_PLACE_HOLDER_DEFAULT,
+  URL_COPY,
   FROM,
   PROFILE_IMG,
   RELATIONSHIP,

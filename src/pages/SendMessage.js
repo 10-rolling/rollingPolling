@@ -14,7 +14,7 @@ function SendMessage() {
   useEffect(() => {
     profileImgInfo();
   }, []);
-  return <Message profileImages={profileImages} />;
+  return <Message id={id} profileImages={profileImages} />;
 }
 
 export default SendMessage;

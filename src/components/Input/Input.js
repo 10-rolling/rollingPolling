@@ -1,14 +1,15 @@
+import {
+  INPUT_ERROR_MESSAGE_DEFAULT,
+  INPUT_PLACE_HOLDER_DEFAULT,
+} from 'constants/message';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const PLACE_HOLDER_DEFAULT = 'placeholder';
-const ERROR_MESSAGE_DEFAULT = '값을 입력해주세요.';
-
 //<Input $isError={boolean}  ,  disabled />
 function Input({
-  placeholder = PLACE_HOLDER_DEFAULT,
+  placeholder = INPUT_ERROR_MESSAGE_DEFAULT,
   $isError,
-  errorMessage = ERROR_MESSAGE_DEFAULT,
+  errorMessage = INPUT_PLACE_HOLDER_DEFAULT,
   ...props
 }) {
   return (
