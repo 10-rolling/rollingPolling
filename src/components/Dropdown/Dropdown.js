@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import arrowDown from 'assets/icons/arrowDown.svg';
-import arrowUp from 'assets/icons/arrowUp.svg';
-
+import { useEffect, useState } from 'react';
 import {
   DROPDOWN_ITEMS_DEFAULT,
+  FONT_ITEMS_PLACE_HOLDER,
   PLACE_HOLDER_DEFAULT,
 } from 'constants/dropdownItem';
+import arrowDown from 'assets/icons/arrowdown.svg';
+import arrowUp from 'assets/icons/arrowUp.svg';
+import styled from 'styled-components';
 import theme from 'styles/theme';
 
 const ERROR_MESSAGE_DEFAULT = 'Error Message';
@@ -16,10 +16,17 @@ function Dropdown({
   items = DROPDOWN_ITEMS_DEFAULT,
   $isError,
   errorMessage = ERROR_MESSAGE_DEFAULT,
+  placeholder,
   ...props
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(PLACE_HOLDER_DEFAULT);
+  const [selectedItem, setSelectedItem] = useState();
+
+  const checkPlaceHolder = () => {
+    placeholder === FONT_ITEMS_PLACE_HOLDER
+      ? setSelectedItem(FONT_ITEMS_PLACE_HOLDER)
+      : setSelectedItem(PLACE_HOLDER_DEFAULT);
+  };
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -32,6 +39,10 @@ function Dropdown({
     setSelectedItem(item.content);
     closeDropdown();
   };
+
+  useEffect(() => {
+    checkPlaceHolder();
+  }, []);
 
   return (
     <StyledDropdownContainer $isError={$isError}>
