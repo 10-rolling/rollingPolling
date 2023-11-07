@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function SecondaryButton({ children, width, disabled }) {
+function SecondaryButton({ content, width, disabled }) {
   return (
     <StyledWrapper width={width} disabled={disabled}>
-      {children}
+      {content}
     </StyledWrapper>
   );
 }
