@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import arrowDown from 'assets/icons/arrowDown.svg';
+import arrowUp from 'assets/icons/arrowUp.svg';
 import {
   DROPDOWN_ITEMS_DEFAULT,
   PLACE_HOLDER_DEFAULT,
 } from 'constants/dropdownItem';
 import { DROPDOWN_ERROR_MESSAGE_DEFAULT } from 'constants/message';
-import arrowDown from 'assets/icons/arrowDown.svg';
-import arrowUp from 'assets/icons/arrowUp.svg';
+import { useState } from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
@@ -56,13 +56,14 @@ export default Dropdown;
 const StyledDropdownButton = styled.button`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 320px;
   height: 50px;
   padding: 12px 16px;
   border-radius: 8px;
   background-color: ${theme.colors.white};
   color: ${theme.colors.gray500};
-  font-size: 1.6rem;
+  font-size: 1rem;
 `;
 
 const StyledDropdownMenu = styled.ul`
@@ -77,24 +78,27 @@ const StyledDropdownMenu = styled.ul`
   background-color: ${theme.colors.white};
 
   list-style: none;
+  z-index: 2;
 `;
 
 const StyledDropdownItem = styled.li`
   padding: 10px;
   font-weight: ${theme.fontWeight.normal};
-  font-size: 1.6rem;
+  font-size: 1rem;
   &:hover {
     background-color: ${theme.colors.gray100};
   }
 `;
+
 const StyledDropdownIcon = styled.img`
   width: 16px;
   height: 16px;
 `;
+
 const StyleErrorMessage = styled.p`
   color: ${theme.colors.error};
   font-weight: ${theme.fontWeight.normal};
-  font-size: 1.2rem;
+  font-size: 0.75rem;
 `;
 
 const StyledDropdownContainer = styled.div`

@@ -28,5 +28,5 @@ const StyledWrapper = styled.div`
 
 const StyledInWrapper = styled.div`
   color: ${theme.colors.white};
-  font-size: 1.6rem;
+  font-size: 1rem;
 `;

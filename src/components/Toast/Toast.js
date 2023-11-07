@@ -43,7 +43,7 @@ const StyledToastContentWrapper = styled.div`
 const StyledToastContent = styled.p`
   color: ${theme.colors.white};
   font-weight: ${theme.fontWeight.normal};
-  font-size: 1.5rem;
+  font-size: 0.94rem;
   line-height: 26px;
   letter-spacing: -0.16px;
 `;
