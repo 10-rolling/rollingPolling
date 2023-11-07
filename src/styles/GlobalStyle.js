@@ -16,11 +16,15 @@ const GlobalStyle = createGlobalStyle`
     font-family: "NotoSansKR";
     font-weight: ${theme.fontWeight.normal};
   }
-  
+
   html,
   body {
     background-color: ${theme.colors.white};
     color: ${theme.colors.black};
+    }
+    
+    button{
+      cursor: pointer;
     }
 `;
 

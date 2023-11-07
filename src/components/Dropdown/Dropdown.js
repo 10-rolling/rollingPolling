@@ -63,7 +63,6 @@ const StyledDropdownButton = styled.button`
   background-color: ${theme.colors.white};
   color: ${theme.colors.gray500};
   font-size: 1.6rem;
-  cursor: pointer;
 `;
 
 const StyledDropdownMenu = styled.ul`
