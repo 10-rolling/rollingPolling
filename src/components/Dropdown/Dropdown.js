@@ -3,18 +3,17 @@ import {
   DROPDOWN_ITEMS_DEFAULT,
   PLACE_HOLDER_DEFAULT,
 } from 'constants/dropdownItem';
+import { DROPDOWN_ERROR_MESSAGE_DEFAULT } from 'constants/message';
 import arrowDown from 'assets/icons/arrowDown.svg';
 import arrowUp from 'assets/icons/arrowUp.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const ERROR_MESSAGE_DEFAULT = 'Error Message';
-
-//<Dropdown $isError={boolean}, disabled />
+// <Dropdown $isError={boolean}, disabled />
 function Dropdown({
   items = DROPDOWN_ITEMS_DEFAULT,
   $isError,
-  errorMessage = ERROR_MESSAGE_DEFAULT,
+  errorMessage = DROPDOWN_ERROR_MESSAGE_DEFAULT,
   ...props
 }) {
   const [isOpen, setIsOpen] = useState(false);

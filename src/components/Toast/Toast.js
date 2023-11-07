@@ -1,9 +1,8 @@
+import { URL_COPY } from 'constants/message';
 import close from 'assets/icons/close.svg';
 import complete from 'assets/icons/complete.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-
-const URL_COPY = 'URL이 복사 되었습니다.';
 
 function Toast({ content = URL_COPY }) {
   return (

@@ -1,0 +1,4 @@
+const DROPDOWN_ERROR_MESSAGE_DEFAULT = 'Error Message';
+const URL_COPY = 'URL이 복사 되었습니다.';
+
+export { DROPDOWN_ERROR_MESSAGE_DEFAULT, URL_COPY };
