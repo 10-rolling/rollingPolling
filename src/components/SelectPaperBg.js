@@ -1,10 +1,10 @@
-import Check from 'assets/icons/Check.svg';
+import check from 'assets/icons/check.svg';
 import styled from 'styled-components';
 
 function SelectPaperBg({ color }) {
   return (
     <StyledWrapper color={color}>
-      <StyledIcon src={Check} />
+      <StyledIcon src={check} alt="체크 아이콘" />
     </StyledWrapper>
   );
 }
