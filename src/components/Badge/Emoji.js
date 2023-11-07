@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from 'styles/theme';
 
 function Emoji({ emoji, count }) {
   return (
@@ -26,6 +27,6 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledInWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.white};
+  color: ${theme.colors.white};
   font-size: 1.6rem;
 `;

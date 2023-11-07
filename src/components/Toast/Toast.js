@@ -1,6 +1,7 @@
 import close from 'assets/icons/close.svg';
 import complete from 'assets/icons/complete.svg';
 import styled from 'styled-components';
+import theme from 'styles/theme';
 
 const URL_COPY = 'URL이 복사 되었습니다.';
 
@@ -41,13 +42,11 @@ const StyledToastContentWrapper = styled.div`
 `;
 
 const StyledToastContent = styled.p`
-  color: ${({ theme }) => theme.colors.white};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  color: ${theme.colors.white};
+  font-weight: ${theme.fontWeight.normal};
   font-size: 1.5rem;
   line-height: 26px;
   letter-spacing: -0.16px;
-
-  font-family: 'NotoSansKR';
 `;
 
 const StyledCloseButton = styled.button`

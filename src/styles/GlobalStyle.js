@@ -16,10 +16,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: "NotoSansKR";
     font-weight: ${theme.fontWeight.normal};
   }
-
-  html {
-    font-size: 100%;
-  }
+  
+  html,
+  body {
+    background-color: ${theme.colors.white};
+    color: ${theme.colors.black};
+    }
 `;
 
 export default GlobalStyle;

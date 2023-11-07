@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from 'styles/theme';
 
 function SecondaryButton({ children, width, disabled }) {
   return (
@@ -20,31 +21,31 @@ const StyledWrapper = styled.button`
 
   padding: 7px 16px;
   border-radius: 6px;
-  border: 1px solid ${({ theme }) => theme.colors.purple600};
-  background-color: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.purple700};
+  border: 1px solid ${theme.colors.purple600};
+  background-color: ${theme.colors.white};
+  color: ${theme.colors.purple700};
 
   font-size: 1rem;
   font-weight: 400;
 
   &:not(:disabled):hover {
-    border: 1px solid ${({ theme }) => theme.colors.purple700};
-    background-color: ${({ theme }) => theme.colors.purple100};
+    border: 1px solid ${theme.colors.purple700};
+    background-color: ${theme.colors.purple100};
   }
 
   &:disabled {
-    background-color: ${({ theme }) => theme.colors.gray300};
-    color: ${({ theme }) => theme.colors.white};
+    background-color: ${theme.colors.gray300};
+    color: ${theme.colors.white};
     border: 0;
   }
 
   &:not(:disabled):active {
-    border: 1px solid ${({ theme }) => theme.colors.purple800};
-    background-color: ${({ theme }) => theme.colors.purple100};
+    border: 1px solid ${theme.colors.purple800};
+    background-color: ${theme.colors.purple100};
   }
 
   &:not(:disabled):focus {
     outline: none;
-    border: 1px solid ${({ theme }) => theme.colors.purple900};
+    border: 1px solid ${theme.colors.purple900};
   }
 `;

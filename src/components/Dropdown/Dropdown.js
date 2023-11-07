@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import styled from 'styled-components';
-import arrowDown from 'assets/icons/arrowDown.svg';
-import arrowUp from 'assets/icons/arrowUp.svg';
-
 import {
   DROPDOWN_ITEMS_DEFAULT,
   PLACE_HOLDER_DEFAULT,
 } from 'constants/dropdownItem';
+import arrowDown from 'assets/icons/arrowDown.svg';
+import arrowUp from 'assets/icons/arrowUp.svg';
+import styled from 'styled-components';
 import theme from 'styles/theme';
 
 const ERROR_MESSAGE_DEFAULT = 'Error Message';
 
-//<Dropdown $isError={boolean}  ,  disabled />
+//<Dropdown $isError={boolean}, disabled />
 function Dropdown({
   items = DROPDOWN_ITEMS_DEFAULT,
   $isError,
@@ -95,7 +94,7 @@ const StyledDropdownIcon = styled.img`
   height: 16px;
 `;
 const StyleErrorMessage = styled.p`
-  color: ${theme.colors.Error};
+  color: ${theme.colors.error};
   font-weight: ${theme.fontWeight.normal};
   font-size: 1.2rem;
 `;
@@ -107,12 +106,12 @@ const StyledDropdownContainer = styled.div`
   ${StyledDropdownButton} {
     border: 1px solid
       ${({ $isError }) =>
-        $isError ? `${theme.colors.Error}` : `${theme.colors.gray300}`};
+        $isError ? `${theme.colors.error}` : `${theme.colors.gray300}`};
 
     &:not(:disabled)&:focus,
     &:not(:disabled)&:hover {
       border-color: ${({ $isError }) =>
-        $isError ? `${theme.colors.Error}` : `${theme.colors.gray500}`};
+        $isError ? `${theme.colors.error}` : `${theme.colors.gray500}`};
     }
     &:active {
       border: 2px solid;

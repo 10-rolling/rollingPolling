@@ -4,7 +4,7 @@ import theme from 'styles/theme';
 const PLACE_HOLDER_DEFAULT = 'placeholder';
 const ERROR_MESSAGE_DEFAULT = 'Error Message';
 
-//<Input $isError={boolean}  ,  disabled />
+//<Input $isError={boolean}, disabled />
 function Input({
   placeholder = PLACE_HOLDER_DEFAULT,
   $isError,
@@ -27,7 +27,7 @@ const StyledInput = styled.input`
   height: 50px;
   border-radius: 8px;
   padding: 12px 16px;
-  font-weight:${theme.fontWeight.normal}
+  font-weight:${theme.fontWeight.normal};
   outline-style: solid;
   &:active {
     border-color: ${theme.colors.gray700};
