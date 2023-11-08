@@ -95,6 +95,7 @@ const StyledPostForm = styled.div`
   height: 66px;
   left: 50%;
   top: 10%;
+  transform: translate(-50%, -50%);
 `;
 
 const StyledInWrapper = styled.div`
