@@ -19,6 +19,8 @@ function Dropdown({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState();
+  const { setRelationShip } = useRelationShip();
+  const { setSelectFont } = useSelectFont();
 
   const checkPlaceHolder = () => {
     placeholder === DROPDOWN_FONT_ITEMS[0].content
@@ -35,6 +37,9 @@ function Dropdown({
 
   const handleItem = (item) => {
     setSelectedItem(item.content);
+    placeholder === DROPDOWN_FONT_ITEMS[0].content
+      ? setSelectFont(item.content)
+      : setRelationShip(item.content);
     closeDropdown();
   };
 

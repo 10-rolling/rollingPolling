@@ -1,11 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import Dropdown from 'components/Dropdown/Dropdown';
 import Editor from 'components/Editor/Editor';
 import Input from 'components/Input/Input';
 import Label from 'components/Label/Label';
-import { DROPDOWN_FONT_ITEMS, DROPDOWN_ITEMS } from 'constants/dropdownItem';
+import {
+  DROPDOWN_FONT_DEFAULT,
+  DROPDOWN_FONT_ITEMS,
+  DROPDOWN_ITEMS_DEFAULT,
+} from 'constants/dropdownItem';
 import {
   CREATE,
   ENTER_CONTENT,
@@ -28,14 +32,15 @@ import { postMessage } from 'libs/api';
 import { styled } from 'styled-components';
 
 function Message({ id }) {
-  const { createCheck, checkContents } = useCreateCheck();
+  const { content } = useContent();
+  const { selectFont } = useSelectFont();
+  const { relationShip } = useRelationShip();
   const { nameCheck, setNameCheck } = useNameCheck();
   const { inputName, setInputName } = useInputName();
-  const { content } = useContent();
-  const { relationShip } = useRelationShip();
-  const { selectFont } = useSelectFont();
   const { profileImg, loadProfileImg } = useProfileImg();
-  const { changeProfileImg, setChangeProfileImg } = useChangeProfileImg();
+  const { createCheck, checkContents } = useCreateCheck();
+  const { changeProfileImg, setChangeProfileImg, cleanProfileImg } =
+    useChangeProfileImg();
 
   const makeMessage = async () => {
     await postMessage(
@@ -50,6 +55,7 @@ function Message({ id }) {
 
   useEffect(() => {
     loadProfileImg();
+    return cleanProfileImg();
   }, []);
 
   useEffect(() => {
@@ -58,7 +64,7 @@ function Message({ id }) {
 
   return (
     <StyledWrapper>
-      {/* From. 부분 */}
+      {/* From. */}
       <StyledInWrapper>
         <Label content={FROM} size="large" />
         <Input
@@ -77,7 +83,7 @@ function Message({ id }) {
             <Label content={PROFILE_SELECT} size="small" />
             <StyledImages>
               {profileImg.map((data) => (
-                <StyledImgButton
+                <StyledImage
                   key={data.id}
                   src={data.src}
                   onClick={setChangeProfileImg}
@@ -90,7 +96,7 @@ function Message({ id }) {
       {/* 상대와의 관계 */}
       <StyledInWrapper>
         <Label content={RELATIONSHIP} size="large" />
-        <Dropdown placeholder={DROPDOWN_ITEMS[0].content} />
+        <Dropdown placeholder={DROPDOWN_ITEMS_DEFAULT} />
       </StyledInWrapper>
       {/* 내용을 입력해 주세요 */}
       <StyledInWrapper>
@@ -102,7 +108,7 @@ function Message({ id }) {
         <Label content={FONT_SELECT} size="large" />
         <Dropdown
           items={DROPDOWN_FONT_ITEMS}
-          placeholder={DROPDOWN_FONT_ITEMS[0].content}
+          placeholder={DROPDOWN_FONT_DEFAULT}
         />
       </StyledInWrapper>
       {/* 생성하기 */}
@@ -160,7 +166,7 @@ const StyledProfileImg = styled.img`
   border-radius: 100px;
 `;
 
-const StyledImgButton = styled.button`
+const StyledImage = styled.button`
   width: 56px;
   height: 56px;
   border: none;
