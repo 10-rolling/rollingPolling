@@ -81,7 +81,6 @@ const StyledDropdownMenu = styled.ul`
   left: 0;
 
   display: inline-flex;
-  padding: 10px 1px;
   flex-direction: column;
   align-items: flex-start;
 
