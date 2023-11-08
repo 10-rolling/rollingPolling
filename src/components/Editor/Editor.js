@@ -13,7 +13,8 @@ function Editor() {
         config={{ placeholder: ENTER_CONTENT }}
         onChange={(event, editor) => {
           const data = editor.getData();
-          setContent(data);
+          const result = data.replace(/(<([^>]+)>)/gi, '');
+          setContent(result);
         }}
       />
     </EditorForm>
