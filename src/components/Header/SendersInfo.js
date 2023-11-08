@@ -6,21 +6,25 @@ import theme from 'styles/theme';
 
 function SendersInfo() {
   const { id } = useParams();
+  const [name, setName] = useState();
   const [count, setCount] = useState(0);
   const [profileImages, setProfileImages] = useState([]);
 
   const messagesInfo = async () => {
     const result = await getRecipientMessage(74); // id로 변경
-    setCount(result.count);
+    setCount(result.messageCount);
+    setName(result.name);
+    const { recentMessages } = result;
     const newProfileImages = [];
-    for (let i = 0; i < result.count; i++) {
+    console.log(recentMessages);
+    for (let i = 0; i < result.messageCount; i++) {
       if (i === 3) {
         const profileImageURL =
           'https://github.com/miniposi/Programmers/assets/52947668/53f0d2b1-db58-41b2-a5ec-bc879ec5e5b9';
         newProfileImages.push(profileImageURL);
         continue;
       }
-      const profileImageURL = result.results[i].profileImageURL;
+      const profileImageURL = recentMessages[i].profileImageURL;
       newProfileImages.push(profileImageURL);
     }
 
@@ -33,14 +37,15 @@ function SendersInfo() {
 
   return (
     <StyledWrapper>
+      <StyledReceiver>To. {name}</StyledReceiver>
       <StyledProfileImgs>
         {profileImages.slice(0, 4).map((item) => (
           <StyledProfileItem key={item} url={item} />
         ))}
+        <p>
+          <span>{count}</span>명이 작성했어요!
+        </p>
       </StyledProfileImgs>
-      <p>
-        <span>{count}</span>명이 작성했어요!
-      </p>
     </StyledWrapper>
   );
 }
@@ -49,12 +54,22 @@ export default SendersInfo;
 
 const StyledWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 2000px;
+
   font-size: 1.125rem;
   color: ${theme.colors.gray900};
 
   span {
     font-weight: ${theme.fontWeight.bold};
   }
+`;
+
+const StyledReceiver = styled.div`
+  width: 227px;
+  font-size: 1.75rem;
+  font-weight: 700;
 `;
 
 const StyledProfileImgs = styled.ul`
@@ -81,14 +96,14 @@ const StyledProfileItem = styled.li`
   background-position: center;
 
   &:nth-child(2) {
-    left: -10%;
+    left: -5%;
   }
 
   &:nth-child(3) {
-    left: -20%;
+    left: -10%;
   }
 
   &:nth-child(4) {
-    left: -30%;
+    left: -15%;
   }
 `;

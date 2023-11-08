@@ -8,7 +8,6 @@ function Header() {
   return (
     <>
       <StyledWrapper>
-        <StyledReceiver>To. 궁수</StyledReceiver>
         <StyledHeaderContent>
           <SendersInfo />
           <Reactions />
@@ -22,23 +21,13 @@ function Header() {
 export default Header;
 
 const StyledWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   padding: 13px 0;
   background: ${theme.colors.white};
 `;
 
-const StyledReceiver = styled.div`
-  width: 227px;
-  font-size: 1.75rem;
-  font-weight: 700;
-`;
-
 const StyledHeaderContent = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   gap: 28px;
 `;

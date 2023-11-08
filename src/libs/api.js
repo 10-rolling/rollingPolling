@@ -9,9 +9,7 @@ async function getProfileImg() {
 }
 
 async function getRecipientMessage(id) {
-  const response = await axios.get(
-    `${API_BASE_URL}/1-10/recipients/${id}/messages/`
-  );
+  const response = await axios.get(`${API_BASE_URL}/1-10/recipients/${id}/`);
   const result = response.data;
   return result;
 }
