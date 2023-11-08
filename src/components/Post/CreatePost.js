@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import ToggleButton from 'components/Button/ToggleButton';
 import Input from 'components/Input/Input';
@@ -10,7 +11,7 @@ import CheckIcon from 'assets/icons/Check.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function Post() {
+function CreatePost() {
   const { emptyCheck, setEmptyCheck } = useEmptyCheck();
   const { imageItems, loadBackgroundImg } = useBackgroundImg();
   const { backgroundItem, setBackgroundItem, checkedBackgroundItem } =
@@ -65,15 +66,17 @@ function Post() {
             </StyledBackgroundItem>
           ))}
         </StyledBackgroundList>
-        <PrimaryButton size="large" width="100%" disabled={!emptyCheck}>
-          생성하기
-        </PrimaryButton>
+        <StyledLink to={`/post/id`}>
+          <PrimaryButton size="large" width="100%" disabled={!emptyCheck}>
+            생성하기
+          </PrimaryButton>
+        </StyledLink>
       </StyledPostForm>
     </StyledWrapper>
   );
 }
 
-export default Post;
+export default CreatePost;
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -151,4 +154,8 @@ const StyledChecked = styled.img`
   opacity: 0.7;
   width: 50px;
   transform: translate(-50%, -50%);
+`;
+
+const StyledLink = styled(Link)`
+  width: 100%;
 `;
