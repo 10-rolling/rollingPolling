@@ -10,6 +10,7 @@ import {
   FONT_ITEMS_PLACE_HOLDER,
 } from 'constants/dropdownItem';
 import {
+  CREATE,
   ENTER_CONTENT,
   FONT_SELECT,
   FROM,
@@ -21,17 +22,34 @@ import {
 import useChangeProfileImg from 'hooks/useChangeProfileImg';
 import useContent from 'hooks/useContent';
 import useInputName from 'hooks/useInputName';
+import useNameCheck from 'hooks/useNameCheck';
+import useRelationShip from 'hooks/useRealationShip';
+import useSelectFont from 'hooks/useSelectFont';
+import { postMessage } from 'libs/api';
 import { styled } from 'styled-components';
 
 function Message({ id, profileImages }) {
-  const [isNameCheck, setIsNameCheck] = useState(false);
   const [isCreate, setIsCreate] = useState(true);
+  const { nameCheck, setNameCheck } = useNameCheck();
   const { profileImg, setProfileImg } = useChangeProfileImg();
-  const { inputName, setInputName } = useInputName();
-  const { content } = useContent();
+  const { inputName, setInputName, clearInputName } = useInputName();
+  const { content, clearContent } = useContent();
+  const { relationShip, clearRelationShip } = useRelationShip();
+  const { selectFont, clearSelectFont } = useSelectFont();
 
-  const checkValidation = (e) => {
-    e.target.value === '' ? setIsNameCheck(true) : setIsNameCheck(false);
+  const post = async () => {
+    await postMessage(
+      id,
+      inputName,
+      profileImg,
+      content,
+      relationShip,
+      selectFont
+    );
+    clearInputName;
+    clearContent;
+    clearRelationShip;
+    clearSelectFont;
   };
 
   useEffect(() => {
@@ -43,17 +61,17 @@ function Message({ id, profileImages }) {
   return (
     <StyledWrapper>
       {/* From. 부분 */}
-      <StyledWrapperIn>
+      <StyledInWrapper>
         <Label content={FROM} size="large" />
         <Input
           placeholder={INPUT_NAME}
-          $isError={isNameCheck}
-          onBlur={checkValidation}
+          $isError={nameCheck}
+          onBlur={setNameCheck}
           onChange={setInputName}
         />
-      </StyledWrapperIn>
+      </StyledInWrapper>
       {/* 프로필 이미지 */}
-      <StyledWrapperIn>
+      <StyledInWrapper>
         <Label content={PROFILE_IMG} size="large" />
         <StyledImgWrapper>
           <StyledDefaultProfileImg src={profileImg} alt="기본 이미지" />
@@ -70,30 +88,34 @@ function Message({ id, profileImages }) {
             </StyledImgWrapperSel>
           </StyledImgWrapperIn>
         </StyledImgWrapper>
-      </StyledWrapperIn>
+      </StyledInWrapper>
       {/* 상대와의 관계 */}
-      <StyledWrapperIn>
+      <StyledInWrapper>
         <Label content={RELATIONSHIP} size="large" />
-        <StyledDropDown />
-      </StyledWrapperIn>
+        <Dropdown />
+      </StyledInWrapper>
       {/* 내용을 입력해 주세요 */}
-      <StyledWrapperIn>
+      <StyledInWrapper>
         <Label content={ENTER_CONTENT} size="large" />
         <Editor />
-      </StyledWrapperIn>
+      </StyledInWrapper>
       {/* 폰트 선택 */}
-      <StyledWrapperIn>
+      <StyledInWrapper>
         <Label content={FONT_SELECT} size="large" />
-        <StyledDropDown
+        <Dropdown
           items={DROPDOWN_FONT_ITEMS}
           placeholder={FONT_ITEMS_PLACE_HOLDER}
         />
-      </StyledWrapperIn>
+      </StyledInWrapper>
       {/* 생성하기 */}
       <StyledLink to={`/post/${id}`}>
-        <PrimaryButton size="large" width="100%" disabled={isCreate}>
-          생성하기
-        </PrimaryButton>
+        <PrimaryButton
+          content={CREATE}
+          size="large"
+          width="100%"
+          disabled={isCreate}
+          onClick={post}
+        />
       </StyledLink>
     </StyledWrapper>
   );
@@ -111,7 +133,7 @@ const StyledWrapper = styled.div`
   gap: 50px;
 `;
 
-const StyledWrapperIn = styled.div`
+const StyledInWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -147,10 +169,6 @@ const StyledImgButton = styled.button`
   border-radius: 100px;
   background-color: transparent;
   background-image: url(${(props) => props.src});
-`;
-
-const StyledDropDown = styled(Dropdown)`
-  font-size: 1rem;
 `;
 
 const StyledLink = styled(Link)`

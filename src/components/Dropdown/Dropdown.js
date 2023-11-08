@@ -5,6 +5,8 @@ import {
   PLACE_HOLDER_DEFAULT,
 } from 'constants/dropdownItem';
 import { DROPDOWN_ERROR_MESSAGE_DEFAULT } from 'constants/message';
+import useRelationShip from 'hooks/useRealationShip';
+import useSelectFont from 'hooks/useSelectFont';
 import arrowDown from 'assets/icons/arrowdown.svg';
 import arrowUp from 'assets/icons/arrowUp.svg';
 import styled from 'styled-components';
@@ -16,10 +18,13 @@ function Dropdown({
   $isError,
   errorMessage = DROPDOWN_ERROR_MESSAGE_DEFAULT,
   placeholder,
+  value,
   ...props
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState();
+  const { setRelationShip } = useRelationShip();
+  const { setSelectFont } = useSelectFont();
 
   const checkPlaceHolder = () => {
     placeholder === FONT_ITEMS_PLACE_HOLDER
@@ -36,6 +41,9 @@ function Dropdown({
 
   const handleItem = (item) => {
     setSelectedItem(item.content);
+    placeholder === FONT_ITEMS_PLACE_HOLDER
+      ? setSelectFont(item.content)
+      : setRelationShip(item.content);
     closeDropdown();
   };
 

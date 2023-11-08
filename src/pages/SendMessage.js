@@ -6,6 +6,7 @@ import getProfileImg from 'libs/api';
 function SendMessage() {
   const { id } = useParams();
   const [profileImages, setProfileImages] = useState([]);
+
   const profileImgInfo = async () => {
     const result = await getProfileImg();
     setProfileImages(result);
@@ -14,6 +15,7 @@ function SendMessage() {
   useEffect(() => {
     profileImgInfo();
   }, []);
+
   return <Message id={id} profileImages={profileImages} />;
 }
 
