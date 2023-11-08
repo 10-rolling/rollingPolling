@@ -73,7 +73,7 @@ const StyledItemWrapper = styled.div`
 `;
 
 const StyledImgLeftWrapper = styled(StyledItemWrapper)`
-  padding: 60px 60px 60px 0px;
+  padding: 60px 125px 60px 0px;
 `;
 
 const StyldContentWrapper = styled.div`
