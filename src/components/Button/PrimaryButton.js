@@ -2,10 +2,10 @@ import { SIZES } from 'constants/buttonSize';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function PrimaryButton({ children, size, width, disabled }) {
+function PrimaryButton({ content, size, width, disabled }) {
   return (
     <StyledWrapper size={size} width={width} disabled={disabled}>
-      {children}
+      {content}
     </StyledWrapper>
   );
 }

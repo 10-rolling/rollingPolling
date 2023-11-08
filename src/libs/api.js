@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_BASE_URL } from 'constants/common';
+import { API_BASE_URL } from 'constants/url';
 
 async function getProfileImg() {
   const response = await axios.get(`${API_BASE_URL}/profile-images/`);

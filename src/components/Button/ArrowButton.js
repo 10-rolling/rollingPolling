@@ -1,11 +1,10 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 function ArrowButton({ imgSrc }) {
   return (
     <StyleWrapper>
-      <img src={imgSrc} alt="Arrow Icon" />
+      <img src={imgSrc} alt="방향 화살표" />
     </StyleWrapper>
   );
 }
