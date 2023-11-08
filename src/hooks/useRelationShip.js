@@ -1,7 +1,8 @@
 import { create } from 'zustand';
+import { DROPDOWN_ITEMS_DEFALUT } from 'constants/dropdownItem';
 
 const useRelationShip = create((set) => ({
-  relationShip: '',
+  relationShip: `${DROPDOWN_ITEMS_DEFALUT}`,
   setRelationShip: (data) => set({ relationShip: data }),
   clearRelationShip: () => set({ relationShip: '' }),
 }));

@@ -1,11 +1,10 @@
 import { create } from 'zustand';
-import DefaultProfile from 'assets/icons/DefaultProfile.svg';
 
 const useChangeProfileImg = create((set) => ({
-  profileImg: `${DefaultProfile}`,
-  setProfileImg: (img) =>
+  changeProfileImg: 'https://i.ibb.co/mRKQQ9v/Default-Profile.jpg',
+  setChangeProfileImg: (img) =>
     set({
-      profileImg: img.target.attributes.src.value,
+      changeProfileImg: img.target.attributes.src.value,
     }),
 }));
 

@@ -18,42 +18,43 @@ import {
 } from 'constants/message';
 import useChangeProfileImg from 'hooks/useChangeProfileImg';
 import useContent from 'hooks/useContent';
+import useCreateCheck from 'hooks/useCreateCheck';
 import useInputName from 'hooks/useInputName';
 import useNameCheck from 'hooks/useNameCheck';
-import useRelationShip from 'hooks/useRealationShip';
+import useProfileImg from 'hooks/useProfileImg';
+import useRelationShip from 'hooks/useRelationShip';
 import useSelectFont from 'hooks/useSelectFont';
 import { postMessage } from 'libs/api';
 import { styled } from 'styled-components';
 
-function Message({ id, profileImages }) {
-  const [isCreate, setIsCreate] = useState(true); // 이거 뭔가 hook으로 빼기가 어려워요 도와주세요.. 🥹
+function Message({ id }) {
+  const { createCheck, checkContents } = useCreateCheck();
   const { nameCheck, setNameCheck } = useNameCheck();
-  const { profileImg, setProfileImg } = useChangeProfileImg();
-  const { inputName, setInputName, clearInputName } = useInputName();
-  const { content, clearContent } = useContent();
-  const { relationShip, clearRelationShip } = useRelationShip();
-  const { selectFont, clearSelectFont } = useSelectFont();
+  const { inputName, setInputName } = useInputName();
+  const { content } = useContent();
+  const { relationShip } = useRelationShip();
+  const { selectFont } = useSelectFont();
+  const { profileImg, loadProfileImg } = useProfileImg();
+  const { changeProfileImg, setChangeProfileImg } = useChangeProfileImg();
 
-  const post = async () => {
+  const makeMessage = async () => {
     await postMessage(
       id,
       inputName,
-      profileImg,
+      changeProfileImg,
       content,
       relationShip,
       selectFont
     );
-    clearInputName;
-    clearContent;
-    clearRelationShip;
-    clearSelectFont;
   };
 
   useEffect(() => {
-    if (inputName.length !== 0 && content.length !== 0) {
-      setIsCreate(false);
-    }
-  });
+    loadProfileImg();
+  }, []);
+
+  useEffect(() => {
+    checkContents(inputName, content);
+  }, [inputName, content]);
 
   return (
     <StyledWrapper>
@@ -71,19 +72,19 @@ function Message({ id, profileImages }) {
       <StyledInWrapper>
         <Label content={PROFILE_IMG} size="large" />
         <StyledImgWrapper>
-          <StyledDefaultProfileImg src={profileImg} alt="기본 이미지" />
-          <StyledImgWrapperIn>
+          <StyledProfileImg src={changeProfileImg} alt="기본 이미지" />
+          <StyledProfileImgWrapper>
             <Label content={PROFILE_SELECT} size="small" />
-            <StyledImgWrapperSel>
-              {profileImages.map((data) => (
+            <StyledImages>
+              {profileImg.map((data) => (
                 <StyledImgButton
-                  key={data}
-                  src={data}
-                  onClick={setProfileImg}
+                  key={data.id}
+                  src={data.src}
+                  onClick={setChangeProfileImg}
                 />
               ))}
-            </StyledImgWrapperSel>
-          </StyledImgWrapperIn>
+            </StyledImages>
+          </StyledProfileImgWrapper>
         </StyledImgWrapper>
       </StyledInWrapper>
       {/* 상대와의 관계 */}
@@ -110,8 +111,8 @@ function Message({ id, profileImages }) {
           content={CREATE}
           size="large"
           width="100%"
-          disabled={isCreate}
-          onClick={post}
+          disabled={createCheck}
+          onClick={makeMessage}
         />
       </StyledLink>
     </StyledWrapper>
@@ -143,18 +144,18 @@ const StyledImgWrapper = styled.div`
   gap: 32px;
 `;
 
-const StyledImgWrapperIn = styled.div`
+const StyledProfileImgWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
 `;
 
-const StyledImgWrapperSel = styled.div`
+const StyledImages = styled.div`
   display: flex;
   gap: 5px;
 `;
 
-const StyledDefaultProfileImg = styled.img`
+const StyledProfileImg = styled.img`
   width: 70px;
   border-radius: 100px;
 `;
