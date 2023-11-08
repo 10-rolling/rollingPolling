@@ -44,6 +44,7 @@ function Card({ img, name, content, date, category, background, color }) {
 export default Card;
 
 const StyledWrapper = styled.div`
+  position: relative;
   width: 384px;
   height: 280px;
   border-radius: 16px;
@@ -70,6 +71,7 @@ const StyledImgWrapper = styled.img`
   height: 56px;
   border-radius: 50%;
   border: 1px;
+  object-fit: cover;
 `;
 
 const StyledFromContentWrapper = styled.div`
