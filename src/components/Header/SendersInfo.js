@@ -85,8 +85,8 @@ const StyledProfileItem = styled.li`
   position: relative;
   top: 0;
 
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
 
   border: 1px solid ${theme.colors.white};
   border-radius: 100%;
