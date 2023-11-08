@@ -2,9 +2,9 @@ import { OUTLINED_SIZES } from 'constants/buttonSize.js';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function OutlinedButton({ content, size, width, img, disabled }) {
+function OutlinedButton({ content, size, width, height, img, disabled }) {
   return (
-    <StyledWrapper size={size} width={width} disabled={disabled}>
+    <StyledWrapper size={size} width={width} height={height} disabled={disabled}>
       {img && <img src={img} alt="버튼 아이콘" />}
       {content}
     </StyledWrapper>
@@ -20,6 +20,7 @@ const StyledWrapper = styled.button`
   gap: 10px;
 
   width: ${(props) => props.width};
+  height: ${(props) => props.height};
 
   padding: ${(props) => OUTLINED_SIZES[props.size].padding};
   border: 1px solid ${theme.colors.gray300};

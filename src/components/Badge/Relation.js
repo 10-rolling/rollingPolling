@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-function Relation({ category, backgroundColor, color }) {
+function Relation({ category, background, color }) {
   return (
-    <StyledWrapper backgroundColor={backgroundColor}>
+    <StyledWrapper background={background}>
       <StyledCategory color={color}>{category}</StyledCategory>
     </StyledWrapper>
   );
@@ -20,7 +20,7 @@ const StyledWrapper = styled.div`
   padding: 0px, 8px, 0px, 8px;
   border-radius: 4px;
   gap: 10px;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props) => props.background};
 `;
 
 const StyledCategory = styled.span`
