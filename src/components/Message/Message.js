@@ -5,10 +5,7 @@ import Dropdown from 'components/Dropdown/Dropdown';
 import Editor from 'components/Editor/Editor';
 import Input from 'components/Input/Input';
 import Label from 'components/Label/Label';
-import {
-  DROPDOWN_FONT_ITEMS,
-  FONT_ITEMS_PLACE_HOLDER,
-} from 'constants/dropdownItem';
+import { DROPDOWN_FONT_ITEMS, DROPDOWN_ITEMS } from 'constants/dropdownItem';
 import {
   CREATE,
   ENTER_CONTENT,
@@ -29,7 +26,7 @@ import { postMessage } from 'libs/api';
 import { styled } from 'styled-components';
 
 function Message({ id, profileImages }) {
-  const [isCreate, setIsCreate] = useState(true);
+  const [isCreate, setIsCreate] = useState(true); // 이거 뭔가 hook으로 빼기가 어려워요 도와주세요.. 🥹
   const { nameCheck, setNameCheck } = useNameCheck();
   const { profileImg, setProfileImg } = useChangeProfileImg();
   const { inputName, setInputName, clearInputName } = useInputName();
@@ -92,7 +89,7 @@ function Message({ id, profileImages }) {
       {/* 상대와의 관계 */}
       <StyledInWrapper>
         <Label content={RELATIONSHIP} size="large" />
-        <Dropdown />
+        <Dropdown placeholder={DROPDOWN_ITEMS[0].content} />
       </StyledInWrapper>
       {/* 내용을 입력해 주세요 */}
       <StyledInWrapper>
@@ -104,7 +101,7 @@ function Message({ id, profileImages }) {
         <Label content={FONT_SELECT} size="large" />
         <Dropdown
           items={DROPDOWN_FONT_ITEMS}
-          placeholder={FONT_ITEMS_PLACE_HOLDER}
+          placeholder={DROPDOWN_FONT_ITEMS[0].content}
         />
       </StyledInWrapper>
       {/* 생성하기 */}

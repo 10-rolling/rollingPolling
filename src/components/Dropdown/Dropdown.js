@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  DROPDOWN_ITEMS_DEFAULT,
-  FONT_ITEMS_PLACE_HOLDER,
-  PLACE_HOLDER_DEFAULT,
-} from 'constants/dropdownItem';
+import { DROPDOWN_ITEMS, DROPDOWN_FONT_ITEMS } from 'constants/dropdownItem';
 import { DROPDOWN_ERROR_MESSAGE_DEFAULT } from 'constants/message';
 import useRelationShip from 'hooks/useRealationShip';
 import useSelectFont from 'hooks/useSelectFont';
@@ -14,7 +10,7 @@ import theme from 'styles/theme';
 
 // <Dropdown $isError={boolean}, disabled />
 function Dropdown({
-  items = DROPDOWN_ITEMS_DEFAULT,
+  items = DROPDOWN_ITEMS,
   $isError,
   errorMessage = DROPDOWN_ERROR_MESSAGE_DEFAULT,
   placeholder,
@@ -27,9 +23,9 @@ function Dropdown({
   const { setSelectFont } = useSelectFont();
 
   const checkPlaceHolder = () => {
-    placeholder === FONT_ITEMS_PLACE_HOLDER
-      ? setSelectedItem(FONT_ITEMS_PLACE_HOLDER)
-      : setSelectedItem(PLACE_HOLDER_DEFAULT);
+    placeholder === DROPDOWN_FONT_ITEMS[0].content
+      ? setSelectedItem(DROPDOWN_FONT_ITEMS[0].content)
+      : setSelectedItem(DROPDOWN_ITEMS[0].content);
   };
 
   const toggleDropdown = () => {
@@ -41,7 +37,7 @@ function Dropdown({
 
   const handleItem = (item) => {
     setSelectedItem(item.content);
-    placeholder === FONT_ITEMS_PLACE_HOLDER
+    placeholder === DROPDOWN_FONT_ITEMS[0].content
       ? setSelectFont(item.content)
       : setRelationShip(item.content);
     closeDropdown();
