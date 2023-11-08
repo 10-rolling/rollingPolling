@@ -4,35 +4,30 @@ import mountainImg from 'assets/images/post/mountain.svg';
 import orangeImg from 'assets/images/post/orangePost.svg';
 import plainImg from 'assets/images/post/plain.svg';
 import purpleImg from 'assets/images/post/purplePost.svg';
-import theme from 'styles/theme';
 
 const COLOR_BACKGROUNDS = [
   {
     id: 1,
-    value: theme.colors.orange200,
-    content: 'orange',
+    value: 'orange',
     alt: '주황색',
     src: orangeImg,
     checked: true,
   },
   {
     id: 2,
-    value: theme.colors.purple200,
-    content: 'purple',
+    value: 'purple',
     alt: '보라색',
     src: purpleImg,
   },
   {
     id: 3,
-    value: theme.colors.blue200,
-    content: 'blue',
+    value: 'blue',
     alt: '파란색',
     src: blueImg,
   },
   {
     id: 4,
-    value: theme.colors.green200,
-    content: 'green',
+    value: 'green',
     alt: '초록색',
     src: greenImg,
   },
