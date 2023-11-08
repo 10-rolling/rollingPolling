@@ -71,6 +71,8 @@ const StyledWrapper = styled.div`
   border-radius: 6px;
   border: 1px solid ${theme.colors.gray300};
   background: ${theme.colors.white};
+
+  cursor: pointer;
 `;
 
 const StyledDropdownMenu = styled.ul`
