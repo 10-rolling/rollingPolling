@@ -6,6 +6,7 @@ const useContent = create((set) => ({
     set({
       content: data,
     }),
+  clearContent: () => set({ content: '' }),
 }));
 
 export default useContent;
