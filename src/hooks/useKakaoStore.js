@@ -20,7 +20,7 @@ const useKakaoStore = create((set) => ({
         title: 'rollingPolling',
         description: '#롤링폴링 #롤링페이퍼 #sns',
         imageUrl:
-          'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+          'https://github.com/10-rolling/rollingPolling/assets/52947668/551a7c42-5e5c-4424-a24e-385491585b85',
         link: {
           mobileWebUrl: 'https://developers.kakao.com',
           webUrl: 'https://developers.kakao.com',
@@ -30,7 +30,7 @@ const useKakaoStore = create((set) => ({
         {
           title: '나도 하러 가기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
+            mobileWebUrl: 'https://developers.kakao.com', // 추후 수정
             webUrl: 'https://developers.kakao.com',
           },
         },
