@@ -1,14 +1,15 @@
+import {
+  INPUT_ERROR_MESSAGE_DEFAULT,
+  INPUT_PLACE_HOLDER_DEFAULT,
+} from 'constants/message';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const PLACE_HOLDER_DEFAULT = 'placeholder';
-const ERROR_MESSAGE_DEFAULT = 'Error Message';
-
-//<Input $isError={boolean}  ,  disabled />
+//<Input $isError={boolean}, disabled />
 function Input({
-  placeholder = PLACE_HOLDER_DEFAULT,
+  placeholder = INPUT_PLACE_HOLDER_DEFAULT,
   $isError,
-  errorMessage = ERROR_MESSAGE_DEFAULT,
+  errorMessage = INPUT_ERROR_MESSAGE_DEFAULT,
   ...props
 }) {
   return (
@@ -22,12 +23,12 @@ function Input({
 export default Input;
 
 const StyledInput = styled.input`
-  display:block;
+  display: block;
   width: 320px;
   height: 50px;
   border-radius: 8px;
   padding: 12px 16px;
-  font-weight:${theme.fontWeight.normal}
+  font-weight: ${theme.fontWeight.normal};
   outline-style: solid;
   &:active {
     border-color: ${theme.colors.gray700};

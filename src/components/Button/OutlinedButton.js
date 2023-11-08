@@ -4,14 +4,9 @@ import theme from 'styles/theme';
 
 function OutlinedButton({ content, size, width, height, img, disabled }) {
   return (
-    <StyledWrapper
-      size={size}
-      width={width}
-      height={height}
-      disabled={disabled}
-      content={content}
-    >
-      {img && <img src={img} alt="Button Icon" />}
+    <StyledWrapper size={size} width={width} height={height} disabled={disabled}>
+      {img && <img src={img} alt="버튼 아이콘" />}
+      {content}
     </StyledWrapper>
   );
 }

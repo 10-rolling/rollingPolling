@@ -1,14 +1,14 @@
-import Close from 'assets/icons/close.svg';
-import Complete from 'assets/icons/completed.svg';
+import { URL_COPY } from 'constants/message';
+import close from 'assets/icons/close.svg';
+import complete from 'assets/icons/complete.svg';
 import styled from 'styled-components';
-
-const URL_COPY = 'URL이 복사 되었습니다.';
+import theme from 'styles/theme';
 
 function Toast({ content = URL_COPY }) {
   return (
     <StyledToast>
       <StyledToastContentWrapper>
-        <img src={Complete} alt="Complete 아이콘" />
+        <img src={complete} alt="완료 아이콘" />
         <StyledToastContent>{content}</StyledToastContent>
       </StyledToastContentWrapper>
       <StyledCloseButton />
@@ -41,13 +41,11 @@ const StyledToastContentWrapper = styled.div`
 `;
 
 const StyledToastContent = styled.p`
-  color: ${({ theme }) => theme.colors.white};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  font-size: 1.5rem;
+  color: ${theme.colors.white};
+  font-weight: ${theme.fontWeight.normal};
+  font-size: 0.94rem;
   line-height: 26px;
   letter-spacing: -0.16px;
-
-  font-family: 'NotoSansKR';
 `;
 
 const StyledCloseButton = styled.button`
@@ -56,7 +54,7 @@ const StyledCloseButton = styled.button`
   border: none;
 
   background: transparent;
-  background-image: url(${Close});
+  background-image: url(${close});
   background-repeat: no-repeat;
 
   &:hover {

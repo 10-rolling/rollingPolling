@@ -17,9 +17,15 @@ const GlobalStyle = createGlobalStyle`
     font-weight: ${theme.fontWeight.normal};
   }
 
-  html {
-    font-size: 100%;
-  }
+  html,
+  body {
+    background-color: ${theme.colors.white};
+    color: ${theme.colors.black};
+    }
+    
+    button{
+      cursor: pointer;
+    }
 `;
 
 export default GlobalStyle;
