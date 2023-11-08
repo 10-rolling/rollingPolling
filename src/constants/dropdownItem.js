@@ -8,6 +8,8 @@ const DROPDOWN_ITEMS_DEFAULT = [
 const DROPDOWN_FONT_ITEMS = [
   { id: 1, content: 'Noto Sans' },
   { id: 2, content: 'Pretendard' },
+  { id: 3, content: '나눔명조' },
+  { id: 4, content: '나눔손글씨 손편지체' },
 ];
 
 const PLACE_HOLDER_DEFAULT = '지인';
