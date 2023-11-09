@@ -1,7 +1,5 @@
-import SendMessage from "./SendMessage";
-
 function Post() {
-  return <SendMessage />;
+  return;
 }
 
 export default Post;
