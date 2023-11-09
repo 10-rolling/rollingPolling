@@ -31,5 +31,10 @@ async function postMessage(
   }
 }
 
-export default getProfileImg;
-export { postMessage };
+async function getRecipient(id) {
+  const response = await instance.get(`/1-10/recipients/${id}/`);
+  const result = response.data;
+  return result;
+}
+
+export { postMessage, getProfileImg, getRecipient };
