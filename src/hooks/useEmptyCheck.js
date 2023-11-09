@@ -6,6 +6,11 @@ const useEmptyCheck = create((set) => ({
     set({
       emptyCheck: value.trim() !== '',
     }),
+  isValue: true,
+  setIsValue: (value) =>
+    set({
+      isValue: !(value.length > 0),
+    }),
 }));
 
 export default useEmptyCheck;
