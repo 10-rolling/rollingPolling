@@ -1,12 +1,8 @@
 function dateFormat(date) {
   const formatDate = new Date(date);
   const year = formatDate.getFullYear();
-  const month =
-    formatDate.getMonth() + 1 < 9
-      ? '0' + formatDate.getMonth() + 1
-      : formatDate.getMonth() + 1;
-  const day =
-    formatDate.getDay() < 9 ? '0' + formatDate.getDay() : formatDate.getDay();
+  const month = String(formatDate.getMonth() + 1).padStart(2, '0');
+  const day = formatDate.getDay().padStart(2, '0');
 
   return [year, month, day].join('.');
 }
