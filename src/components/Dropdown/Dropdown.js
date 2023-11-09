@@ -1,23 +1,32 @@
+import { useEffect, useState } from 'react';
+import { DROPDOWN_ITEMS, DROPDOWN_FONT_ITEMS } from 'constants/dropdownItem';
+import { DROPDOWN_ERROR_MESSAGE_DEFAULT } from 'constants/message';
+import useRelationShip from 'hooks/useRelationShip';
+import useSelectFont from 'hooks/useSelectFont';
 import arrowDown from 'assets/icons/arrowDown.svg';
 import arrowUp from 'assets/icons/arrowUp.svg';
-import {
-  DROPDOWN_ITEMS_DEFAULT,
-  PLACE_HOLDER_DEFAULT,
-} from 'constants/dropdownItem';
-import { DROPDOWN_ERROR_MESSAGE_DEFAULT } from 'constants/message';
-import { useState } from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 // <Dropdown $isError={boolean}, disabled />
 function Dropdown({
-  items = DROPDOWN_ITEMS_DEFAULT,
+  items = DROPDOWN_ITEMS,
   $isError,
   errorMessage = DROPDOWN_ERROR_MESSAGE_DEFAULT,
+  placeholder,
+  value,
   ...props
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(PLACE_HOLDER_DEFAULT);
+  const [selectedItem, setSelectedItem] = useState();
+  const { setRelationShip } = useRelationShip();
+  const { setSelectFont } = useSelectFont();
+
+  const checkPlaceHolder = () => {
+    placeholder === DROPDOWN_FONT_ITEMS[0].content
+      ? setSelectedItem(DROPDOWN_FONT_ITEMS[0].content)
+      : setSelectedItem(DROPDOWN_ITEMS[0].content);
+  };
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -28,8 +37,15 @@ function Dropdown({
 
   const handleItem = (item) => {
     setSelectedItem(item.content);
+    placeholder === DROPDOWN_FONT_ITEMS[0].content
+      ? setSelectFont(item.content)
+      : setRelationShip(item.content);
     closeDropdown();
   };
+
+  useEffect(() => {
+    checkPlaceHolder();
+  }, []);
 
   return (
     <StyledDropdownContainer $isError={$isError}>

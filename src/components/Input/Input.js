@@ -24,7 +24,7 @@ export default Input;
 
 const StyledInput = styled.input`
   display: block;
-  width: 320px;
+  width: 100%;
   height: 50px;
   border-radius: 8px;
   padding: 12px 16px;
@@ -36,8 +36,8 @@ const StyledInput = styled.input`
 `;
 
 const StyleErrorMessage = styled.p`
-  color: ${theme.colors.Error};
-  font-size: 1.2rem;
+  color: ${theme.colors.error};
+  font-size: .75rem;
   font-weight: ${theme.fontWeight.normal};
 `;
 
@@ -48,15 +48,15 @@ const StyledInputContainer = styled.div`
   ${StyledInput} {
     border: 1px solid
       ${({ $isError }) =>
-        $isError ? `${theme.colors.Error}` : `${theme.colors.gray300}`};
+        $isError ? `${theme.colors.error}` : `${theme.colors.gray300}`};
 
     &:not(:disabled):focus {
       outline-color: ${({ $isError }) =>
-        $isError ? `${theme.colors.Error}` : `${theme.colors.gray500}`};
+        $isError ? `${theme.colors.error}` : `${theme.colors.gray500}`};
     }
     &:not(:disabled):hover {
       border-color: ${({ $isError }) =>
-        $isError ? `${theme.colors.Error}` : `${theme.colors.gray500}`};
+        $isError ? `${theme.colors.error}` : `${theme.colors.gray500}`};
     }
     &:disabled {
       background-color: ${theme.colors.gray100};
