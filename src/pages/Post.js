@@ -1,33 +1,58 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import ToggleButton from 'components/Button/ToggleButton';
 import Input from 'components/Input/Input';
 import { COLOR_BACKGROUNDS } from 'constants/backgroundItem';
 import useBackgroundImg from 'hooks/useBackgroundImg';
 import useEmptyCheck from 'hooks/useEmptyCheck';
+import useInputName from 'hooks/useInputName';
 import useChangeBackgroundItem from 'hooks/useSetBackgroundItem';
+import { createRecipient } from 'libs/api';
 import CheckIcon from 'assets/icons/Check.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 function Post() {
-  const { emptyCheck, setEmptyCheck } = useEmptyCheck();
+  const { inputName, setInputName } = useInputName();
+  const { emptyCheck, setEmptyCheck, isValue, setIsValue } = useEmptyCheck();
   const { imageItems, loadBackgroundImg } = useBackgroundImg();
   const { backgroundItem, setBackgroundItem, checkedBackgroundItem } =
     useChangeBackgroundItem();
+  const [paramType, setParamType] = useState(0);
+  const navigate = useNavigate();
 
   const toggleHandle = (result) => {
     setBackgroundItem(result ? imageItems : COLOR_BACKGROUNDS);
+    setParamType(result);
   };
 
   const checkInputValue = (e) => {
     setEmptyCheck(e.target.value);
+    setIsValue(e.target.value);
   };
 
   const clickHandle = (checkedItem) => {
     checkedBackgroundItem(checkedItem);
   };
+
+  const postToServer = async () => {
+    const checkedItem = backgroundItem.find((item) => item.checked);
+    const param = {
+      name: inputName,
+    };
+    //이미지 와 컬러에 따라 파라미터 변경
+    paramType === 1
+      ? (param.backgroundImageURL = checkedItem.value)
+      : (param.backgroundColor = checkedItem.value);
+
+    await createRecipient(param).then((result) => {
+      if (result?.id) {
+        navigate(`/post/${result.id}`);
+      }
+    });
+  };
+
   useEffect(() => {
     loadBackgroundImg();
   }, [emptyCheck]);
@@ -43,6 +68,7 @@ function Post() {
             $isError={!emptyCheck}
             onBlur={checkInputValue}
             errorMessage="값을 입력해주세요."
+            onChange={setInputName}
           />
         </StyledInWrapper>
         {/* 배경화면 선택 */}
@@ -66,14 +92,13 @@ function Post() {
             </StyledBackgroundItem>
           ))}
         </StyledBackgroundList>
-        <StyledLink to={`/post/id`}>
-          <PrimaryButton
-            size="large"
-            width="100%"
-            disabled={!emptyCheck}
-            content={'생성하기'}
-          />
-        </StyledLink>
+        <PrimaryButton
+          size="large"
+          width="100%"
+          disabled={isValue}
+          content={'생성하기'}
+          onClick={postToServer}
+        />
       </StyledPostForm>
     </StyledWrapper>
   );
@@ -122,10 +147,6 @@ const StyledSpan = styled.span`
   color: ${theme.colors.gray500};
 `;
 
-const StyledInput = styled(Input)`
-  width: 100%;
-`;
-
 const StyledToggleButton = styled(ToggleButton)`
   margin-top: 30px;
 `;
@@ -157,8 +178,4 @@ const StyledChecked = styled.img`
   opacity: 0.7;
   width: 50px;
   transform: translate(-50%, -50%);
-`;
-
-const StyledLink = styled(Link)`
-  width: 100%;
 `;
