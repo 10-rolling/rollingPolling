@@ -3,7 +3,7 @@ import { DROPDOWN_ITEMS, DROPDOWN_FONT_ITEMS } from 'constants/dropdownItem';
 import { DROPDOWN_ERROR_MESSAGE_DEFAULT } from 'constants/message';
 import useRelationShip from 'hooks/useRelationShip';
 import useSelectFont from 'hooks/useSelectFont';
-import arrowDown from 'assets/icons/arrowdown.svg';
+import arrowDown from 'assets/icons/arrowDown.svg';
 import arrowUp from 'assets/icons/arrowUp.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';

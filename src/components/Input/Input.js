@@ -37,7 +37,7 @@ const StyledInput = styled.input`
 
 const StyleErrorMessage = styled.p`
   color: ${theme.colors.error};
-  font-size: 12px;
+  font-size: .75rem;
   font-weight: ${theme.fontWeight.normal};
 `;
 

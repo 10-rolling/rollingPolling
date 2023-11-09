@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
+import SendMessage from "./SendMessage";
 
 function Post() {
-  return <Outlet />;
+  return <SendMessage />;
 }
 
 export default Post;
