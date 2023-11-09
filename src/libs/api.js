@@ -44,20 +44,29 @@ async function getBackgroundImg() {
   return imageUrls;
 }
 
-async function addRecipients(param) {
-  const url = `/recipients/`;
-  const config = {
-    headers: {
-      'content-type': 'multipart/form-data',
-    },
-  };
-  const formData = new FormData();
-  formData.append('name', param.name);
-  formData.append('backgroundColor', param.backgroundColor);
+/** Post 생성
+ *
+ * @returns {object}
+ */
+async function createRecipient(param) {
+  const { name, backgroundColor = 'beige', backgroundImageURL } = param;
+  const url = `/1-10/recipients/`;
 
-  const response = await instance.post(url, formData, config);
-  const result = response.data;
-  console.log(result);
+  try {
+    const response = await instance.post(url, {
+      name: name,
+      backgroundColor: backgroundColor,
+      backgroundImageURL: backgroundImageURL,
+    });
+    const result = response.data;
+    return result;
+  } catch (error) {
+    if (error.response) {
+      throw error;
+    } else {
+      throw error;
+    }
+  }
 }
 
-export { postMessage, getProfileImg, getBackgroundImg, addRecipients };
+export { postMessage, getProfileImg, getBackgroundImg, createRecipient };
