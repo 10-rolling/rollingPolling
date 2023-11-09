@@ -1,5 +1,5 @@
+// ${theme.colors.컬러이름};
 const theme = {
-  // ${({ theme }) => theme.colors.컬러이름};
   colors: {
     purple100: '#F8F0FF',
     purple200: '#ECD9FF',

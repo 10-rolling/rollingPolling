@@ -28,14 +28,12 @@ function ToggleButton({ onClick }) {
       <StyledToggleButton
         isActive={colorButtonActive}
         onClick={() => handleButtonClick(1)}
-        label="Color Button"
       >
         컬러
       </StyledToggleButton>
       <StyledToggleButton
         isActive={imageButtonActive}
         onClick={() => handleButtonClick(2)}
-        label="Img Button"
       >
         이미지
       </StyledToggleButton>

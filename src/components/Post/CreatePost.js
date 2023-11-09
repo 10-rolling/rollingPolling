@@ -67,9 +67,12 @@ function CreatePost() {
           ))}
         </StyledBackgroundList>
         <StyledLink to={`/post/id`}>
-          <PrimaryButton size="large" width="100%" disabled={!emptyCheck}>
-            생성하기
-          </PrimaryButton>
+          <PrimaryButton
+            size="large"
+            width="100%"
+            disabled={!emptyCheck}
+            content={'생성하기'}
+          />
         </StyledLink>
       </StyledPostForm>
     </StyledWrapper>
