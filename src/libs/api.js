@@ -27,9 +27,14 @@ async function getReactions(id) {
 
 async function postReaction(id, emoji) {
   try {
-    await axios.post(`${API_BASE_URL}/1-10/recipients/${id}/reactions/`, {
+    await axios.post(${API_BASE_URL}/1-10/recipients/${id}/reactions/, {
       emoji: emoji,
       type: 'increase',
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 async function postMessage(
   id,
@@ -52,4 +57,41 @@ async function postMessage(
   }
 }
 
-export { getProfileImg, getRecipientMessage, getReactions, postReaction, postMessage };
+
+/** background Image 호출
+ *
+ * @returns {Array} imageUrls
+ */
+async function getBackgroundImg() {
+  const response = await instance.get(`/background-images/`);
+  const result = response.data;
+  const { imageUrls } = result;
+  return imageUrls;
+}
+
+/** Post 생성
+ *
+ * @returns {object}
+ */
+async function createRecipient(param) {
+  const { name, backgroundColor = 'beige', backgroundImageURL } = param;
+  const url = `/1-10/recipients/`;
+
+  try {
+    const response = await instance.post(url, {
+      name: name,
+      backgroundColor: backgroundColor,
+      backgroundImageURL: backgroundImageURL,
+    });
+    const result = response.data;
+    return result;
+  } catch (error) {
+    if (error.response) {
+      throw error;
+    } else {
+      throw error;
+    }
+  }
+}
+
+export { getProfileImg, getRecipientMessage, getReactions, postReaction, postMessage,getBackgroundImg ,createRecipient};
