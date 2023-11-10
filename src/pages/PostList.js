@@ -14,19 +14,16 @@ function PostList() {
     useUserInfo();
   const { color, setColor } = useColorToCode();
   const [isImage, setIsImage] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   const init = (result) => {
-    const { recentMessages } = result;
+    const { recentMessages, backgroundImageURL, backgroundColor } = result;
     setUserInfo(result);
     setRecentMessages(recentMessages);
-
-    if (userInfo.backgroundImageURL) {
+    if (backgroundImageURL) {
       setIsImage(true);
     } else {
-      setColor(userInfo.backgroundColor);
+      setColor(backgroundColor);
     }
-    setIsLoading(false);
   };
 
   const getUserInfo = async () => {
@@ -44,30 +41,26 @@ function PostList() {
   return (
     <>
       <Nav />
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <StyledWrapper
-          $isImage={isImage}
-          $backgroundImg={userInfo.backgroundImageURL}
-          $backgroundColor={color}
-        >
-          <StyledInWrapper>
-            <EmptyCard />
-            {recentMessages.length > 0 &&
-              recentMessages.map((item) => (
-                <Card
-                  key={item.id}
-                  img={item.profileImageURL}
-                  name={item.sender}
-                  content={item.content}
-                  date={item.createdAt}
-                  category={item.relationship}
-                />
-              ))}
-          </StyledInWrapper>
-        </StyledWrapper>
-      )}
+      <StyledWrapper
+        $isImage={isImage}
+        $backgroundImg={userInfo.backgroundImageURL}
+        $backgroundColor={color}
+      >
+        <StyledInWrapper>
+          <EmptyCard />
+          {recentMessages.length > 0 &&
+            recentMessages.map((item) => (
+              <Card
+                key={item.id}
+                img={item.profileImageURL}
+                name={item.sender}
+                content={item.content}
+                date={item.createdAt}
+                category={item.relationship}
+              />
+            ))}
+        </StyledInWrapper>
+      </StyledWrapper>
     </>
   );
 }
