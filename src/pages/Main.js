@@ -1,4 +1,3 @@
-import Header from 'components/Header/Header';
 import { Link } from 'react-router-dom';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import Point from 'components/Label/Point';

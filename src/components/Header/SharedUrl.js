@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Toast from 'components/Toast/Toast';
 import useKakaoStore from 'hooks/useKakaoStore';
 import useToastStore from 'hooks/useToastStore';
 import useSharedToggleStore from 'hooks/useSharedToggleStore';
+import { URL_ITEMS } from 'constants/common';
 import shared from 'assets/icons/share.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-import { URL_ITEMS } from 'constants/common';
 
 function SharedUrl() {
   const { initializeKakao, isKakaoInitialized, shareMessage } = useKakaoStore();

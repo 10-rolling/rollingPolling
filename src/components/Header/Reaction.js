@@ -8,7 +8,7 @@ import useEmojiToggleStore from 'hooks/useEmojiToggleStore';
 import OutlinedButton from 'components/Button/OutlinedButton';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-import arrowDown from 'assets/icons/arrowDown.svg';
+import arrowDown from 'assets/icons/arrowdown.svg';
 import arrowUp from 'assets/icons/arrowUp.svg';
 import add from 'assets/icons/add.svg';
 
