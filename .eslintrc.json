@@ -22,7 +22,7 @@
     }
   },
   "rules": {
-    "react/prop-types": 0,
+    "react/prop-types": "off",
     "import/no-named-as-default": 0,
     "no-unused-vars": "off",
     "react/react-in-jsx-scope": "off",
@@ -54,10 +54,6 @@
           }
         ],
         "pathGroupsExcludedImportTypes": ["unknown"],
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        },
         "newlines-between": "never"
       }
     ]
