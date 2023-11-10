@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import getProfileImg from 'libs/api';
+import { getProfileImg } from 'libs/api';
 
 const useProfileImg = create((set) => ({
   profileImg: [],

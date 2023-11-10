@@ -52,4 +52,41 @@ async function postMessage(
   }
 }
 
-export { getProfileImg, getRecipientMessage, getReactions, postReaction, postMessage };
+/** background Image 호출
+ *
+ * @returns {Array} imageUrls
+ */
+async function getBackgroundImg() {
+  const response = await instance.get(`/background-images/`);
+  const result = response.data;
+  const { imageUrls } = result;
+  return imageUrls;
+}
+
+/** Post 생성
+ *
+ * @returns {object}
+ */
+async function createRecipient(param) {
+  const { name, backgroundColor = 'beige', backgroundImageURL } = param;
+  const url = `/1-10/recipients/`;
+
+  try {
+    const response = await instance.post(url, {
+      name: name,
+      backgroundColor: backgroundColor,
+      backgroundImageURL: backgroundImageURL,
+    });
+    const result = response.data;
+    return result;
+  } catch (error) {
+    if (error.response) {
+      throw error;
+    } else {
+      throw error;
+    }
+  }
+}
+
+export { getProfileImg, getRecipientMessage, getReactions, postReaction, postMessage,getBackgroundImg ,createRecipient};
+
