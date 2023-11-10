@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { API_BASE_URL } from 'constants/url';
 
+const instance = axios.create({ baseURL: API_BASE_URL });
 async function getProfileImg() {
-  const instance = axios.create({ baseURL: API_BASE_URL });
   const response = await instance.get('/profile-images/');
   const result = response.data;
   const { imageUrls } = result;
