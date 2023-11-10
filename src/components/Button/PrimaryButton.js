@@ -2,9 +2,14 @@ import { SIZES } from 'constants/buttonSize';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function PrimaryButton({ content, size, width, disabled }) {
+function PrimaryButton({ content, size, width, disabled, onClick }) {
   return (
-    <StyledWrapper size={size} width={width} disabled={disabled}>
+    <StyledWrapper
+      size={size}
+      width={width}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {content}
     </StyledWrapper>
   );
