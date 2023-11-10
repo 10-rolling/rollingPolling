@@ -9,18 +9,17 @@ function ToggleButton({ onClick }) {
 
   const handleToggle = () => {
     setIsActive(!isActive);
-    if (onClick) {
-      onClick(!isActive);
-    }
   };
 
   const handleButtonClick = (buttonNumber) => {
     if (buttonNumber === 1) {
       setColorButtonActive(true);
       setImageButtonActive(false);
+      onClick(0);
     } else {
       setColorButtonActive(false);
       setImageButtonActive(true);
+      onClick(1);
     }
   };
 

@@ -30,6 +30,7 @@ const StyledInput = styled.input`
   padding: 12px 16px;
   font-weight: ${theme.fontWeight.normal};
   outline-style: solid;
+  outline-color: ${theme.colors.white};
   &:active {
     border-color: ${theme.colors.gray700};
   }
@@ -37,7 +38,7 @@ const StyledInput = styled.input`
 
 const StyleErrorMessage = styled.p`
   color: ${theme.colors.error};
-  font-size: .75rem;
+  font-size: 0.75rem;
   font-weight: ${theme.fontWeight.normal};
 `;
 
