@@ -6,11 +6,7 @@ import useSharedToggleStore from 'hooks/useSharedToggleStore';
 import shared from 'assets/icons/share.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-
-const URL_ITEMS = [
-  { id: 1, content: '카카오톡 공유' },
-  { id: 2, content: 'URL 공유' },
-];
+import { URL_ITEMS } from 'constants/common';
 
 function SharedUrl() {
   const { initializeKakao, isKakaoInitialized, shareMessage } = useKakaoStore();
@@ -30,10 +26,7 @@ function SharedUrl() {
 
   useEffect(() => {
     initializeKakao();
-    return () => {
-      initializeKakao();
-    };
-  }, [initializeKakao]);
+  }, []);
 
   return (
     <StyledWrapper>

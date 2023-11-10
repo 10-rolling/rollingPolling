@@ -1,5 +1,11 @@
+import Header from 'components/Header/Header';
+
 function Main() {
-  return <></>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default Main;

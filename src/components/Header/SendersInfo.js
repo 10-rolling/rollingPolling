@@ -69,7 +69,7 @@ const StyledWrapper = styled.div`
 const StyledReceiver = styled.div`
   width: 227px;
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: ${theme.fontWeight.bold};
 `;
 
 const StyledProfileImgs = styled.ul`

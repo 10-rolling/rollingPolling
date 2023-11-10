@@ -6,15 +6,13 @@ import theme from 'styles/theme';
 
 function Header() {
   return (
-    <>
-      <StyledWrapper>
-        <StyledHeaderContent>
-          <SendersInfo />
-          <Reactions />
-          <SharedUrl />
-        </StyledHeaderContent>
-      </StyledWrapper>
-    </>
+    <StyledWrapper>
+      <StyledHeaderContent>
+        <SendersInfo />
+        <Reactions />
+        <SharedUrl />
+      </StyledHeaderContent>
+    </StyledWrapper>
   );
 }
 

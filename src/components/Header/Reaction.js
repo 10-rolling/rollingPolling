@@ -63,13 +63,13 @@ function Reaction() {
           }}
         />
       </StyledToggle>
-      <StyledAddButton
+      <div
         onClick={() => {
           emojiToggleDropdown();
         }}
       >
         <OutlinedButton content="추가" width="100px" size="small" img={add} />
-      </StyledAddButton>
+      </div>
       {isEmojiOpen && (
         <StyledEmojiPicker>
           <EmojiPicker height={350} width="100%" onEmojiClick={emojiClick} />
@@ -131,8 +131,6 @@ const StyledDropdownMenu = styled.div`
   list-style: none;
   z-index: 2;
 `;
-
-const StyledAddButton = styled.div``;
 
 const StyledEmojiPicker = styled.div`
   position: absolute;
