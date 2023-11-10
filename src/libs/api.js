@@ -91,6 +91,11 @@ async function createRecipient(param) {
   }
 }
 
+async function getRecipient(id) {
+  const response = await instance.get(`/1-10/recipients/${id}/`);
+  const result = response.data;
+  return result;
+}
 export {
   getProfileImg,
   getRecipientMessage,
@@ -99,4 +104,6 @@ export {
   postMessage,
   getBackgroundImg,
   createRecipient,
+  getRecipient,
+
 };
