@@ -9,7 +9,6 @@ async function getProfileImg() {
   return imageUrls;
 }
 
-
 async function getRecipientMessage(id) {
   const response = await axios.get(`${API_BASE_URL}/1-10/recipients/${id}/`);
   const result = response.data;
@@ -27,7 +26,7 @@ async function getReactions(id) {
 
 async function postReaction(id, emoji) {
   try {
-    await axios.post(${API_BASE_URL}/1-10/recipients/${id}/reactions/, {
+    await axios.post(`${API_BASE_URL}/1-10/recipients/${id}/reactions/`, {
       emoji: emoji,
       type: 'increase',
     });
@@ -56,7 +55,6 @@ async function postMessage(
     console.log(error);
   }
 }
-
 
 /** background Image 호출
  *
@@ -94,4 +92,12 @@ async function createRecipient(param) {
   }
 }
 
-export { getProfileImg, getRecipientMessage, getReactions, postReaction, postMessage,getBackgroundImg ,createRecipient};
+export {
+  getProfileImg,
+  getRecipientMessage,
+  getReactions,
+  postReaction,
+  postMessage,
+  getBackgroundImg,
+  createRecipient,
+};
