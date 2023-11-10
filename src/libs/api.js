@@ -1,14 +1,35 @@
 import axios from 'axios';
 import { API_BASE_URL } from 'constants/url';
 
-const instance = axios.create({ baseURL: API_BASE_URL });
-
 async function getProfileImg() {
+  const instance = axios.create({ baseURL: API_BASE_URL });
   const response = await instance.get('/profile-images/');
   const result = response.data;
   const { imageUrls } = result;
   return imageUrls;
 }
+
+
+async function getRecipientMessage(id) {
+  const response = await axios.get(`${API_BASE_URL}/1-10/recipients/${id}/`);
+  const result = response.data;
+  return result;
+}
+
+async function getReactions(id) {
+  const response = await axios.get(
+    `${API_BASE_URL}/1-10/recipients/${id}/reactions/`
+  );
+  const result = response.data;
+  const { results } = result;
+  return results;
+}
+
+async function postReaction(id, emoji) {
+  try {
+    await axios.post(`${API_BASE_URL}/1-10/recipients/${id}/reactions/`, {
+      emoji: emoji,
+      type: 'increase',
 
 async function postMessage(
   id,
@@ -30,8 +51,6 @@ async function postMessage(
     console.log(error);
   }
 }
-
-// /######################
 
 /** background Image 호출
  *
@@ -69,4 +88,5 @@ async function createRecipient(param) {
   }
 }
 
-export { postMessage, getProfileImg, getBackgroundImg, createRecipient };
+export { getProfileImg, getRecipientMessage, getReactions, postReaction, postMessage,getBackgroundImg ,createRecipient};
+
