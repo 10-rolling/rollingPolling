@@ -5,11 +5,20 @@ import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function Card({ img, name, content, date, category, background, color }) {
+function Card({
+  img,
+  name,
+  content,
+  date,
+  category,
+  background,
+  color,
+  showModal,
+}) {
   const location = useLocation();
 
   return (
-    <StyledWrapper>
+    <StyledWrapper onClick={showModal}>
       <StyledFromWrapper>
         <StyledFromInformWrapper>
           <StyledImgWrapper src={img} alt="프로필 이미지" />

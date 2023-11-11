@@ -6,14 +6,18 @@ import Nav from 'components/Nav/Nav';
 import useColorToCode from 'hooks/useColorToCode';
 import useUserInfo from 'hooks/useUserInfo';
 import { getRecipient } from 'libs/api';
+import Modal from 'components/Modal/Modal';
+import { dateFormat } from 'utils/dateFormat';
 import styled from 'styled-components';
-//test id  = img  74    color 137
+
 function PostList() {
   const { id } = useParams();
   const { userInfo, setUserInfo, recentMessages, setRecentMessages } =
     useUserInfo();
   const { color, setColor } = useColorToCode();
   const [isImage, setIsImage] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState([]);
 
   const init = (result) => {
     const { recentMessages, backgroundImageURL, backgroundColor } = result;
@@ -34,6 +38,11 @@ function PostList() {
     });
   };
 
+  const onClickOpenModal = (id) => {
+    recentMessages.map((data) => (id === data.id ? setModalData(data) : null));
+    setShowModal(!showModal);
+  };
+
   useEffect(() => {
     getUserInfo();
   }, [id]);
@@ -46,6 +55,15 @@ function PostList() {
         $backgroundImg={userInfo.backgroundImageURL}
         $backgroundColor={color}
       >
+        <Modal
+          open={showModal}
+          setShowModal={setShowModal}
+          img={modalData.profileImageURL}
+          name={modalData.sender}
+          date={dateFormat(modalData.createdAt)}
+          category={modalData.relationship}
+          content={modalData.content}
+        />
         <StyledInWrapper>
           <EmptyCard />
           {recentMessages.length > 0 &&
@@ -55,8 +73,9 @@ function PostList() {
                 img={item.profileImageURL}
                 name={item.sender}
                 content={item.content}
-                date={item.createdAt}
+                date={dateFormat(item.createdAt)}
                 category={item.relationship}
+                showModal={() => onClickOpenModal(item.id)}
               />
             ))}
         </StyledInWrapper>
