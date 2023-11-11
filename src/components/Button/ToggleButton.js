@@ -24,15 +24,15 @@ function ToggleButton({ onClick }) {
   };
 
   return (
-    <StyledWrapper isActive={isActive} onClick={handleToggle}>
+    <StyledWrapper $isActive={isActive} onClick={handleToggle}>
       <StyledToggleButton
-        isActive={colorButtonActive}
+        $isActive={colorButtonActive}
         onClick={() => handleButtonClick(1)}
       >
         컬러
       </StyledToggleButton>
       <StyledToggleButton
-        isActive={imageButtonActive}
+        $isActive={imageButtonActive}
         onClick={() => handleButtonClick(2)}
       >
         이미지
@@ -64,9 +64,9 @@ const StyledToggleButton = styled.button`
   padding: 8px 16px;
   outline: none;
   border-radius: 6px;
-  border: 2px solid ${({ isActive }) => (isActive ? '#861DEE' : '#FFFFFF')};
+  border: 2px solid ${({ $isActive }) => ($isActive ? '#861DEE' : '#FFFFFF')};
   background-color: ${theme.colors.white};
-  color: ${({ isActive }) => (isActive ? '#861DEE' : '#181818')};
+  color: ${({ $isActive }) => ($isActive ? '#861DEE' : '#181818')};
 
   font-size: 1rem;
   font-weight: 700;
