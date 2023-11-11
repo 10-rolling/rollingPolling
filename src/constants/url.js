@@ -1,3 +1,6 @@
 const API_BASE_URL = 'https://rolling-api.vercel.app';
 
-export { API_BASE_URL };
+const MESSAGE_LIMIT_DEFAULT = 5;
+const MESSAGE_OFFSET_DEFAULT = 0;
+
+export { API_BASE_URL, MESSAGE_LIMIT_DEFAULT, MESSAGE_OFFSET_DEFAULT };

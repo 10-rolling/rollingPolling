@@ -5,7 +5,7 @@ import EmptyCard from 'components/Card/EmptyCard';
 import Nav from 'components/Nav/Nav';
 import useColorToCode from 'hooks/useColorToCode';
 import useUserInfo from 'hooks/useUserInfo';
-import { getRecipient } from 'libs/api';
+import { getRecipient, getMessage } from 'libs/api';
 import Modal from 'components/Modal/Modal';
 import { dateFormat } from 'utils/dateFormat';
 import styled from 'styled-components';
@@ -20,9 +20,7 @@ function PostList() {
   const [modalData, setModalData] = useState([]);
 
   const init = (result) => {
-    const { recentMessages, backgroundImageURL, backgroundColor } = result;
-    setUserInfo(result);
-    setRecentMessages(recentMessages);
+    const { backgroundImageURL, backgroundColor } = result;
     if (backgroundImageURL) {
       setIsImage(true);
     } else {
@@ -34,6 +32,12 @@ function PostList() {
     await getRecipient(id).then((result) => {
       if (result) {
         init(result);
+        setUserInfo(result);
+      }
+    });
+    await getMessage(id).then((result) => {
+      if (result) {
+        setRecentMessages(result.results);
       }
     });
   };

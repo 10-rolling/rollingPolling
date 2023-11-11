@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { API_BASE_URL } from 'constants/url';
+import {
+  API_BASE_URL,
+  MESSAGE_LIMIT_DEFAULT,
+  MESSAGE_OFFSET_DEFAULT,
+} from 'constants/url';
 
 const instance = axios.create({ baseURL: API_BASE_URL });
 
@@ -96,6 +100,21 @@ async function getRecipient(id) {
   const result = response.data;
   return result;
 }
+
+async function getMessage(
+  id,
+  limit = MESSAGE_LIMIT_DEFAULT,
+  offset = MESSAGE_OFFSET_DEFAULT
+) {
+  const query = `limit=${limit}&offset=${offset}`;
+  const response = await instance.get(
+    `/1-10/recipients/${id}/messages/?${query}`
+  );
+  const result = response.data;
+
+  return result;
+}
+
 export {
   getProfileImg,
   getRecipientMessage,
@@ -105,5 +124,5 @@ export {
   getBackgroundImg,
   createRecipient,
   getRecipient,
-
+  getMessage,
 };
