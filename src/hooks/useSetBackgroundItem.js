@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import { COLOR_BACKGROUNDS } from 'constants/backgroundItem';
 
 const useChangeBackgroundItem = create((set) => ({
