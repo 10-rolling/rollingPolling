@@ -1,17 +1,24 @@
 import { URL_COPY } from 'constants/message';
+import useToastStore from 'hooks/useToastStore';
 import close from 'assets/icons/close.svg';
 import complete from 'assets/icons/complete.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 function Toast({ content = URL_COPY }) {
+  const { hide } = useToastStore();
+
   return (
     <StyledToast>
       <StyledToastContentWrapper>
         <img src={complete} alt="완료 아이콘" />
         <StyledToastContent>{content}</StyledToastContent>
       </StyledToastContentWrapper>
-      <StyledCloseButton />
+      <StyledCloseButton
+        onClick={() => {
+          hide();
+        }}
+      />
     </StyledToast>
   );
 }
@@ -19,6 +26,11 @@ function Toast({ content = URL_COPY }) {
 export default Toast;
 
 const StyledToast = styled.div`
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
   display: flex;
   align-items: center;
   justify-content: center;

@@ -3,6 +3,7 @@ import NotFound from 'NotFound';
 import List from 'pages/List';
 import Main from 'pages/Main';
 import Post from 'pages/Post';
+import PostList from 'pages/PostList';
 import SendMessage from 'pages/SendMessage';
 import Root from 'router/Root';
 
@@ -20,6 +21,7 @@ function Router() {
           element: <Post />,
           children: [{ path: ':id/message', element: <SendMessage /> }],
         },
+        { path: 'post/:id/', element: <PostList /> },
       ],
     },
   ]);
