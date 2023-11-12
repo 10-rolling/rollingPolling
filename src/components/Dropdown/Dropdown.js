@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
-import { DROPDOWN_ITEMS, DROPDOWN_FONT_ITEMS } from 'constants/dropdownItem';
+import {
+  DROPDOWN_ITEMS,
+  DROPDOWN_FONT_ITEMS,
+  DROPDOWN_FONT_DEFAULT,
+} from 'constants/dropdownItem';
 import { DROPDOWN_ERROR_MESSAGE_DEFAULT } from 'constants/message';
 import useRelationShip from 'hooks/useRelationShip';
 import useSelectFont from 'hooks/useSelectFont';
-import arrowDown from "assets/icons/arrowdown.svg"
+import arrowDown from 'assets/icons/arrowdown.svg';
 import arrowUp from 'assets/icons/arrowUp.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
@@ -23,7 +27,7 @@ function Dropdown({
   const { setSelectFont } = useSelectFont();
 
   const checkPlaceHolder = () => {
-    placeholder === DROPDOWN_FONT_ITEMS[0].content
+    placeholder === DROPDOWN_FONT_DEFAULT
       ? setSelectedItem(DROPDOWN_FONT_ITEMS[0].content)
       : setSelectedItem(DROPDOWN_ITEMS[0].content);
   };
@@ -37,7 +41,7 @@ function Dropdown({
 
   const handleItem = (item) => {
     setSelectedItem(item.content);
-    placeholder === DROPDOWN_FONT_ITEMS[0].content
+    placeholder === DROPDOWN_FONT_DEFAULT
       ? setSelectFont(item.content)
       : setRelationShip(item.content);
     closeDropdown();
