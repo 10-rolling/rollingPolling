@@ -5,6 +5,7 @@ import Main from 'pages/Main';
 import Post from 'pages/Post';
 import SendMessage from 'pages/SendMessage';
 import Root from 'router/Root';
+import PostList from 'pages/PostList';
 
 function Router() {
   const router = createBrowserRouter([
@@ -13,12 +14,16 @@ function Router() {
       element: <Root />,
       errorElement: <NotFound />,
       children: [
-        { path: '/', element: <Main /> },
+        { index: true, element: <Main /> },
         { path: '/list', element: <List /> },
         {
           path: '/post',
-          element: <Post />,
-          children: [{ path: ':id/message', element: <SendMessage /> }],
+          element: <Root />,
+          children: [
+            { index: true, element: <Post /> },
+            { path: ':id/', element: <PostList /> },
+            { path: ':id/message', element: <SendMessage /> },
+          ],
         },
       ],
     },

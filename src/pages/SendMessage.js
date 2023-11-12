@@ -64,65 +64,69 @@ function SendMessage() {
   }, [inputName, content]);
 
   return (
-    <StyledWrapper>
-      {/* From. */}
-      <StyledInWrapper>
-        <Label content={FROM} size="large" />
-        <Input
-          placeholder={INPUT_NAME}
-          $isError={nameCheck}
-          onBlur={setNameCheck}
-          onChange={setInputName}
-        />
-      </StyledInWrapper>
-      {/* 프로필 이미지 */}
-      <StyledInWrapper>
-        <Label content={PROFILE_IMG} size="large" />
-        <StyledImgWrapper>
-          <StyledProfileImg src={changeProfileImg} alt="기본 이미지" />
-          <StyledProfileImgWrapper>
-            <Label content={PROFILE_SELECT} size="small" />
-            <StyledImages>
-              {profileImg.map((data) => (
-                <StyledImage
-                  key={data.id}
-                  src={data.src}
-                  onClick={setChangeProfileImg}
-                />
-              ))}
-            </StyledImages>
-          </StyledProfileImgWrapper>
-        </StyledImgWrapper>
-      </StyledInWrapper>
-      {/* 상대와의 관계 */}
-      <StyledInWrapper>
-        <Label content={RELATIONSHIP} size="large" />
-        <Dropdown placeholder={DROPDOWN_ITEMS_DEFAULT} />
-      </StyledInWrapper>
-      {/* 내용을 입력해 주세요 */}
-      <StyledInWrapper>
-        <Label content={ENTER_CONTENT} size="large" />
-        <Editor />
-      </StyledInWrapper>
-      {/* 폰트 선택 */}
-      <StyledInWrapper>
-        <Label content={FONT_SELECT} size="large" />
-        <Dropdown
-          items={DROPDOWN_FONT_ITEMS}
-          placeholder={DROPDOWN_FONT_DEFAULT}
-        />
-      </StyledInWrapper>
+    <>
+      <StyledWrapper>
+        {/* From. */}
+        <StyledInWrapper>
+          <Label content={FROM} size="large" />
+          <Input
+            placeholder={INPUT_NAME}
+            $isError={nameCheck}
+            onBlur={setNameCheck}
+            onChange={setInputName}
+          />
+        </StyledInWrapper>
+        {/* 프로필 이미지 */}
+        <StyledInWrapper>
+          <Label content={PROFILE_IMG} size="large" />
+          <StyledImgWrapper>
+            <StyledProfileImg src={changeProfileImg} alt="기본 이미지" />
+            <StyledProfileImgWrapper>
+              <Label content={PROFILE_SELECT} size="small" />
+              <StyledImages>
+                {profileImg.map((data) => (
+                  <StyledImage
+                    key={data.id}
+                    src={data.src}
+                    onClick={setChangeProfileImg}
+                  />
+                ))}
+              </StyledImages>
+            </StyledProfileImgWrapper>
+          </StyledImgWrapper>
+        </StyledInWrapper>
+        {/* 상대와의 관계 */}
+        <StyledInWrapper>
+          <Label content={RELATIONSHIP} size="large" />
+          <Dropdown placeholder={DROPDOWN_ITEMS_DEFAULT} />
+        </StyledInWrapper>
+        {/* 내용을 입력해 주세요 */}
+        <StyledInWrapper>
+          <Label content={ENTER_CONTENT} size="large" />
+          <Editor />
+        </StyledInWrapper>
+        {/* 폰트 선택 */}
+        <StyledInWrapper>
+          <Label content={FONT_SELECT} size="large" />
+          <Dropdown
+            items={DROPDOWN_FONT_ITEMS}
+            placeholder={DROPDOWN_FONT_DEFAULT}
+          />
+        </StyledInWrapper>
+      </StyledWrapper>
       {/* 생성하기 */}
-      <StyledLink to={`/post/${id}`}>
-        <PrimaryButton
-          content={CREATE}
-          size="large"
-          width="100%"
-          disabled={createCheck}
-          onClick={makeMessage}
-        />
-      </StyledLink>
-    </StyledWrapper>
+      <StyledButtonWrapper>
+        <StyledLink to={`/post/${id}`}>
+          <PrimaryButton
+            content={CREATE}
+            size="large"
+            width="100%"
+            disabled={createCheck}
+            onClick={makeMessage}
+          />
+        </StyledLink>
+      </StyledButtonWrapper>
+    </>
   );
 }
 
@@ -174,6 +178,15 @@ const StyledImage = styled.button`
   border-radius: 100px;
   background-color: transparent;
   background-image: url(${(props) => props.src});
+`;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  width: 768px;
+  margin: 38px auto;
+  padding: 24px;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledLink = styled(Link)`
