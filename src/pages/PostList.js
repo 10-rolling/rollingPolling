@@ -9,6 +9,7 @@ import { getRecipient, getMessage } from 'libs/api';
 import Modal from 'components/Modal/Modal';
 import { dateFormat } from 'utils/dateFormat';
 import styled from 'styled-components';
+import { onTablet } from 'styles/mediaQuery';
 
 function PostList() {
   const { id } = useParams();
@@ -59,17 +60,19 @@ function PostList() {
         $backgroundImg={userInfo.backgroundImageURL}
         $backgroundColor={color}
       >
-        <Modal
-          open={showModal}
-          setShowModal={setShowModal}
-          img={modalData.profileImageURL}
-          name={modalData.sender}
-          date={dateFormat(modalData.createdAt)}
-          category={modalData.relationship}
-          content={modalData.content}
-          font={modalData.font}
-        />
-        <StyledInWrapper>
+        {showModal && (
+          <Modal
+            open={showModal}
+            setShowModal={setShowModal}
+            img={modalData.profileImageURL}
+            name={modalData.sender}
+            date={dateFormat(modalData.createdAt)}
+            category={modalData.relationship}
+            content={modalData.content}
+            font={modalData.font}
+          />
+        )}
+        <StyledCardWrapper>
           <EmptyCard />
           {recentMessages.length > 0 &&
             recentMessages.map((item) => (
@@ -84,7 +87,7 @@ function PostList() {
                 font={item.font}
               />
             ))}
-        </StyledInWrapper>
+        </StyledCardWrapper>
       </StyledWrapper>
     </>
   );
@@ -105,10 +108,19 @@ const StyledWrapper = styled.div`
 
   background-repeat: no-repeat;
   background-size: cover;
+
+  ${onTablet} {
+    height: auto;
+    padding: 90px 0;
+  }
 `;
 
-const StyledInWrapper = styled.div`
+const StyledCardWrapper = styled.div`
   display: grid;
   gap: 15px;
   grid-template-columns: repeat(3, 1fr);
+
+  ${onTablet} {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;

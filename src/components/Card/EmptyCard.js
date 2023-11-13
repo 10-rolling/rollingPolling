@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import PlusButton from 'components/Button/PlusButton';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { onTablet } from 'styles/mediaQuery';
 
 function EmptyCard() {
   const { id } = useParams();
@@ -24,6 +25,11 @@ const StyledWrapper = styled.div`
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   background-color: ${theme.colors.white};
   padding: 25px;
+
+  ${onTablet} {
+    width: 352px;
+    height: 284px;
+  }
 `;
 
 const StyledLink = styled(Link)`

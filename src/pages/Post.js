@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import ToggleButton from 'components/Button/ToggleButton';
 import Input from 'components/Input/Input';
@@ -61,7 +61,7 @@ function Post() {
 
   return (
     <>
-      <Nav hide={'none'} />
+      <Nav hide={true} buttonHide={true} />
       <StyledPostForm>
         {/* 받는 사람 */}
         <StyledInWrapper>

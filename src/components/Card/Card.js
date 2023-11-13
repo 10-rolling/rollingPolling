@@ -4,6 +4,7 @@ import OutlinedButton from 'components/Button/OutlinedButton';
 import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { onTablet } from 'styles/mediaQuery';
 
 function Card({
   img,
@@ -14,7 +15,7 @@ function Card({
   background,
   color,
   showModal,
-  font
+  font,
 }) {
   const location = useLocation();
 
@@ -61,6 +62,11 @@ const StyledWrapper = styled.div`
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   background-color: ${theme.colors.white};
   padding: 25px;
+
+  ${onTablet} {
+    width: 352px;
+    height: 284px;
+  }
 `;
 
 const StyledFromWrapper = styled.div`
