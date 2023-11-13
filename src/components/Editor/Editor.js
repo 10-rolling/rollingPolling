@@ -13,7 +13,9 @@ function Editor() {
         config={{ placeholder: ENTER_CONTENT }}
         onChange={(event, editor) => {
           const data = editor.getData();
-          const result = data.replace(/(<([^>]+)>)/gi, '');
+          const result = data
+            .replace(/(<([^>]+)>)/gi, '')
+            .replace(/&nbsp;/g, ' ');
           setContent(result);
         }}
       />
