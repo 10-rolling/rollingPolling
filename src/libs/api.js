@@ -7,6 +7,12 @@ import {
 
 const instance = axios.create({ baseURL: API_BASE_URL });
 
+async function getRecipients() {
+  const response = await instance.get(`/1-10/recipients/`);
+  const result = response.data;
+  return result;
+}
+
 async function getProfileImg() {
   const response = await instance.get('/profile-images/');
   const result = response.data;
@@ -116,6 +122,7 @@ async function getMessage(
 }
 
 export {
+  getRecipients,
   getProfileImg,
   getRecipientMessage,
   getReactions,

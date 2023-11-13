@@ -1,39 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { getRecipientMessage } from 'libs/api';
+import useSenderInfo from 'hooks/useSendersInfo';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function SendersInfo() {
-  const { id } = useParams();
-  const [name, setName] = useState();
-  const [count, setCount] = useState(0);
-  const [profileImages, setProfileImages] = useState([]);
-
-  const messagesInfo = async () => {
-    const result = await getRecipientMessage(74); // id로 변경
-    setCount(result.messageCount);
-    setName(result.name);
-    const { recentMessages } = result;
-    const newProfileImages = [];
-    console.log(recentMessages);
-    for (let i = 0; i < result.messageCount; i++) {
-      if (i === 3) {
-        const profileImageURL =
-          'https://github.com/miniposi/Programmers/assets/52947668/53f0d2b1-db58-41b2-a5ec-bc879ec5e5b9';
-        newProfileImages.push(profileImageURL);
-        continue;
-      }
-      const profileImageURL = recentMessages[i].profileImageURL;
-      newProfileImages.push(profileImageURL);
-    }
-
-    setProfileImages(newProfileImages);
-  };
-
-  useEffect(() => {
-    messagesInfo();
-  }, []);
+function SendersInfo({ id }) {
+  const { name, count, profileImages } = useSenderInfo({ id });
 
   return (
     <StyledWrapper>
