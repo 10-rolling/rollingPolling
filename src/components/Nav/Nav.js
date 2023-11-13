@@ -4,13 +4,13 @@ import logo from 'assets/images/logo.png';
 import styled from 'styled-components';
 import { onMobile, onTablet } from 'styles/mediaQuery';
 
-function Nav({ hide, buttonHide }) {
+function Nav({ hide, buttonhide }) {
   return (
     <StyledWrapper hide={hide}>
       <Link to="/">
         <img src={logo} alt="로고" />
       </Link>
-      <StyledLink to="/post" buttonHide={buttonHide}>
+      <StyledLink to="/post" buttonhide={buttonhide}>
         <OutlinedButton
           content="롤링 페이퍼 만들기"
           size="smallest"

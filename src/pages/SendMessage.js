@@ -67,7 +67,7 @@ function SendMessage() {
 
   return (
     <>
-      <Nav hide={true} buttonHide={true} />
+      <Nav $hide="true" buttonhide="true" />
       <StyledWrapper>
         {/* From. */}
         <StyledInWrapper>
