@@ -29,7 +29,9 @@ import useProfileImg from 'hooks/useProfileImg';
 import useRelationShip from 'hooks/useRelationShip';
 import useSelectFont from 'hooks/useSelectFont';
 import { postMessage } from 'libs/api';
+import Nav from 'components/Nav/Nav';
 import { styled } from 'styled-components';
+import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function SendMessage() {
   const { id } = useParams();
@@ -65,6 +67,7 @@ function SendMessage() {
 
   return (
     <>
+      <Nav hide={'none'} />
       <StyledWrapper>
         {/* From. */}
         <StyledInWrapper>
@@ -113,19 +116,19 @@ function SendMessage() {
             placeholder={DROPDOWN_FONT_DEFAULT}
           />
         </StyledInWrapper>
+        {/* 생성하기 */}
+        <StyledButtonWrapper>
+          <StyledLink to={`/post/${id}`}>
+            <PrimaryButton
+              content={CREATE}
+              size="large"
+              width="100%"
+              disabled={createCheck}
+              onClick={makeMessage}
+            />
+          </StyledLink>
+        </StyledButtonWrapper>
       </StyledWrapper>
-      {/* 생성하기 */}
-      <StyledButtonWrapper>
-        <StyledLink to={`/post/${id}`}>
-          <PrimaryButton
-            content={CREATE}
-            size="large"
-            width="100%"
-            disabled={createCheck}
-            onClick={makeMessage}
-          />
-        </StyledLink>
-      </StyledButtonWrapper>
     </>
   );
 }
@@ -138,8 +141,21 @@ const StyledWrapper = styled.div`
   align-items: center;
 
   width: 720px;
-  margin: 0 auto;
+  height: auto;
+  margin: 30px auto;
   gap: 50px;
+
+  ${onTablet} {
+    width: 100%;
+    margin-top: 50px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  ${onMobile} {
+    width: 320px;
+    padding: 0;
+  }
 `;
 
 const StyledInWrapper = styled.div`
@@ -163,7 +179,12 @@ const StyledProfileImgWrapper = styled.div`
 
 const StyledImages = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
+
+  ${onMobile} {
+    gap: 2px;
+  }
 `;
 
 const StyledProfileImg = styled.img`
@@ -178,15 +199,20 @@ const StyledImage = styled.button`
   border-radius: 100px;
   background-color: transparent;
   background-image: url(${(props) => props.src});
+
+  ${onMobile} {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const StyledButtonWrapper = styled.div`
-  display: flex;
-  width: 768px;
-  margin: 38px auto;
-  padding: 24px;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+
+  ${onMobile} {
+    margin-top: 185px;
+  }
 `;
 
 const StyledLink = styled(Link)`
