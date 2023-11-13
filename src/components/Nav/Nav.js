@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import OutlinedButton from 'components/Button/OutlinedButton';
 import logo from 'assets/images/logo.png';
 import styled from 'styled-components';
+import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function Nav({ hide }) {
   return (
@@ -25,12 +26,18 @@ export default Nav;
 
 const StyledWrapper = styled.nav`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   align-items: center;
   width: 100%;
   padding: 10px 15%;
   border-bottom: 1px solid rgba(237, 237, 237, 1);
+
+  ${onTablet} {
+    padding: 10px 24px;
+  }
+
+  ${onMobile} {
+    display: none;
+  }
 `;
 
 const StyledLink = styled(Link)`
