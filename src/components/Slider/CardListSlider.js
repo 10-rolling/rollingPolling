@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import CardList from 'components/Card/CardList';
-import arrowLeft from 'assets/icons/arroleft.svg';
+import arrowLeft from 'assets/icons/arrowleft.svg';
 import arrowRight from 'assets/icons/arrowright.svg';
 import styled from 'styled-components';
 
