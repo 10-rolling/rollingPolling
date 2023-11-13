@@ -15,6 +15,7 @@ function PostList() {
     useUserInfo();
   const { color, setColor } = useColorToCode();
   const [isImage, setIsImage] = useState(false);
+  const isTrue = true;
 
   const init = (result) => {
     const { backgroundImageURL, backgroundColor } = result;
@@ -45,7 +46,7 @@ function PostList() {
 
   return (
     <>
-      <Nav />
+      <Nav hide={isTrue} />
       <Header />
       <StyledWrapper
         $isImage={isImage}

@@ -22,6 +22,7 @@ function Post() {
     useChangeBackgroundItem();
   const [paramType, setParamType] = useState(0);
   const navigate = useNavigate();
+  const isTrue = true;
 
   const toggleHandle = (result) => {
     setBackgroundItem(result ? imageItems : COLOR_BACKGROUNDS);
@@ -60,7 +61,7 @@ function Post() {
 
   return (
     <>
-      <Nav />
+      <Nav hide={isTrue} />
       <StyledPostForm>
         {/* 받는 사람 */}
         <StyledInWrapper>
