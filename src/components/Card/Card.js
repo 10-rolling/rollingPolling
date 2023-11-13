@@ -5,8 +5,9 @@ import { dateFormat } from 'utils/dateFormat';
 import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import deleteImg from 'assets/icons/deleted.svg';
 
-function Card({ img, name, content, date, category }) {
+function Card({ img, name, content, date, category, font, edit = 'false' }) {
   const location = useLocation();
 
   return (
@@ -20,6 +21,11 @@ function Card({ img, name, content, date, category }) {
             </span>
             <Relation category={category} />
           </StyledFromContentWrapper>
+          {edit && (
+            <StyledEditButton>
+              <img src={deleteImg} alt="쓰레기통 이미지" />
+            </StyledEditButton>
+          )}
         </StyledFromInformWrapper>
         {location.pathname == `/post/id/edit` ? (
           <OutlinedButton
@@ -33,7 +39,7 @@ function Card({ img, name, content, date, category }) {
         )}
       </StyledFromWrapper>
       <StyledLine></StyledLine>
-      <StyledContent>{content}</StyledContent>
+      <StyledContent font={font}>{content}</StyledContent>
       <StyledDate>{dateFormat(date)}</StyledDate>
     </StyledWrapper>
   );
@@ -103,4 +109,25 @@ const StyledDate = styled.span`
   font-size: 0.75rem;
   color: rgba(153, 153, 153, 1);
   margin-bottom: 25px;
+`;
+
+const StyledEditButton = styled.button`
+  position: absolute;
+  top: 28px;
+  left: 320px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 42px;
+
+  border-radius: 6px;
+  border: 1px solid ${theme.colors.gray300};
+  background: ${theme.colors.white};
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
 `;
