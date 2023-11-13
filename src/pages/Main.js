@@ -7,6 +7,7 @@ import exampleCard from 'assets/images/exampleCard.png';
 import exampleEmoji from 'assets/images/exampleEmoji.png';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function Main() {
   return (
@@ -40,10 +41,11 @@ function Main() {
             />
           </StyldContentWrapper>
         </StyledImgLeftWrapper>
-
-        <Link to="/list">
-          <PrimaryButton size="large" width="280px" content="구경해보기" />
-        </Link>
+        <StyledButtonWrapper>
+          <Link to="/list">
+            <PrimaryButton size="large" width="100%" content="구경해보기" />
+          </Link>
+        </StyledButtonWrapper>
       </StyledWrapper>
     </>
   );
@@ -58,11 +60,14 @@ const StyledWrapper = styled.main`
   align-items: center;
   margin: 50px 0 130px 0;
   gap: 10px;
+
+  ${onTablet} {
+    margin: 50px 0 0 0;
+  }
 `;
 
 const StyledItemWrapper = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   width: 70%;
   height: 324px;
@@ -70,10 +75,36 @@ const StyledItemWrapper = styled.div`
   margin-bottom: 20px;
   border-radius: 16px;
   background-color: ${theme.colors.surface};
+
+  ${onTablet} {
+    flex-direction: column;
+    width: 95%;
+    height: 440px;
+    padding: 40px;
+
+    br {
+      display: none;
+    }
+
+    ${onMobile} {
+      overflow: hidden;
+    }
+  }
 `;
 
 const StyledImgLeftWrapper = styled(StyledItemWrapper)`
   padding: 60px 125px 60px 0px;
+
+  ${onTablet} {
+    flex-direction: column-reverse;
+    width: 95%;
+    height: 440px;
+    padding: 40px;
+
+    br {
+      display: none;
+    }
+  }
 `;
 
 const StyldContentWrapper = styled.div`
@@ -83,10 +114,30 @@ const StyldContentWrapper = styled.div`
 `;
 
 const StyledImgWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   width: 600px;
+
+  ${onTablet} {
+    width: 100%;
+  }
 `;
 
 const StyledImg = styled.img`
-  width: 100%;
-  object-fit: cover;
+  width: 600px;
+  object-fit: contain;
+
+  ${onMobile} {
+    width: 500px;
+  }
+`;
+
+const StyledButtonWrapper = styled.div`
+  width: 280px;
+  text-align: center;
+  margin: 24px;
+
+  ${onTablet} {
+    width: 95%;
+  }
 `;
