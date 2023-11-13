@@ -29,6 +29,7 @@ import useProfileImg from 'hooks/useProfileImg';
 import useRelationShip from 'hooks/useRelationShip';
 import useSelectFont from 'hooks/useSelectFont';
 import { postMessage } from 'libs/api';
+import Nav from 'components/Nav/Nav';
 import { styled } from 'styled-components';
 
 function SendMessage() {
@@ -65,6 +66,7 @@ function SendMessage() {
 
   return (
     <>
+      <Nav />
       <StyledWrapper>
         {/* From. */}
         <StyledInWrapper>
@@ -138,7 +140,7 @@ const StyledWrapper = styled.div`
   align-items: center;
 
   width: 720px;
-  margin: 0 auto;
+  margin: 30px auto;
   gap: 50px;
 `;
 
