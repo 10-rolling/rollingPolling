@@ -16,7 +16,6 @@ function SendersInfo() {
     setName(result.name);
     const { recentMessages } = result;
     const newProfileImages = [];
-    console.log(recentMessages);
     for (let i = 0; i < result.messageCount; i++) {
       if (i === 3) {
         const profileImageURL =
