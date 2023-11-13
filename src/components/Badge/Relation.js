@@ -1,9 +1,12 @@
+import { RELATION } from 'constants/category';
 import styled from 'styled-components';
 
-function Relation({ category, background, color }) {
+function Relation({ category }) {
   return (
-    <StyledWrapper background={background}>
-      <StyledCategory color={color}>{category}</StyledCategory>
+    <StyledWrapper background={RELATION[category].backgroundColor}>
+      <StyledCategory color={RELATION[category].color}>
+        {category}
+      </StyledCategory>
     </StyledWrapper>
   );
 }

@@ -5,7 +5,7 @@ import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function Card({ img, name, content, date, category, background, color }) {
+function Card({ img, name, content, date, category }) {
   const location = useLocation();
 
   return (
@@ -17,11 +17,7 @@ function Card({ img, name, content, date, category, background, color }) {
             <span>
               From. <StyledName>{name}</StyledName>
             </span>
-            <Relation
-              category={category}
-              background={background}
-              color={color}
-            />
+            <Relation category={category} />
           </StyledFromContentWrapper>
         </StyledFromInformWrapper>
         {location.pathname == `/post/id/edit` ? (
