@@ -20,7 +20,7 @@ function Header() {
       <StyledReceiver>To. {name}</StyledReceiver>
       <StyledHeaderContent>
         <SendersInfo count={count} profileImages={profileImages} />
-        <Reactions />
+        <Reactions id={id} />
         <SharedUrl />
       </StyledHeaderContent>
     </StyledWrapper>
