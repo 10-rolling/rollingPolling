@@ -5,11 +5,21 @@ import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function Card({ img, name, content, date, category, background, color }) {
+function Card({
+  img,
+  name,
+  content,
+  date,
+  category,
+  background,
+  color,
+  showModal,
+  font
+}) {
   const location = useLocation();
 
   return (
-    <StyledWrapper>
+    <StyledWrapper onClick={showModal}>
       <StyledFromWrapper>
         <StyledFromInformWrapper>
           <StyledImgWrapper src={img} alt="프로필 이미지" />
@@ -36,7 +46,7 @@ function Card({ img, name, content, date, category, background, color }) {
         )}
       </StyledFromWrapper>
       <StyledLine></StyledLine>
-      <StyledContent>{content}</StyledContent>
+      <StyledContent font={font}>{content}</StyledContent>
       <StyledDate>{date}</StyledDate>
     </StyledWrapper>
   );
@@ -98,6 +108,8 @@ const StyledContent = styled.div`
   font-size: 1.125rem;
   line-height: 28px;
   letter-spacing: -0.01em;
+  font-family: ${(props) => props.font};
+  font-style: normal;
 `;
 
 const StyledDate = styled.span`
