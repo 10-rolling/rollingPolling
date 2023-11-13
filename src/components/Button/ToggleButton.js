@@ -50,6 +50,7 @@ const StyledWrapper = styled.div`
 
   width: 244px;
   height: 40px;
+  margin-top: 24px;
 `;
 
 const StyledToggleButton = styled.button`
