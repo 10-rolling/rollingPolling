@@ -9,7 +9,7 @@ import { getRecipient, getMessage } from 'libs/api';
 import Modal from 'components/Modal/Modal';
 import { dateFormat } from 'utils/dateFormat';
 import styled from 'styled-components';
-import { onTablet } from 'styles/mediaQuery';
+import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function PostList() {
   const { id } = useParams();
@@ -113,6 +113,10 @@ const StyledWrapper = styled.div`
     height: auto;
     padding: 90px 0;
   }
+
+  ${onMobile} {
+    padding: 32px 0;
+  }
 `;
 
 const StyledCardWrapper = styled.div`
@@ -122,5 +126,9 @@ const StyledCardWrapper = styled.div`
 
   ${onTablet} {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  ${onMobile} {
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
