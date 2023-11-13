@@ -1,13 +1,16 @@
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import Relation from 'components/Badge/Relation';
 import OutlinedButton from 'components/Button/OutlinedButton';
 import { dateFormat } from 'utils/dateFormat';
+import { deleteMessage } from 'libs/api';
+import useEditFlag from 'hooks/useEditFlag';
 import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-import deleteImg from 'assets/icons/deleted.svg';
 
-function Card({ img, name, content, date, category, font, edit = 'false' }) {
+function Card({ id, img, name, content, date, category, font }) {
+  const { setFlag } = useEditFlag();
   const location = useLocation();
 
   return (
@@ -21,18 +24,17 @@ function Card({ img, name, content, date, category, font, edit = 'false' }) {
             </span>
             <Relation category={category} />
           </StyledFromContentWrapper>
-          {edit && (
-            <StyledEditButton>
-              <img src={deleteImg} alt="쓰레기통 이미지" />
-            </StyledEditButton>
-          )}
         </StyledFromInformWrapper>
-        {location.pathname == `/post/id/edit` ? (
+        {location.pathname.endsWith('/edit') ? (
           <OutlinedButton
             size="small"
             img={deleted}
             width="40px"
             height="40px"
+            onClick={() => {
+              deleteMessage(id);
+              setFlag();
+            }}
           />
         ) : (
           ''
@@ -44,6 +46,7 @@ function Card({ img, name, content, date, category, font, edit = 'false' }) {
     </StyledWrapper>
   );
 }
+
 export default Card;
 
 const StyledWrapper = styled.div`
