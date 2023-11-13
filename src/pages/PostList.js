@@ -6,6 +6,7 @@ import Nav from 'components/Nav/Nav';
 import useColorToCode from 'hooks/useColorToCode';
 import useUserInfo from 'hooks/useUserInfo';
 import { getRecipient, getMessage } from 'libs/api';
+import Header from 'components/Header/Header';
 import styled from 'styled-components';
 //test id  = img  74    color 137
 function PostList() {
@@ -45,6 +46,7 @@ function PostList() {
   return (
     <>
       <Nav />
+      <Header />
       <StyledWrapper
         $isImage={isImage}
         $backgroundImg={userInfo.backgroundImageURL}
@@ -76,7 +78,7 @@ const StyledWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 1080px;
+  height: calc(100vh - 133px);
   ${({ $isImage, $backgroundImg, $backgroundColor }) =>
     $isImage
       ? `background-image: url(${$backgroundImg})`
