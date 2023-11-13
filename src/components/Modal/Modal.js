@@ -1,6 +1,7 @@
 import Relation from 'components/Badge/Relation';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import styled from 'styled-components';
+import { onMobile } from 'styles/mediaQuery';
 import theme from 'styles/theme';
 
 function Modal({
@@ -70,13 +71,16 @@ const StyledBg = styled.div`
 
 const StyledWrapper = styled.div`
   position: relative;
-  flex-direction: column;
   width: 500px;
   height: 420px;
   border-radius: 16px;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   background-color: ${theme.colors.white};
   padding: 25px;
+
+  ${onMobile} {
+    width: 90%;
+  }
 `;
 
 const StyledFromWrapper = styled.div`
