@@ -8,6 +8,7 @@ import useUserInfo from 'hooks/useUserInfo';
 import { getRecipient, getMessage } from 'libs/api';
 import Header from 'components/Header/Header';
 import useEditFlag from 'hooks/useEditFlag';
+import PrimaryButton from 'components/Button/PrimaryButton';
 import styled from 'styled-components';
 
 function PostListEdit() {
@@ -69,6 +70,9 @@ function PostListEdit() {
                 font={item.font}
               />
             ))}
+          <StyledDeleteButton>
+            <PrimaryButton content="삭제하기" size="small" width="92px" />
+          </StyledDeleteButton>
         </StyledInWrapper>
       </StyledWrapper>
     </>
@@ -94,7 +98,14 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledInWrapper = styled.div`
+  position: relative;
   display: grid;
   gap: 15px;
   grid-template-columns: repeat(3, 1fr);
+`;
+
+const StyledDeleteButton = styled.div`
+  position: absolute;
+  top: -50px;
+  right: 0;
 `;
