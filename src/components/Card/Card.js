@@ -14,6 +14,7 @@ function Card({
   background,
   color,
   showModal,
+  font
 }) {
   const location = useLocation();
 
@@ -45,7 +46,7 @@ function Card({
         )}
       </StyledFromWrapper>
       <StyledLine></StyledLine>
-      <StyledContent>{content}</StyledContent>
+      <StyledContent font={font}>{content}</StyledContent>
       <StyledDate>{date}</StyledDate>
     </StyledWrapper>
   );
@@ -107,6 +108,8 @@ const StyledContent = styled.div`
   font-size: 1.125rem;
   line-height: 28px;
   letter-spacing: -0.01em;
+  font-family: ${(props) => props.font};
+  font-style: normal;
 `;
 
 const StyledDate = styled.span`

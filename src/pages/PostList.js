@@ -80,6 +80,7 @@ function PostList() {
                 date={dateFormat(item.createdAt)}
                 category={item.relationship}
                 showModal={() => onClickOpenModal(item.id)}
+                font={item.font}
               />
             ))}
         </StyledInWrapper>
