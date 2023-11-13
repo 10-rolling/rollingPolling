@@ -67,6 +67,7 @@ function PostList() {
           date={dateFormat(modalData.createdAt)}
           category={modalData.relationship}
           content={modalData.content}
+          font={modalData.font}
         />
         <StyledInWrapper>
           <EmptyCard />
@@ -96,7 +97,7 @@ const StyledWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 1080px;
+  height: 100vh;
   ${({ $isImage, $backgroundImg, $backgroundColor }) =>
     $isImage
       ? `background-image: url(${$backgroundImg})`
@@ -104,7 +105,6 @@ const StyledWrapper = styled.div`
 
   background-repeat: no-repeat;
   background-size: cover;
-  loading: eager;
 `;
 
 const StyledInWrapper = styled.div`
