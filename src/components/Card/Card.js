@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import Relation from 'components/Badge/Relation';
 import OutlinedButton from 'components/Button/OutlinedButton';
+import { dateFormat } from 'utils/dateFormat';
 import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
@@ -33,7 +34,7 @@ function Card({ img, name, content, date, category }) {
       </StyledFromWrapper>
       <StyledLine></StyledLine>
       <StyledContent>{content}</StyledContent>
-      <StyledDate>{date}</StyledDate>
+      <StyledDate>{dateFormat(date)}</StyledDate>
     </StyledWrapper>
   );
 }
