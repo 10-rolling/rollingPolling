@@ -46,6 +46,14 @@ async function deleteMessage(id) {
   }
 }
 
+async function deleteAll(id) {
+  try {
+    await instance.delete(`/1-10/recipients/${id}/`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function postMessage(
   id,
   inputName,
@@ -129,6 +137,7 @@ export {
   getReactions,
   postReaction,
   deleteMessage,
+  deleteAll,
   postMessage,
   getBackgroundImg,
   createRecipient,

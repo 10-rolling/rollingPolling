@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Card from 'components/Card/Card';
 import EmptyCard from 'components/Card/EmptyCard';
 import Nav from 'components/Nav/Nav';
@@ -9,15 +9,18 @@ import { getRecipient, getMessage } from 'libs/api';
 import Header from 'components/Header/Header';
 import useEditFlag from 'hooks/useEditFlag';
 import PrimaryButton from 'components/Button/PrimaryButton';
+import { deleteAll } from 'libs/api';
 import styled from 'styled-components';
 
 function PostListEdit() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { userInfo, setUserInfo, recentMessages, setRecentMessages } =
     useUserInfo();
   const { color, setColor } = useColorToCode();
   const [isImage, setIsImage] = useState(false);
   const { flag } = useEditFlag();
+  const isTrue = true;
 
   const init = (result) => {
     const { backgroundImageURL, backgroundColor } = result;
@@ -48,7 +51,7 @@ function PostListEdit() {
 
   return (
     <>
-      <Nav />
+      <Nav hide={isTrue} />
       <Header />
       <StyledWrapper
         $isImage={isImage}
@@ -71,7 +74,15 @@ function PostListEdit() {
               />
             ))}
           <StyledDeleteButton>
-            <PrimaryButton content="삭제하기" size="small" width="92px" />
+            <PrimaryButton
+              content="삭제하기"
+              size="small"
+              width="92px"
+              onClick={() => {
+                deleteAll(id);
+                navigate('/');
+              }}
+            />
           </StyledDeleteButton>
         </StyledInWrapper>
       </StyledWrapper>
