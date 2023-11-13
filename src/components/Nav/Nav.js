@@ -4,13 +4,13 @@ import logo from 'assets/images/logo.png';
 import styled from 'styled-components';
 import { onMobile, onTablet } from 'styles/mediaQuery';
 
-function Nav({ hide }) {
+function Nav({ hide, buttonHide }) {
   return (
-    <StyledWrapper>
+    <StyledWrapper hide={hide}>
       <Link to="/">
         <img src={logo} alt="로고" />
       </Link>
-      <StyledLink to="/post" hide={hide}>
+      <StyledLink to="/post" buttonHide={buttonHide}>
         <OutlinedButton
           content="롤링 페이퍼 만들기"
           size="smallest"
@@ -26,6 +26,7 @@ export default Nav;
 
 const StyledWrapper = styled.nav`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 10px 15%;
@@ -36,13 +37,10 @@ const StyledWrapper = styled.nav`
   }
 
   ${onMobile} {
-    display: none;
+    display: ${(props) => (props.hide ? 'none' : '')};
   }
 `;
 
 const StyledLink = styled(Link)`
-  position: absolute;
-  display: ${(props) => (props.hide ? 'none' : '')};
-  right: 0;
-  padding-right: 15%;
+  display: ${(props) => (props.buttonHide ? 'none' : '')};
 `;
