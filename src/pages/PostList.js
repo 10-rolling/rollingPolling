@@ -61,6 +61,7 @@ function PostList() {
                 content={item.content}
                 date={item.createdAt}
                 category={item.relationship}
+                font={item.font}
               />
             ))}
         </StyledInWrapper>
