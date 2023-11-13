@@ -19,27 +19,31 @@ function List() {
   const PopularData = Popular([...data]);
   const LatestData = Latest([...data]);
 
-  useEffect(() => messagesInfo(), []);
+  useEffect(() => {
+    messagesInfo();
+  }, []);
 
   return (
     <>
       <Nav />
       <StyledWrapper>
-        <PaperCategory title="인기 롤링 페이퍼" emogi="🔥" />
-        <CardListSlider data={PopularData} />
+        <StyledInWrapper>
+          <PaperCategory title="인기 롤링 페이퍼" emogi="🔥" />
+          <CardListSlider data={PopularData} />
 
-        <PaperCategory title="최근에 만든 롤링 페이퍼" emogi="⭐️" />
-        <CardListSlider data={LatestData} />
+          <PaperCategory title="최근에 만든 롤링 페이퍼" emogi="⭐️" />
+          <CardListSlider data={LatestData} />
 
-        <StyledBtnWrapper>
-          <Link to="/post">
-            <PrimaryButton
-              size="large"
-              content="나도 만들어보기"
-              width="280px"
-            />
-          </Link>
-        </StyledBtnWrapper>
+          <StyledBtnWrapper>
+            <Link to="/post">
+              <PrimaryButton
+                size="large"
+                content="나도 만들어보기"
+                width="280px"
+              />
+            </Link>
+          </StyledBtnWrapper>
+        </StyledInWrapper>
       </StyledWrapper>
     </>
   );
@@ -51,8 +55,15 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  align-items: center;
   padding: 30px 0px;
+`;
+
+const StyledInWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 980px;
   gap: 30px;
 `;
 

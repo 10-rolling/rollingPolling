@@ -52,16 +52,13 @@ export default CardListSlider;
 
 const StyledWrapper = styled.div`
   position: relative;
-
   display: flex;
-
   flex-direction: row;
   justify-content: center;
 `;
 
 const StyledDataWrapper = styled.div`
-  width: 63%;
-
+  max-width: 960px;
   overflow: hidden;
 `;
 
