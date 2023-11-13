@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import CardList from 'components/Card/CardList';
-import arrowLeft from 'assets/icons/arrowLeft.svg';
-import arrowRight from 'assets/icons/arrowRight.svg';
+import arrowLeft from 'assets/icons/arroleft.svg';
+import arrowRight from 'assets/icons/arrowright.svg';
 import styled from 'styled-components';
 
 function CardListSlider({ data }) {
