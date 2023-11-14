@@ -23,15 +23,17 @@ function Nav({ hide, hideAll }) {
         />
       </StyledLink>
       {location.pathname.endsWith('/edit') ? (
-        <PrimaryButton
-          content="삭제하기"
-          size="small"
-          width="92px"
-          onClick={() => {
-            deleteAll(id);
-            navigate('/');
-          }}
-        />
+        <StyledButton>
+          <PrimaryButton
+            content="삭제하기"
+            size="small"
+            width="100%"
+            onClick={() => {
+              deleteAll(id);
+              navigate('/');
+            }}
+          />
+        </StyledButton>
       ) : (
         <></>
       )}
@@ -60,4 +62,18 @@ const StyledWrapper = styled.nav`
 
 const StyledLink = styled(Link)`
   display: ${(props) => (props.hide ? 'none' : '')};
+`;
+
+const StyledButton = styled.div`
+  ${onTablet} {
+    position: absolute;
+    width: 90%;
+    left: 40px;
+    bottom: 24px;
+  }
+
+  ${onMobile} {
+    left: 18px;
+    z-index: 2;
+  }
 `;

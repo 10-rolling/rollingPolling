@@ -120,7 +120,6 @@ const StyledWrapper = styled.div`
 
   background-repeat: no-repeat;
   background-size: cover;
-  loading: eager;
 `;
 
 const StyledInWrapper = styled.div`
