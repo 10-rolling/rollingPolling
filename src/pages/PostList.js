@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
 import Card from 'components/Card/Card';
 import EmptyCard from 'components/Card/EmptyCard';
 import Nav from 'components/Nav/Nav';
 import useColorToCode from 'hooks/useColorToCode';
 import useUserInfo from 'hooks/useUserInfo';
 import { getRecipient, getMessage } from 'libs/api';
+import { MESSAGE_LIMIT_DEFAULT } from 'constants/url';
+import Header from 'components/Header/Header';
 import Modal from 'components/Modal/Modal';
 import { dateFormat } from 'utils/dateFormat';
 import styled from 'styled-components';
@@ -13,12 +16,20 @@ import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function PostList() {
   const { id } = useParams();
-  const { userInfo, setUserInfo, recentMessages, setRecentMessages } =
-    useUserInfo();
+  const {
+    userInfo,
+    setUserInfo,
+    recentMessages,
+    setRecentMessages,
+    updateRecentMessages,
+  } = useUserInfo();
   const { color, setColor } = useColorToCode();
   const [isImage, setIsImage] = useState(false);
+  const isTrue = true;
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState([]);
+  const [ref, inView] = useInView();
+  const [offset, setOffset] = useState(0);
 
   const init = (result) => {
     const { backgroundImageURL, backgroundColor } = result;
@@ -36,9 +47,20 @@ function PostList() {
         setUserInfo(result);
       }
     });
-    await getMessage(id).then((result) => {
+  };
+
+  const getMessageItems = async () => {
+    const limit = MESSAGE_LIMIT_DEFAULT;
+    await getMessage(id, limit, offset).then((result) => {
       if (result) {
-        setRecentMessages(result.results);
+        const { results } = result;
+        let len = results.length;
+        if (offset === 0) {
+          setRecentMessages(results);
+        } else {
+          updateRecentMessages(results);
+        }
+        setOffset((prevOffset) => prevOffset + len);
       }
     });
   };
@@ -47,14 +69,21 @@ function PostList() {
     recentMessages.map((data) => (id === data.id ? setModalData(data) : null));
     setShowModal(!showModal);
   };
-
   useEffect(() => {
     getUserInfo();
+    getMessageItems();
   }, [id]);
+
+  useEffect(() => {
+    if (inView) {
+      getMessageItems();
+    }
+  }, [inView]);
 
   return (
     <>
-      <Nav />
+      <Nav hide={isTrue} />
+      <Header />
       <StyledWrapper
         $isImage={isImage}
         $backgroundImg={userInfo.backgroundImageURL}
@@ -81,13 +110,15 @@ function PostList() {
                 img={item.profileImageURL}
                 name={item.sender}
                 content={item.content}
-                date={dateFormat(item.createdAt)}
+                date={item.createdAt}
                 category={item.relationship}
                 showModal={() => onClickOpenModal(item.id)}
                 font={item.font}
               />
             ))}
+            <div ref={ref}></div>
         </StyledCardWrapper>
+        </StyledInWrapper>
       </StyledWrapper>
     </>
   );
@@ -100,7 +131,7 @@ const StyledWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 133px);
   ${({ $isImage, $backgroundImg, $backgroundColor }) =>
     $isImage
       ? `background-image: url(${$backgroundImg})`
@@ -121,7 +152,10 @@ const StyledWrapper = styled.div`
 
 const StyledCardWrapper = styled.div`
   display: grid;
+  height: 580px;
+  overflow-y: auto;
   gap: 15px;
+  
   grid-template-columns: repeat(3, 1fr);
 
   ${onTablet} {
@@ -130,5 +164,5 @@ const StyledCardWrapper = styled.div`
 
   ${onMobile} {
     grid-template-columns: repeat(1, 1fr);
-  }
+  
 `;

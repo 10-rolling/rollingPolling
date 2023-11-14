@@ -44,6 +44,7 @@ function SendMessage() {
   const { createCheck, checkContents } = useCreateCheck();
   const { changeProfileImg, setChangeProfileImg, cleanProfileImg } =
     useChangeProfileImg();
+  const isTrue = true;
 
   const makeMessage = async () => {
     await postMessage(
@@ -67,7 +68,7 @@ function SendMessage() {
 
   return (
     <>
-      <Nav $hide="true" buttonhide="true" />
+      <Nav hide="true" hideAll="true" />
       <StyledWrapper>
         {/* From. */}
         <StyledInWrapper>

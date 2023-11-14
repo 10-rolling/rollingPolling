@@ -6,6 +6,7 @@ import Post from 'pages/Post';
 import SendMessage from 'pages/SendMessage';
 import Root from 'router/Root';
 import PostList from 'pages/PostList';
+import PostListEdit from 'pages/PostListEdit';
 
 function Router() {
   const router = createBrowserRouter([
@@ -23,6 +24,7 @@ function Router() {
             { index: true, element: <Post /> },
             { path: ':id/', element: <PostList /> },
             { path: ':id/message', element: <SendMessage /> },
+            { path: ':id/edit', element: <PostListEdit /> },
           ],
         },
       ],

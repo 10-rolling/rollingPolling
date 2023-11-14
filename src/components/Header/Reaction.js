@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import EmojiPicker from 'emoji-picker-react';
 import { getReactions, postReaction } from 'libs/api';
 import Emoji from 'components/Badge/Emoji';
@@ -12,8 +11,7 @@ import arrowDown from 'assets/icons/arrowdown.svg';
 import arrowUp from 'assets/icons/arrowUp.svg';
 import add from 'assets/icons/add.svg';
 
-function Reaction() {
-  const { id } = useParams();
+function Reaction({ id }) {
   const { isOpen, toggleDropdown } = useReactionToggleStore();
   const { isEmojiOpen, emojiToggleDropdown, emojiCloseDropdown } =
     useEmojiToggleStore();
@@ -21,7 +19,7 @@ function Reaction() {
   const [emoji, setEmoji] = useState();
 
   const reactionsInfo = async () => {
-    const result = await getReactions('74'); // id로 변경
+    const result = await getReactions(id);
     const sortedResult = result.sort((a, b) => b.count - a.count);
     setReactionData(sortedResult);
   };
@@ -33,7 +31,7 @@ function Reaction() {
   const emojiClick = (EmojiClickData) => {
     emojiCloseDropdown();
     setEmoji(EmojiClickData.emoji);
-    post('74', EmojiClickData.emoji); // id로 변경
+    post(id, EmojiClickData.emoji);
   };
 
   useEffect(() => {
@@ -87,10 +85,10 @@ const StyledWrapper = styled.div`
   gap: 5px;
 
   padding: 8px 0px;
+  padding-right: 26px;
   justify-content: space-between;
   align-items: center;
 
-  width: 360px;
   height: 52px;
 `;
 
@@ -102,12 +100,15 @@ const StyledReaction = styled.div`
 
 const StyledToggle = styled.button`
   display: flex;
-  width: 36px;
-  height: 36px;
   padding: 6px;
+  justify-content: center;
   align-items: center;
 
+  width: 36px;
+  height: 36px;
+
   border: 0;
+  background-color: ${theme.colors.white};
 `;
 
 const StyledDropdownMenu = styled.div`
