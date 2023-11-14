@@ -1,23 +1,32 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
 import Card from 'components/Card/Card';
 import EmptyCard from 'components/Card/EmptyCard';
+import Header from 'components/Header/Header';
 import Nav from 'components/Nav/Nav';
 import useColorToCode from 'hooks/useColorToCode';
-import useUserInfo from 'hooks/useUserInfo';
-import { getRecipient, getMessage } from 'libs/api';
-import Header from 'components/Header/Header';
 import useEditFlag from 'hooks/useEditFlag';
+import useUserInfo from 'hooks/useUserInfo';
+import { getMessage, getRecipient } from 'libs/api';
+import { MESSAGE_LIMIT_DEFAULT } from 'constants/url';
 import styled from 'styled-components';
 
 function PostListEdit() {
   const { id } = useParams();
-  const { userInfo, setUserInfo, recentMessages, setRecentMessages } =
-    useUserInfo();
+  const { flag } = useEditFlag();
   const { color, setColor } = useColorToCode();
   const [isImage, setIsImage] = useState(false);
-  const { flag } = useEditFlag();
+  const {
+    userInfo,
+    setUserInfo,
+    recentMessages,
+    setRecentMessages,
+    updateRecentMessages,
+  } = useUserInfo();
   const isTrue = true;
+  const [offset, setOffset] = useState(0);
+  const [ref, inView] = useInView();
 
   const init = (result) => {
     const { backgroundImageURL, backgroundColor } = result;
@@ -35,16 +44,34 @@ function PostListEdit() {
         setUserInfo(result);
       }
     });
-    await getMessage(id).then((result) => {
+  };
+
+  const getMessageItems = async () => {
+    const limit = MESSAGE_LIMIT_DEFAULT;
+    await getMessage(id, limit, offset).then((result) => {
       if (result) {
-        setRecentMessages(result.results);
+        const { results } = result;
+        let len = results.length;
+        if (offset === 0) {
+          setRecentMessages(results);
+        } else {
+          updateRecentMessages(results);
+        }
+        setOffset((prevOffset) => prevOffset + len);
       }
     });
   };
 
   useEffect(() => {
     getUserInfo();
+    getMessageItems();
   }, [id, flag]);
+
+  useEffect(() => {
+    if (inView) {
+      getMessageItems();
+    }
+  }, [inView]);
 
   return (
     <>
@@ -70,6 +97,7 @@ function PostListEdit() {
                 font={item.font}
               />
             ))}
+          <div ref={ref}></div>
         </StyledInWrapper>
       </StyledWrapper>
     </>
