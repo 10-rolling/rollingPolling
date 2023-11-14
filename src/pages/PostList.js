@@ -118,7 +118,6 @@ function PostList() {
             ))}
             <div ref={ref}></div>
         </StyledCardWrapper>
-        </StyledInWrapper>
       </StyledWrapper>
     </>
   );
