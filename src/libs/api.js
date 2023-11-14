@@ -35,10 +35,12 @@ async function getReactions(id) {
 
 async function postReaction(id, emoji) {
   try {
-    await instance.post(`/1-10/recipients/${id}/reactions/`, {
+    const response = await instance.post(`/1-10/recipients/${id}/reactions/`, {
       emoji: emoji,
       type: 'increase',
     });
+    const result = response.data;
+    return result;
   } catch (error) {
     console.log(error);
   }

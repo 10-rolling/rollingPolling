@@ -16,7 +16,7 @@ function Reaction({ id }) {
   const { isEmojiOpen, emojiToggleDropdown, emojiCloseDropdown } =
     useEmojiToggleStore();
   const [reactionData, setReactionData] = useState([]);
-  const [emoji, setEmoji] = useState();
+  const [flag, setFlag] = useState(false);
 
   const reactionsInfo = async () => {
     const result = await getReactions(id);
@@ -30,13 +30,14 @@ function Reaction({ id }) {
 
   const emojiClick = (EmojiClickData) => {
     emojiCloseDropdown();
-    setEmoji(EmojiClickData.emoji);
+
     post(id, EmojiClickData.emoji);
+    setFlag(!flag);
   };
 
   useEffect(() => {
     reactionsInfo();
-  }, [emoji]);
+  }, [flag]);
 
   return (
     <StyledWrapper>
