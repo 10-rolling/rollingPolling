@@ -1,21 +1,17 @@
-import useSenderInfo from 'hooks/useSendersInfo';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function SendersInfo({ id }) {
-  const { name, count, profileImages } = useSenderInfo({ id });
-
+function SendersInfo({ count, profileImages }) {
   return (
     <StyledWrapper>
-      <StyledReceiver>To. {name}</StyledReceiver>
       <StyledProfileImgs>
-        {profileImages.slice(0, 4).map((item) => (
-          <StyledProfileItem key={item} url={item} />
+        {profileImages.slice(0, 4).map((item, index) => (
+          <StyledProfileItem key={index} url={item} />
         ))}
-        <p>
-          <span>{count}</span>명이 작성했어요!
-        </p>
       </StyledProfileImgs>
+      <StyledContent>
+        <span>{count}</span>명이 작성했어요!
+      </StyledContent>
     </StyledWrapper>
   );
 }
@@ -24,22 +20,10 @@ export default SendersInfo;
 
 const StyledWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 2000px;
-
+  padding-right: 56px;
   font-size: 1.125rem;
   color: ${theme.colors.gray900};
-
-  span {
-    font-weight: ${theme.fontWeight.bold};
-  }
-`;
-
-const StyledReceiver = styled.div`
-  width: 227px;
-  font-size: 1.75rem;
-  font-weight: ${theme.fontWeight.bold};
 `;
 
 const StyledProfileImgs = styled.ul`
@@ -75,5 +59,13 @@ const StyledProfileItem = styled.li`
 
   &:nth-child(4) {
     left: -15%;
+  }
+`;
+
+const StyledContent = styled.div`
+  width: max-content;
+
+  span {
+    font-weight: ${theme.fontWeight.bold};
   }
 `;

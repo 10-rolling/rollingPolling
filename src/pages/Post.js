@@ -9,6 +9,7 @@ import useEmptyCheck from 'hooks/useEmptyCheck';
 import useInputName from 'hooks/useInputName';
 import useChangeBackgroundItem from 'hooks/useSetBackgroundItem';
 import { createRecipient } from 'libs/api';
+import Nav from 'components/Nav/Nav';
 import CheckIcon from 'assets/icons/Check.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
@@ -21,6 +22,7 @@ function Post() {
     useChangeBackgroundItem();
   const [paramType, setParamType] = useState(0);
   const navigate = useNavigate();
+  const isTrue = true;
 
   const toggleHandle = (result) => {
     setBackgroundItem(result ? imageItems : COLOR_BACKGROUNDS);
@@ -58,40 +60,50 @@ function Post() {
   }, [emptyCheck]);
 
   return (
-    <StyledPostForm>
-      {/* 받는 사람 */}
-      <StyledInWrapper>
-        <StyledLabel>To.</StyledLabel>
-        <Input
-          placeholder="받는 사람 이름을 입력해주세요."
-          $isError={!emptyCheck}
-          onBlur={checkInputValue}
-          errorMessage="값을 입력해주세요."
-          onChange={setInputName}
+    <>
+      <Nav hide={isTrue} />
+      <StyledPostForm>
+        {/* 받는 사람 */}
+        <StyledInWrapper>
+          <StyledLabel>To.</StyledLabel>
+          <Input
+            placeholder="받는 사람 이름을 입력해주세요."
+            $isError={!emptyCheck}
+            onBlur={checkInputValue}
+            errorMessage="값을 입력해주세요."
+            onChange={setInputName}
+          />
+        </StyledInWrapper>
+        {/* 배경화면 선택 */}
+        <StyledInWrapper>
+          <StyledLabel>배경화면을 선택해 주세요.</StyledLabel>
+          <StyledSpan>
+            컬러를선택하거나, 이미지를 선택할 수 있습니다.
+          </StyledSpan>
+        </StyledInWrapper>
+        <StyledToggleButton onClick={toggleHandle} />
+        <StyledBackgroundList>
+          {backgroundItem.map((item) => (
+            <StyledBackgroundItem
+              onClick={() => clickHandle(item)}
+              key={item.id}
+            >
+              <StyledBackgroundImg src={item.src} checked={item.checked} />
+              {item.checked && (
+                <StyledChecked src={CheckIcon} alt="체크 표시" />
+              )}
+            </StyledBackgroundItem>
+          ))}
+        </StyledBackgroundList>
+        <PrimaryButton
+          size="large"
+          width="100%"
+          disabled={isValue}
+          content={'생성하기'}
+          onClick={postToServer}
         />
-      </StyledInWrapper>
-      {/* 배경화면 선택 */}
-      <StyledInWrapper>
-        <StyledLabel>배경화면을 선택해 주세요.</StyledLabel>
-        <StyledSpan>컬러를선택하거나, 이미지를 선택할 수 있습니다.</StyledSpan>
-      </StyledInWrapper>
-      <StyledToggleButton onClick={toggleHandle} />
-      <StyledBackgroundList>
-        {backgroundItem.map((item) => (
-          <StyledBackgroundItem onClick={() => clickHandle(item)} key={item.id}>
-            <StyledBackgroundImg src={item.src} checked={item.checked} />
-            {item.checked && <StyledChecked src={CheckIcon} alt="체크 표시" />}
-          </StyledBackgroundItem>
-        ))}
-      </StyledBackgroundList>
-      <PrimaryButton
-        size="large"
-        width="100%"
-        disabled={isValue}
-        content={'생성하기'}
-        onClick={postToServer}
-      />
-    </StyledPostForm>
+      </StyledPostForm>
+    </>
   );
 }
 
