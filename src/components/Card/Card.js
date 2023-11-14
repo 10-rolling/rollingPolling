@@ -1,19 +1,18 @@
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Relation from 'components/Badge/Relation';
 import OutlinedButton from 'components/Button/OutlinedButton';
 import { dateFormat } from 'utils/dateFormat';
 import { deleteMessage } from 'libs/api';
 import useEditFlag from 'hooks/useEditFlag';
+import useUserInfo from 'hooks/useUserInfo';
 import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 import { onTablet } from 'styles/mediaQuery';
 
-
 function Card({ id, img, name, content, date, category, font, showModal }) {
-  const { setFlag } = useEditFlag();
   const location = useLocation();
+  const { deleteMessages } = useUserInfo();
 
   return (
     <StyledWrapper onClick={showModal}>
@@ -34,8 +33,8 @@ function Card({ id, img, name, content, date, category, font, showModal }) {
             width="40px"
             height="40px"
             onClick={() => {
+              deleteMessages(id);
               deleteMessage(id);
-              setFlag();
             }}
           />
         ) : (
