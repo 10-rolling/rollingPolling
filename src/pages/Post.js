@@ -16,14 +16,13 @@ import theme from 'styles/theme';
 import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function Post() {
+  const navigate = useNavigate();
+  const [paramType, setParamType] = useState(0);
   const { inputName, setInputName } = useInputName();
-  const { emptyCheck, setEmptyCheck, isValue, setIsValue } = useEmptyCheck();
   const { imageItems, loadBackgroundImg } = useBackgroundImg();
+  const { emptyCheck, setEmptyCheck, isValue, setIsValue } = useEmptyCheck();
   const { backgroundItem, setBackgroundItem, checkedBackgroundItem } =
     useChangeBackgroundItem();
-  const [paramType, setParamType] = useState(0);
-  const navigate = useNavigate();
-  const isTrue = true;
 
   const toggleHandle = (result) => {
     setBackgroundItem(result ? imageItems : COLOR_BACKGROUNDS);
@@ -44,7 +43,7 @@ function Post() {
     const param = {
       name: inputName,
     };
-    //이미지 와 컬러에 따라 파라미터 변경
+    // 이미지 와 컬러에 따라 파라미터 변경
     paramType === 1
       ? (param.backgroundImageURL = checkedItem.value)
       : (param.backgroundColor = checkedItem.value);

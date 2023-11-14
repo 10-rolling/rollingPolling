@@ -11,7 +11,6 @@ import { MESSAGE_LIMIT_DEFAULT } from 'constants/url';
 import Header from 'components/Header/Header';
 import Modal from 'components/Modal/Modal';
 import { dateFormat } from 'utils/dateFormat';
-import useMessagesInfo from 'hooks/useMessagesInfo';
 import styled from 'styled-components';
 import { onMobile, onTablet } from 'styles/mediaQuery';
 
@@ -73,7 +72,6 @@ function PostList() {
   useEffect(() => {
     getUserInfo();
     getMessageItems();
-    console.log('수영님의 부탁..');
   }, [id]);
 
   useEffect(() => {
@@ -141,6 +139,8 @@ const StyledWrapper = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
 
+  cursor: pointer;
+
   ${onTablet} {
     height: auto;
     padding: 90px 0;
@@ -156,7 +156,7 @@ const StyledCardWrapper = styled.div`
   height: 580px;
   overflow-y: auto;
   gap: 15px;
-  
+
   grid-template-columns: repeat(3, 1fr);
 
   ${onTablet} {
@@ -165,5 +165,5 @@ const StyledCardWrapper = styled.div`
 
   ${onMobile} {
     grid-template-columns: repeat(1, 1fr);
-  
+  }
 `;
