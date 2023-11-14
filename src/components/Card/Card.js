@@ -8,6 +8,8 @@ import useEditFlag from 'hooks/useEditFlag';
 import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { onTablet } from 'styles/mediaQuery';
+
 
 function Card({ id, img, name, content, date, category, font, showModal }) {
   const { setFlag } = useEditFlag();
@@ -57,6 +59,11 @@ const StyledWrapper = styled.div`
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   background-color: ${theme.colors.white};
   padding: 25px;
+
+  ${onTablet} {
+    width: 352px;
+    height: 284px;
+  }
 `;
 
 const StyledFromWrapper = styled.div`

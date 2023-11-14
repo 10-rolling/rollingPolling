@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import OutlinedButton from 'components/Button/OutlinedButton';
 import logo from 'assets/images/logo.png';
 import styled from 'styled-components';
+import { onMobile, onTablet } from 'styles/mediaQuery';
 
-function Nav({ hide }) {
+function Nav({ hide, hideAll }) {
   return (
-    <StyledWrapper>
+    <StyledWrapper hideAll={hideAll}>
       <Link to="/">
         <img src={logo} alt="로고" />
       </Link>
-
       <StyledLink to="/post" hide={hide}>
         <OutlinedButton
           content="롤링 페이퍼 만들기"
@@ -26,17 +26,21 @@ export default Nav;
 
 const StyledWrapper = styled.nav`
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 10px 15%;
   border-bottom: 1px solid rgba(237, 237, 237, 1);
+
+  ${onTablet} {
+    padding: 10px 24px;
+  }
+
+  ${onMobile} {
+    display: ${(props) => (props.hideAll ? 'none' : '')};
+  }
 `;
 
 const StyledLink = styled(Link)`
-  position: absolute;
   display: ${(props) => (props.hide ? 'none' : '')};
-
-  right: 0;
-  padding-right: 15%;
 `;

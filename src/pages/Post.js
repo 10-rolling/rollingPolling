@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import ToggleButton from 'components/Button/ToggleButton';
 import Input from 'components/Input/Input';
@@ -13,6 +13,7 @@ import Nav from 'components/Nav/Nav';
 import CheckIcon from 'assets/icons/Check.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function Post() {
   const { inputName, setInputName } = useInputName();
@@ -61,7 +62,7 @@ function Post() {
 
   return (
     <>
-      <Nav hide={isTrue} />
+      <Nav hide="true" hideTrue="true" />
       <StyledPostForm>
         {/* 받는 사람 */}
         <StyledInWrapper>
@@ -81,7 +82,7 @@ function Post() {
             컬러를선택하거나, 이미지를 선택할 수 있습니다.
           </StyledSpan>
         </StyledInWrapper>
-        <StyledToggleButton onClick={toggleHandle} />
+        <ToggleButton onClick={toggleHandle} />
         <StyledBackgroundList>
           {backgroundItem.map((item) => (
             <StyledBackgroundItem
@@ -95,13 +96,15 @@ function Post() {
             </StyledBackgroundItem>
           ))}
         </StyledBackgroundList>
-        <PrimaryButton
-          size="large"
-          width="100%"
-          disabled={isValue}
-          content={'생성하기'}
-          onClick={postToServer}
-        />
+        <StyledButtonWrapper>
+          <PrimaryButton
+            size="large"
+            width="100%"
+            disabled={isValue}
+            content={'생성하기'}
+            onClick={postToServer}
+          />
+        </StyledButtonWrapper>
       </StyledPostForm>
     </>
   );
@@ -114,20 +117,25 @@ const StyledPostForm = styled.div`
 
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
-  gap: 4px;
+  margin: 0 auto;
 
-  position: absolute;
   width: 720px;
   height: 66px;
-  left: 50%;
-  top: 10%;
-  transform: translate(-50%, -50%);
+
+  ${onTablet} {
+    width: 100%;
+    padding: 0 24px;
+  }
+
+  ${onMobile} {
+    width: 100%;
+    padding: 0 20px;
+  }
 `;
 
 const StyledInWrapper = styled.div`
   width: 100%;
-  margin: 40px 0px;
+  margin-top: 50px;
 `;
 
 const StyledLabel = styled.p`
@@ -143,15 +151,20 @@ const StyledSpan = styled.span`
   color: ${theme.colors.gray500};
 `;
 
-const StyledToggleButton = styled(ToggleButton)`
-  margin-top: 30px;
-`;
-
 const StyledBackgroundList = styled.div`
   display: flex;
   width: 100%;
+  margin-top: 45px;
   gap: 30px;
-  margin: 50px 0px;
+
+  ${onTablet} {
+    flex-wrap: wrap;
+  }
+
+  ${onMobile} {
+    margin-top: 28px;
+    gap: 12px;
+  }
 `;
 
 const StyledBackgroundItem = styled.div`
@@ -159,6 +172,11 @@ const StyledBackgroundItem = styled.div`
   width: 168px;
   height: 168px;
   cursor: pointer;
+
+  ${onTablet} {
+    width: 154px;
+    height: 154px;
+  }
 `;
 
 const StyledBackgroundImg = styled.img`
@@ -167,6 +185,7 @@ const StyledBackgroundImg = styled.img`
   border-radius: 16px;
   ${({ checked }) => (checked ? 'filter: blur(2px)' : '')};
 `;
+
 const StyledChecked = styled.img`
   position: absolute;
   top: 50%;
@@ -174,4 +193,19 @@ const StyledChecked = styled.img`
   opacity: 0.7;
   width: 50px;
   transform: translate(-50%, -50%);
+`;
+
+const StyledButtonWrapper = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 69px;
+
+  ${onTablet} {
+    margin-top: 210px;
+    padding-bottom: 24px;
+  }
+
+  ${onMobile} {
+    margin-top: 82px;
+  }
 `;

@@ -1,5 +1,6 @@
 import { SIZES } from 'constants/buttonSize';
 import styled from 'styled-components';
+import { onMobile } from 'styles/mediaQuery';
 import theme from 'styles/theme';
 
 function PrimaryButton({ content, size, width, disabled, onClick }) {
@@ -50,5 +51,9 @@ const StyledWrapper = styled.button`
     outline: none;
     background-color: ${theme.colors.purple800};
     border: 2px solid ${theme.colors.purple900};
+  }
+
+  ${onMobile} {
+    width: 100%;
   }
 `;

@@ -1,9 +1,21 @@
 import Relation from 'components/Badge/Relation';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import styled from 'styled-components';
+import { onMobile } from 'styles/mediaQuery';
 import theme from 'styles/theme';
 
-function Modal({ open, setShowModal, img, name, content, date, category, background, color }) {
+function Modal({
+  open,
+  setShowModal,
+  img,
+  name,
+  content,
+  date,
+  category,
+  background,
+  color,
+  font,
+}) {
   const onClickCloseBtn = () => {
     setShowModal(!open);
   };
@@ -13,15 +25,16 @@ function Modal({ open, setShowModal, img, name, content, date, category, backgro
       <StyledWrapper>
         <StyledFromWrapper>
           <StyledFromInformWrapper>
-            <StyledImgWrapper
-              src={img}
-              alt="프로필 이미지"
-            />
+            <StyledImgWrapper src={img} alt="프로필 이미지" />
             <StyledFromContentWrapper>
               <span>
                 From. <StyledName>{name}</StyledName>
               </span>
-              <Relation category={category} background={background} color={color} />
+              <Relation
+                category={category}
+                background={background}
+                color={color}
+              />
             </StyledFromContentWrapper>
           </StyledFromInformWrapper>
           <StyledDate>{date}</StyledDate>
@@ -29,7 +42,7 @@ function Modal({ open, setShowModal, img, name, content, date, category, backgro
         <StyledLine></StyledLine>
 
         <StyledContentWraper>
-          <StyledContent>{content}</StyledContent>
+          <StyledContent font={font}>{content}</StyledContent>
         </StyledContentWraper>
 
         <StyledBtnWrapper onClick={onClickCloseBtn}>
@@ -58,13 +71,16 @@ const StyledBg = styled.div`
 
 const StyledWrapper = styled.div`
   position: relative;
-  flex-direction: column;
   width: 500px;
   height: 420px;
   border-radius: 16px;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   background-color: ${theme.colors.white};
   padding: 25px;
+
+  ${onMobile} {
+    width: 90%;
+  }
 `;
 
 const StyledFromWrapper = styled.div`
@@ -115,6 +131,7 @@ const StyledContentWraper = styled.div`
 const StyledContent = styled.div`
   color: rgba(74, 74, 74, 1);
   font-size: 1.1rem;
+  font-family: ${(props) => props.font};
   line-height: 28px;
   letter-spacing: -0.01em;
 `;
