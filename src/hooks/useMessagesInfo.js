@@ -7,7 +7,7 @@ const useMessagesInfo = create((set) => ({
   profileImages: [],
   fetchMessagesInfo: async (id) => {
     const result = await getRecipientMessage(id);
-    set((state) => ({
+    set(() => ({
       count: result.messageCount,
       name: result.name,
       profileImages: result.recentMessages

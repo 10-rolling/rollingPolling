@@ -4,11 +4,13 @@ import theme from 'styles/theme';
 function SendersInfo({ count, profileImages }) {
   return (
     <StyledWrapper>
-      <StyledProfileImgs>
-        {profileImages.slice(0, 4).map((item, index) => (
-          <StyledProfileItem key={index} url={item} />
-        ))}
-      </StyledProfileImgs>
+      {count > 0 && (
+        <StyledProfileImgs>
+          {profileImages.slice(0, 4).map((item, index) => (
+            <StyledProfileItem key={index} url={item} />
+          ))}
+        </StyledProfileImgs>
+      )}
       <StyledContent>
         <span>{count}</span>명이 작성했어요!
       </StyledContent>

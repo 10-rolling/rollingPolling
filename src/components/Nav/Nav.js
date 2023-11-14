@@ -1,10 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import OutlinedButton from 'components/Button/OutlinedButton';
+import PrimaryButton from 'components/Button/PrimaryButton';
+import { deleteAll } from 'libs/api';
 import logo from 'assets/images/logo.png';
 import styled from 'styled-components';
 import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function Nav({ hide, hideAll }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
   return (
     <StyledWrapper hideAll={hideAll}>
       <Link to="/">
@@ -18,6 +22,19 @@ function Nav({ hide, hideAll }) {
           height="35px"
         />
       </StyledLink>
+      {location.pathname.endsWith('/edit') ? (
+        <PrimaryButton
+          content="삭제하기"
+          size="small"
+          width="92px"
+          onClick={() => {
+            deleteAll(id);
+            navigate('/');
+          }}
+        />
+      ) : (
+        <></>
+      )}
     </StyledWrapper>
   );
 }

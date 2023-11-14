@@ -11,6 +11,7 @@ import { MESSAGE_LIMIT_DEFAULT } from 'constants/url';
 import Header from 'components/Header/Header';
 import Modal from 'components/Modal/Modal';
 import { dateFormat } from 'utils/dateFormat';
+import useMessagesInfo from 'hooks/useMessagesInfo';
 import styled from 'styled-components';
 import { onMobile, onTablet } from 'styles/mediaQuery';
 
@@ -72,6 +73,7 @@ function PostList() {
   useEffect(() => {
     getUserInfo();
     getMessageItems();
+    console.log('수영님의 부탁..');
   }, [id]);
 
   useEffect(() => {
@@ -116,7 +118,7 @@ function PostList() {
                 font={item.font}
               />
             ))}
-            <div ref={ref}></div>
+          <div ref={ref}></div>
         </StyledCardWrapper>
       </StyledWrapper>
     </>

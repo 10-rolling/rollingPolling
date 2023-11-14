@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import Dropdown from 'components/Dropdown/Dropdown';
 import Editor from 'components/Editor/Editor';
@@ -35,6 +35,7 @@ import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function SendMessage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { content } = useContent();
   const { selectFont } = useSelectFont();
   const { relationShip } = useRelationShip();
@@ -44,7 +45,6 @@ function SendMessage() {
   const { createCheck, checkContents } = useCreateCheck();
   const { changeProfileImg, setChangeProfileImg, cleanProfileImg } =
     useChangeProfileImg();
-  const isTrue = true;
 
   const makeMessage = async () => {
     await postMessage(
@@ -55,6 +55,7 @@ function SendMessage() {
       relationShip,
       selectFont
     );
+    navigate(`/post/${id}`);
   };
 
   useEffect(() => {
@@ -119,15 +120,13 @@ function SendMessage() {
         </StyledInWrapper>
         {/* 생성하기 */}
         <StyledButtonWrapper>
-          <StyledLink to={`/post/${id}`}>
-            <PrimaryButton
-              content={CREATE}
-              size="large"
-              width="100%"
-              disabled={createCheck}
-              onClick={makeMessage}
-            />
-          </StyledLink>
+          <PrimaryButton
+            content={CREATE}
+            size="large"
+            width="100%"
+            disabled={createCheck}
+            onClick={makeMessage}
+          />
         </StyledButtonWrapper>
       </StyledWrapper>
     </>
@@ -214,8 +213,4 @@ const StyledButtonWrapper = styled.div`
   ${onMobile} {
     margin-top: 185px;
   }
-`;
-
-const StyledLink = styled(Link)`
-  width: 100%;
 `;

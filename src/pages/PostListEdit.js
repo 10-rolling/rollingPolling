@@ -5,15 +5,13 @@ import EmptyCard from 'components/Card/EmptyCard';
 import Nav from 'components/Nav/Nav';
 import useColorToCode from 'hooks/useColorToCode';
 import useUserInfo from 'hooks/useUserInfo';
-import { getRecipient, getMessage, deleteAll } from 'libs/api';
+import { getRecipient, getMessage } from 'libs/api';
 import Header from 'components/Header/Header';
 import useEditFlag from 'hooks/useEditFlag';
-import PrimaryButton from 'components/Button/PrimaryButton';
 import styled from 'styled-components';
 
 function PostListEdit() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { userInfo, setUserInfo, recentMessages, setRecentMessages } =
     useUserInfo();
   const { color, setColor } = useColorToCode();
@@ -72,17 +70,6 @@ function PostListEdit() {
                 font={item.font}
               />
             ))}
-          <StyledDeleteButton>
-            <PrimaryButton
-              content="삭제하기"
-              size="small"
-              width="92px"
-              onClick={() => {
-                deleteAll(id);
-                navigate('/');
-              }}
-            />
-          </StyledDeleteButton>
         </StyledInWrapper>
       </StyledWrapper>
     </>
@@ -110,6 +97,8 @@ const StyledWrapper = styled.div`
 const StyledInWrapper = styled.div`
   position: relative;
   display: grid;
+  height: 580px;
+  overflow-y: auto;
   gap: 15px;
   grid-template-columns: repeat(3, 1fr);
 `;
