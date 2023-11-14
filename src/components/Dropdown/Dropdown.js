@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
-import { DROPDOWN_ITEMS, DROPDOWN_FONT_ITEMS } from 'constants/dropdownItem';
+import {
+  DROPDOWN_ITEMS,
+  DROPDOWN_FONT_ITEMS,
+  DROPDOWN_FONT_DEFAULT,
+} from 'constants/dropdownItem';
 import { DROPDOWN_ERROR_MESSAGE_DEFAULT } from 'constants/message';
 import useRelationShip from 'hooks/useRelationShip';
 import useSelectFont from 'hooks/useSelectFont';
-import arrowDown from "assets/icons/arrowdown.svg"
+import arrowDown from 'assets/icons/arrowdown.svg';
 import arrowUp from 'assets/icons/arrowUp.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
@@ -23,7 +27,7 @@ function Dropdown({
   const { setSelectFont } = useSelectFont();
 
   const checkPlaceHolder = () => {
-    placeholder === DROPDOWN_FONT_ITEMS[0].content
+    placeholder === DROPDOWN_FONT_DEFAULT
       ? setSelectedItem(DROPDOWN_FONT_ITEMS[0].content)
       : setSelectedItem(DROPDOWN_ITEMS[0].content);
   };
@@ -37,7 +41,7 @@ function Dropdown({
 
   const handleItem = (item) => {
     setSelectedItem(item.content);
-    placeholder === DROPDOWN_FONT_ITEMS[0].content
+    placeholder === DROPDOWN_FONT_DEFAULT
       ? setSelectFont(item.content)
       : setRelationShip(item.content);
     closeDropdown();
@@ -85,9 +89,10 @@ const StyledDropdownButton = styled.button`
 const StyledDropdownMenu = styled.ul`
   position: absolute;
 
-  width: 100%;
+  width: 315px;
   margin-top: 10px;
   padding: 0;
+  border: 1px solid ${theme.colors.gray300};
   border-radius: 8px;
   box-shadow: 0px 2px 12px 0px #00000014;
 
@@ -98,9 +103,11 @@ const StyledDropdownMenu = styled.ul`
 `;
 
 const StyledDropdownItem = styled.li`
-  padding: 10px;
+  padding: 12px 16px;
   font-weight: ${theme.fontWeight.normal};
   font-size: 1rem;
+  border-radius: 8px;
+
   &:hover {
     background-color: ${theme.colors.gray100};
   }

@@ -9,12 +9,12 @@ import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function Card({ id, img, name, content, date, category, font }) {
+function Card({ id, img, name, content, date, category, font, showModal }) {
   const { setFlag } = useEditFlag();
   const location = useLocation();
 
   return (
-    <StyledWrapper>
+    <StyledWrapper onClick={showModal}>
       <StyledFromWrapper>
         <StyledFromInformWrapper>
           <StyledImgWrapper src={img} alt="프로필 이미지" />
@@ -104,6 +104,8 @@ const StyledContent = styled.div`
   font-size: 1.125rem;
   line-height: 28px;
   letter-spacing: -0.01em;
+  font-family: ${(props) => props.font};
+  font-style: normal;
 `;
 
 const StyledDate = styled.span`

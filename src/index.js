@@ -3,6 +3,7 @@ import Router from 'router/Router';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'styles/GlobalStyle';
 import theme from 'styles/theme';
+import 'styles/index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
