@@ -5,11 +5,10 @@ import EmptyCard from 'components/Card/EmptyCard';
 import Nav from 'components/Nav/Nav';
 import useColorToCode from 'hooks/useColorToCode';
 import useUserInfo from 'hooks/useUserInfo';
-import { getRecipient, getMessage } from 'libs/api';
+import { getRecipient, getMessage, deleteAll } from 'libs/api';
 import Header from 'components/Header/Header';
 import useEditFlag from 'hooks/useEditFlag';
 import PrimaryButton from 'components/Button/PrimaryButton';
-import { deleteAll } from 'libs/api';
 import styled from 'styled-components';
 
 function PostListEdit() {
