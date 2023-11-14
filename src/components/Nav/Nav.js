@@ -37,18 +37,10 @@ const StyledWrapper = styled.nav`
   }
 
   ${onMobile} {
-    display: ${(props) => (props.hide ? 'none' : '')};
+    display: ${(props) => (props.hideAll ? 'none' : '')};
   }
 `;
 
 const StyledLink = styled(Link)`
-  display: ${(props) => (props.buttonHide ? 'none' : '')};
-`;
-
-const StyledLink = styled(Link)`
-  position: absolute;
   display: ${(props) => (props.hide ? 'none' : '')};
-
-  right: 0;
-  padding-right: 15%;
 `;
