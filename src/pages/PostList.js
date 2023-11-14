@@ -25,7 +25,7 @@ function PostList() {
   const [isImage, setIsImage] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState([]);
-  const [ref, inView] = useInView({ threshold: 0.8 });
+  const [ref, inView] = useInView();
   const [offset, setOffset] = useState(0);
 
   const init = (result) => {
