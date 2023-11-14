@@ -9,7 +9,7 @@ export const CARD_THEME = {
     color: `${theme.colors.purple200}`,
     img: purpleFigure,
   },
-  orange: {
+  beige: {
     color: `${theme.colors.orange200}`,
     img: orangeFigure,
   },
