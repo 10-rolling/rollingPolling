@@ -6,6 +6,7 @@ import SharedUrl from 'components/Header/SharedUrl';
 import useMessagesInfo from 'hooks/useMessagesInfo';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { onTablet } from 'styles/mediaQuery';
 
 function Header() {
   const { id } = useParams();
@@ -35,6 +36,13 @@ const StyledWrapper = styled.div`
   align-items: center;
   background: ${theme.colors.white};
   padding: 13px 15%;
+
+  ${onTablet} {
+    position: relative;
+    padding: 13px 24px;
+    scale: 0.9;
+    z-index: 5;
+  }
 `;
 
 const StyledReceiver = styled.div`

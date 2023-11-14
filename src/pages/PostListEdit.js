@@ -11,6 +11,7 @@ import useUserInfo from 'hooks/useUserInfo';
 import { getMessage, getRecipient } from 'libs/api';
 import { MESSAGE_LIMIT_DEFAULT } from 'constants/url';
 import styled from 'styled-components';
+import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function PostListEdit() {
   const { id } = useParams();
@@ -129,6 +130,14 @@ const StyledInWrapper = styled.div`
   overflow-y: auto;
   gap: 15px;
   grid-template-columns: repeat(3, 1fr);
+
+  ${onTablet} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  ${onMobile} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const StyledDeleteButton = styled.div`

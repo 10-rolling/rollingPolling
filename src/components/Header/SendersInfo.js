@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { onTablet } from 'styles/mediaQuery';
 import theme from 'styles/theme';
 
 function SendersInfo({ count, profileImages }) {
@@ -26,6 +27,10 @@ const StyledWrapper = styled.div`
   padding-right: 56px;
   font-size: 1.125rem;
   color: ${theme.colors.gray900};
+
+  ${onTablet} {
+    display: none;
+  }
 `;
 
 const StyledProfileImgs = styled.ul`

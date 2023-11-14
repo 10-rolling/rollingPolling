@@ -137,7 +137,7 @@ const StyledDropdownMenu = styled.div`
 const StyledEmojiPicker = styled.div`
   position: absolute;
   top: 50px;
-  left: 50px;
+  left: 69px;
 
   z-index: 2;
 `;

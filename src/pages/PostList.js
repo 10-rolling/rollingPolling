@@ -140,15 +140,6 @@ const StyledWrapper = styled.div`
   background-size: cover;
 
   cursor: pointer;
-
-  ${onTablet} {
-    height: auto;
-    padding: 90px 0;
-  }
-
-  ${onMobile} {
-    padding: 32px 0;
-  }
 `;
 
 const StyledCardWrapper = styled.div`
