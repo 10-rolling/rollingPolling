@@ -6,7 +6,7 @@ import purpleImg from 'assets/images/post/purplePost.svg';
 const COLOR_BACKGROUNDS = [
   {
     id: 1,
-    value: 'orange',
+    value: 'beige',
     alt: '주황색',
     src: orangeImg,
     checked: true,

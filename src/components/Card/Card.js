@@ -1,21 +1,16 @@
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import Relation from 'components/Badge/Relation';
 import OutlinedButton from 'components/Button/OutlinedButton';
+import { dateFormat } from 'utils/dateFormat';
+import { deleteMessage } from 'libs/api';
+import useEditFlag from 'hooks/useEditFlag';
 import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-function Card({
-  img,
-  name,
-  content,
-  date,
-  category,
-  background,
-  color,
-  showModal,
-  font
-}) {
+function Card({ id, img, name, content, date, category, font, showModal }) {
+  const { setFlag } = useEditFlag();
   const location = useLocation();
 
   return (
@@ -27,19 +22,19 @@ function Card({
             <span>
               From. <StyledName>{name}</StyledName>
             </span>
-            <Relation
-              category={category}
-              background={background}
-              color={color}
-            />
+            <Relation category={category} />
           </StyledFromContentWrapper>
         </StyledFromInformWrapper>
-        {location.pathname == `/post/id/edit` ? (
+        {location.pathname.endsWith('/edit') ? (
           <OutlinedButton
             size="small"
             img={deleted}
             width="40px"
             height="40px"
+            onClick={() => {
+              deleteMessage(id);
+              setFlag();
+            }}
           />
         ) : (
           ''
@@ -47,10 +42,11 @@ function Card({
       </StyledFromWrapper>
       <StyledLine></StyledLine>
       <StyledContent font={font}>{content}</StyledContent>
-      <StyledDate>{date}</StyledDate>
+      <StyledDate>{dateFormat(date)}</StyledDate>
     </StyledWrapper>
   );
 }
+
 export default Card;
 
 const StyledWrapper = styled.div`
@@ -118,4 +114,25 @@ const StyledDate = styled.span`
   font-size: 0.75rem;
   color: rgba(153, 153, 153, 1);
   margin-bottom: 25px;
+`;
+
+const StyledEditButton = styled.button`
+  position: absolute;
+  top: 28px;
+  left: 320px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 42px;
+
+  border-radius: 6px;
+  border: 1px solid ${theme.colors.gray300};
+  background: ${theme.colors.white};
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
 `;

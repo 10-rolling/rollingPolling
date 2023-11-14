@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Card from 'components/Card/Card';
 import EmptyCard from 'components/Card/EmptyCard';
 import Nav from 'components/Nav/Nav';
@@ -7,19 +7,20 @@ import useColorToCode from 'hooks/useColorToCode';
 import useUserInfo from 'hooks/useUserInfo';
 import { getRecipient, getMessage } from 'libs/api';
 import Header from 'components/Header/Header';
-import Modal from 'components/Modal/Modal';
-import { dateFormat } from 'utils/dateFormat';
+import useEditFlag from 'hooks/useEditFlag';
+import PrimaryButton from 'components/Button/PrimaryButton';
+import { deleteAll } from 'libs/api';
 import styled from 'styled-components';
 
-function PostList() {
+function PostListEdit() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { userInfo, setUserInfo, recentMessages, setRecentMessages } =
     useUserInfo();
   const { color, setColor } = useColorToCode();
   const [isImage, setIsImage] = useState(false);
+  const { flag } = useEditFlag();
   const isTrue = true;
-  const [showModal, setShowModal] = useState(false);
-  const [modalData, setModalData] = useState([]);
 
   const init = (result) => {
     const { backgroundImageURL, backgroundColor } = result;
@@ -44,14 +45,9 @@ function PostList() {
     });
   };
 
-  const onClickOpenModal = (id) => {
-    recentMessages.map((data) => (id === data.id ? setModalData(data) : null));
-    setShowModal(!showModal);
-  };
-
   useEffect(() => {
     getUserInfo();
-  }, [id]);
+  }, [id, flag]);
 
   return (
     <>
@@ -62,37 +58,39 @@ function PostList() {
         $backgroundImg={userInfo.backgroundImageURL}
         $backgroundColor={color}
       >
-        <Modal
-          open={showModal}
-          setShowModal={setShowModal}
-          img={modalData.profileImageURL}
-          name={modalData.sender}
-          date={dateFormat(modalData.createdAt)}
-          category={modalData.relationship}
-          content={modalData.content}
-        />
         <StyledInWrapper>
           <EmptyCard />
           {recentMessages.length > 0 &&
             recentMessages.map((item) => (
               <Card
                 key={item.id}
+                id={item.id}
                 img={item.profileImageURL}
                 name={item.sender}
                 content={item.content}
                 date={item.createdAt}
                 category={item.relationship}
-                showModal={() => onClickOpenModal(item.id)}
                 font={item.font}
               />
             ))}
+          <StyledDeleteButton>
+            <PrimaryButton
+              content="삭제하기"
+              size="small"
+              width="92px"
+              onClick={() => {
+                deleteAll(id);
+                navigate('/');
+              }}
+            />
+          </StyledDeleteButton>
         </StyledInWrapper>
       </StyledWrapper>
     </>
   );
 }
 
-export default PostList;
+export default PostListEdit;
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -111,7 +109,14 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledInWrapper = styled.div`
+  position: relative;
   display: grid;
   gap: 15px;
   grid-template-columns: repeat(3, 1fr);
+`;
+
+const StyledDeleteButton = styled.div`
+  position: absolute;
+  top: -50px;
+  right: 0;
 `;
