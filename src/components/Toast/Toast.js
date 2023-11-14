@@ -4,6 +4,7 @@ import close from 'assets/icons/close.svg';
 import complete from 'assets/icons/complete.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function Toast({ content = URL_COPY }) {
   const { hide } = useToastStore();
@@ -33,7 +34,7 @@ const StyledToast = styled.div`
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   width: 524px;
   padding: 19px 30px;
@@ -41,7 +42,14 @@ const StyledToast = styled.div`
 
   background: rgba(0, 0, 0, 0.8);
 
-  gap: 253px;
+  ${onTablet} {
+    bottom: -90vh;
+  }
+
+  ${onTablet} {
+    width: 90%;
+    bottom: -92vh;
+  }
 `;
 
 const StyledToastContentWrapper = styled.div`

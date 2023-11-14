@@ -77,7 +77,7 @@ const StyledWrapper = styled.div`
 const StyledDropdownMenu = styled.ul`
   position: absolute;
   top: 40px;
-  left: 0;
+  left: -82px;
 
   display: inline-flex;
   flex-direction: column;
@@ -92,6 +92,10 @@ const StyledDropdownMenu = styled.ul`
 
   list-style: none;
   z-index: 2;
+
+  ${onMobile} {
+    left: -97px;
+  }
 `;
 
 const StyledDropdownItem = styled.li`
