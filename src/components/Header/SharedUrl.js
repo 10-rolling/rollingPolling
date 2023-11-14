@@ -7,6 +7,7 @@ import { URL_ITEMS } from 'constants/common';
 import shared from 'assets/icons/share.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { onMobile } from 'styles/mediaQuery';
 
 function SharedUrl() {
   const { initializeKakao, isKakaoInitialized, shareMessage } = useKakaoStore();
@@ -66,6 +67,11 @@ const StyledWrapper = styled.div`
   background: ${theme.colors.white};
 
   cursor: pointer;
+
+  ${onMobile} {
+    padding: 6px 8px;
+    gap: 0;
+  }
 `;
 
 const StyledDropdownMenu = styled.ul`

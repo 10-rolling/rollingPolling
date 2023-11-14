@@ -1,5 +1,6 @@
 import { OUTLINED_SIZES } from 'constants/buttonSize.js';
 import styled from 'styled-components';
+import { onMobile } from 'styles/mediaQuery';
 import theme from 'styles/theme';
 
 function OutlinedButton({
@@ -66,5 +67,12 @@ const StyledWrapper = styled.button`
     outline: none;
     border: 1px solid ${theme.colors.gray500};
     background-color: ${theme.colors.white};
+  }
+
+  ${onMobile} {
+    font-size: 0;
+    width: 45px;
+    padding: 6px 8px;
+    gap: 0;
   }
 `;

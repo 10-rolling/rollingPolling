@@ -2,18 +2,24 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import OutlinedButton from 'components/Button/OutlinedButton';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import { deleteAll } from 'libs/api';
+import useMessagesInfo from 'hooks/useMessagesInfo';
 import logo from 'assets/images/logo.png';
 import styled from 'styled-components';
 import { onMobile, onTablet } from 'styles/mediaQuery';
+import theme from 'styles/theme';
 
 function Nav({ hide, hideAll }) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { name } = useMessagesInfo();
   return (
     <StyledWrapper hideAll={hideAll}>
-      <Link to="/">
-        <img src={logo} alt="로고" />
-      </Link>
+      <StyledChangeNav>
+        <Link to="/">
+          <img src={logo} alt="로고" />
+        </Link>
+      </StyledChangeNav>
+      <StyledName>To. {name}</StyledName>
       <StyledLink to="/post" hide={hide}>
         <OutlinedButton
           content="롤링 페이퍼 만들기"
@@ -75,5 +81,21 @@ const StyledButton = styled.div`
   ${onMobile} {
     left: 18px;
     z-index: 2;
+  }
+`;
+
+const StyledChangeNav = styled.div`
+  ${onMobile} {
+    display: none;
+  }
+`;
+
+const StyledName = styled.div`
+  display: none;
+  ${onMobile} {
+    display: block;
+    width: 227px;
+    font-size: 1.75rem;
+    font-weight: ${theme.fontWeight.bold};
   }
 `;
