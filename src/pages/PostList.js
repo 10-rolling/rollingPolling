@@ -28,7 +28,6 @@ function PostList() {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState([]);
   const [ref, inView] = useInView();
-  const [offset, setOffset] = useState(0);
 
   const init = (result) => {
     const { backgroundImageURL, backgroundColor } = result;
