@@ -124,7 +124,7 @@ const StyledImgWrapper = styled.div`
 `;
 
 const StyledImg = styled.img`
-  width: 600px;
+  width: 100%;
   object-fit: contain;
 
   ${onMobile} {
