@@ -22,16 +22,16 @@ const useKakaoStore = create((set) => ({
         imageUrl:
           'https://github.com/10-rolling/rollingPolling/assets/52947668/551a7c42-5e5c-4424-a24e-385491585b85',
         link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com',
+          mobileWebUrl: 'https://rollingpolling.netlify.app/',
+          webUrl: 'https://rollingpolling.netlify.app/',
         },
       },
       buttons: [
         {
           title: '나도 하러 가기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com', // 추후 수정
-            webUrl: 'https://developers.kakao.com',
+            mobileWebUrl: 'https://rollingpolling.netlify.app/', // 추후 수정
+            webUrl: 'https://rollingpolling.netlify.app/',
           },
         },
       ],
