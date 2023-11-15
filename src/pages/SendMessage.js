@@ -199,6 +199,7 @@ const StyledImage = styled.button`
   border-radius: 100px;
   background-color: transparent;
   background-image: url(${(props) => props.src});
+  background-position: center;
 
   ${onMobile} {
     width: 40px;
