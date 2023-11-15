@@ -5,7 +5,7 @@ const useToastStore = create((set) => ({
   content: '',
   show: (content) => {
     set({ isVisible: true, content });
-    navigator.clipboard.writeText('http://localhost:3000');
+    navigator.clipboard.writeText('https://rollingpolling.netlify.app/');
     setTimeout(() => {
       set({ isVisible: false });
     }, 5000);
