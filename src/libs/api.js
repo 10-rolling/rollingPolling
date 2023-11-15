@@ -1,4 +1,5 @@
 import axios from 'axios';
+import alert from 'utils/alert';
 import {
   API_BASE_URL,
   MESSAGE_LIMIT_DEFAULT,
@@ -6,6 +7,16 @@ import {
 } from 'constants/url';
 
 const instance = axios.create({ baseURL: API_BASE_URL });
+
+instance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      alert(error.response.status);
+    }
+    return Promise.reject(error);
+  }
+);
 
 async function getRecipients() {
   const response = await instance.get(`/1-10/recipients/`);
@@ -111,11 +122,7 @@ async function createRecipient(param) {
     const result = response.data;
     return result;
   } catch (error) {
-    if (error.response) {
-      throw error;
-    } else {
-      throw error;
-    }
+    console.error(error);
   }
 }
 

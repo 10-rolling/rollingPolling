@@ -5,13 +5,12 @@ const useKakaoStore = create((set) => ({
   initializeKakao: () => {
     const script = document.createElement('script');
     script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
-    script.async = true;
     script.onload = () => {
       window.Kakao.init('3e11944450a7bd790453345fe2d280ee');
       set({ isKakaoInitialized: true });
     };
     document.body.appendChild(script);
-    return () => document.body.removeChild(script);
+    return document.body.removeChild(script);
   },
   shareMessage: () => {
     window.Kakao.Share.sendDefault({
@@ -30,7 +29,7 @@ const useKakaoStore = create((set) => ({
         {
           title: '나도 하러 가기',
           link: {
-            mobileWebUrl: 'https://rollingpolling.netlify.app/', // 추후 수정
+            mobileWebUrl: 'https://rollingpolling.netlify.app/',
             webUrl: 'https://rollingpolling.netlify.app/',
           },
         },

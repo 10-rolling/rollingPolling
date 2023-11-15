@@ -103,7 +103,6 @@ function PostListEdit() {
     </>
   );
 }
-
 export default PostListEdit;
 
 const StyledWrapper = styled.div`
@@ -119,7 +118,6 @@ const StyledWrapper = styled.div`
 
   background-repeat: no-repeat;
   background-size: cover;
-  loading: eager;
 `;
 
 const StyledInWrapper = styled.div`
@@ -137,10 +135,4 @@ const StyledInWrapper = styled.div`
   ${onMobile} {
     grid-template-columns: repeat(1, 1fr);
   }
-`;
-
-const StyledDeleteButton = styled.div`
-  position: absolute;
-  top: -50px;
-  right: 0;
 `;

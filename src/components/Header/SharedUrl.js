@@ -7,6 +7,7 @@ import { URL_ITEMS } from 'constants/common';
 import shared from 'assets/icons/share.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import { onMobile } from 'styles/mediaQuery';
 
 function SharedUrl() {
   const { initializeKakao, isKakaoInitialized, shareMessage } = useKakaoStore();
@@ -66,12 +67,17 @@ const StyledWrapper = styled.div`
   background: ${theme.colors.white};
 
   cursor: pointer;
+
+  ${onMobile} {
+    padding: 6px 8px;
+    gap: 0;
+  }
 `;
 
 const StyledDropdownMenu = styled.ul`
   position: absolute;
   top: 40px;
-  left: 0;
+  left: -82px;
 
   display: inline-flex;
   flex-direction: column;
@@ -86,6 +92,10 @@ const StyledDropdownMenu = styled.ul`
 
   list-style: none;
   z-index: 2;
+
+  ${onMobile} {
+    left: -97px;
+  }
 `;
 
 const StyledDropdownItem = styled.li`

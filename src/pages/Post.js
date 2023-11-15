@@ -61,7 +61,7 @@ function Post() {
 
   return (
     <>
-      <Nav hide="true" hideTrue="true" />
+      <Nav hide hideAll />
       <StyledPostForm>
         {/* 받는 사람 */}
         <StyledInWrapper>

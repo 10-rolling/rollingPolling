@@ -69,7 +69,7 @@ function SendMessage() {
 
   return (
     <>
-      <Nav hide="true" hideAll="true" />
+      <Nav hide hideAll />
       <StyledWrapper>
         {/* From. */}
         <StyledInWrapper>
@@ -199,6 +199,9 @@ const StyledImage = styled.button`
   border-radius: 100px;
   background-color: transparent;
   background-image: url(${(props) => props.src});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 
   ${onMobile} {
     width: 40px;
