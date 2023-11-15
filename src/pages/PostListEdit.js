@@ -6,7 +6,6 @@ import EmptyCard from 'components/Card/EmptyCard';
 import Header from 'components/Header/Header';
 import Nav from 'components/Nav/Nav';
 import useColorToCode from 'hooks/useColorToCode';
-import useEditFlag from 'hooks/useEditFlag';
 import useUserInfo from 'hooks/useUserInfo';
 import { getMessage, getRecipient } from 'libs/api';
 import { MESSAGE_LIMIT_DEFAULT } from 'constants/url';
@@ -15,7 +14,6 @@ import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function PostListEdit() {
   const { id } = useParams();
-  const { flag } = useEditFlag();
   const { color, setColor } = useColorToCode();
   const [isImage, setIsImage] = useState(false);
   const {
@@ -24,6 +22,8 @@ function PostListEdit() {
     recentMessages,
     setRecentMessages,
     updateRecentMessages,
+    offset,
+    setOffset,
   } = useUserInfo();
   const [offset, setOffset] = useState(0);
   const [ref, inView] = useInView();
@@ -57,7 +57,7 @@ function PostListEdit() {
         } else {
           updateRecentMessages(results);
         }
-        setOffset((prevOffset) => prevOffset + len);
+        setOffset(len);
       }
     });
   };
@@ -65,7 +65,7 @@ function PostListEdit() {
   useEffect(() => {
     getUserInfo();
     getMessageItems();
-  }, [id, flag]);
+  }, [id]);
 
   useEffect(() => {
     if (inView) {

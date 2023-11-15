@@ -3,6 +3,7 @@ import CardList from 'components/Card/CardList';
 import arrowLeft from 'assets/icons/arrowleft.svg';
 import arrowRight from 'assets/icons/arrowright.svg';
 import styled from 'styled-components';
+import { onPc } from 'styles/mediaQuery';
 
 function CardListSlider({ data }) {
   const [counter, setCounter] = useState(0);
@@ -20,8 +21,12 @@ function CardListSlider({ data }) {
 
   return (
     <StyledWrapper>
-      {showLeftBtn && (
-        <img src={arrowLeft} alt="왼쪽 방향 화살표" onClick={toPrev} />
+      {showLeftBtn ? (
+        <StyledArrowWrapper>
+          <img src={arrowLeft} alt="왼쪽 방향 화살표" onClick={toPrev} />
+        </StyledArrowWrapper>
+      ) : (
+        <StyledNoneArrowWrapper></StyledNoneArrowWrapper>
       )}
       <StyledDataWrapper>
         <StyledDataInWrapper
@@ -41,8 +46,12 @@ function CardListSlider({ data }) {
         </StyledDataInWrapper>
       </StyledDataWrapper>
 
-      {showRightBtn && (
-        <img src={arrowRight} alt="오른쪽 방향 화살표" onClick={toNext} />
+      {showRightBtn ? (
+        <StyledArrowWrapper>
+          <img src={arrowRight} alt="오른쪽 방향 화살표" onClick={toNext} />
+        </StyledArrowWrapper>
+      ) : (
+        <StyledNoneArrowWrapper></StyledNoneArrowWrapper>
       )}
     </StyledWrapper>
   );
@@ -55,18 +64,38 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 8px;
+`;
+
+const StyledNoneArrowWrapper = styled.div`
+  min-width: 16px;
 `;
 
 const StyledDataWrapper = styled.div`
   max-width: 960px;
-  overflow: hidden;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  ${onPc} {
+    overflow: hidden;
+  }
 `;
 
 const StyledDataInWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  gap: 22px;
   max-width: 116rem;
+`;
 
-  gap: 20px;
-  padding: 0 13px;
+const StyledArrowWrapper = styled.div`
+  z-index: -1;
+
+  ${onPc} {
+    display: flex;
+    z-index: 1;
+  }
 `;
