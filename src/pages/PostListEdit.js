@@ -25,7 +25,7 @@ function PostListEdit() {
     offset,
     setOffset,
   } = useUserInfo();
-  const [offset, setOffset] = useState(0);
+  const isTrue = true;
   const [ref, inView] = useInView();
 
   const init = (result) => {
@@ -75,7 +75,7 @@ function PostListEdit() {
 
   return (
     <>
-      <Nav hide />
+      <Nav hide={isTrue} />
       <Header />
       <StyledWrapper
         $isImage={isImage}
@@ -103,7 +103,6 @@ function PostListEdit() {
     </>
   );
 }
-
 export default PostListEdit;
 
 const StyledWrapper = styled.div`
