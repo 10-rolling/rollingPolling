@@ -25,7 +25,6 @@ function PostList() {
   } = useUserInfo();
   const { color, setColor } = useColorToCode();
   const [isImage, setIsImage] = useState(false);
-  const isTrue = true;
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState([]);
   const [ref, inView] = useInView();
@@ -82,7 +81,7 @@ function PostList() {
 
   return (
     <>
-      <Nav hide={isTrue} />
+      <Nav hide />
       <Header />
       <StyledWrapper
         $isImage={isImage}

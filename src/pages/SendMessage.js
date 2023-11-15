@@ -69,7 +69,7 @@ function SendMessage() {
 
   return (
     <>
-      <Nav hide="true" hideAll="true" />
+      <Nav hide hideAll />
       <StyledWrapper>
         {/* From. */}
         <StyledInWrapper>

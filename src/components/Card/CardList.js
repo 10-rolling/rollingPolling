@@ -22,11 +22,11 @@ function CardList({ id, color, img, name, num, reactions }) {
             </StyledColorImgWrapper>
           </StyledCardInWrapper>
         )}
-        <StyledContentWrapper img={img}>
+        <StyledContentWrapper $img={img}>
           <StyledName>To. {name}</StyledName>
           <StyledProfileWrapper>
             {profileImages.slice(0, 4).map((item, index) => (
-              <StyledProfileItem key={index} url={item} />
+              <StyledProfileItem key={index} $url={item} />
             ))}
           </StyledProfileWrapper>
 
@@ -97,7 +97,7 @@ const StyledContentWrapper = styled.div`
   z-index: 1;
   padding: 20px 20px 0 20px;
   min-height: 115px;
-  color: ${(prop) => (prop.img ? 'white' : 'black')};
+  color: ${(prop) => (prop.$img ? 'white' : 'black')};
 `;
 
 const StyledNumWrapper = styled.div`

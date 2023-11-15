@@ -25,7 +25,6 @@ function PostListEdit() {
     setRecentMessages,
     updateRecentMessages,
   } = useUserInfo();
-  const isTrue = true;
   const [offset, setOffset] = useState(0);
   const [ref, inView] = useInView();
 
@@ -76,7 +75,7 @@ function PostListEdit() {
 
   return (
     <>
-      <Nav hide={isTrue} />
+      <Nav hide />
       <Header />
       <StyledWrapper
         $isImage={isImage}

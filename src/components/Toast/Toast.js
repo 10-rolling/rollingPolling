@@ -4,7 +4,7 @@ import close from 'assets/icons/close.svg';
 import complete from 'assets/icons/complete.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-import { onMobile, onTablet } from 'styles/mediaQuery';
+import { onTablet } from 'styles/mediaQuery';
 
 function Toast({ content = URL_COPY }) {
   const { hide } = useToastStore();
