@@ -27,7 +27,7 @@ function Nav({ hide, hideAll }) {
         <OutlinedButton
           content="롤링 페이퍼 만들기"
           size="smallest"
-          width="150px"
+          width="160px"
           height="35px"
         />
       </StyledLink>
