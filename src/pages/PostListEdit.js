@@ -136,9 +136,3 @@ const StyledInWrapper = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
-
-const StyledDeleteButton = styled.div`
-  position: absolute;
-  top: -50px;
-  right: 0;
-`;
