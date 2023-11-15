@@ -32,7 +32,7 @@ function Modal({
               </span>
               <Relation
                 category={category}
-                background={background}
+                $background={background}
                 color={color}
               />
             </StyledFromContentWrapper>
@@ -42,7 +42,7 @@ function Modal({
         <StyledLine></StyledLine>
 
         <StyledContentWraper>
-          <StyledContent font={font}>{content}</StyledContent>
+          <StyledContent $font={font}>{content}</StyledContent>
         </StyledContentWraper>
 
         <StyledBtnWrapper onClick={onClickCloseBtn}>
@@ -131,7 +131,7 @@ const StyledContentWraper = styled.div`
 const StyledContent = styled.div`
   color: rgba(74, 74, 74, 1);
   font-size: 1.1rem;
-  font-family: ${(props) => props.font};
+  font-family: ${(props) => props.$font};
   line-height: 28px;
   letter-spacing: -0.01em;
 `;

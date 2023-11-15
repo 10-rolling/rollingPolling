@@ -10,6 +10,7 @@ import theme from 'styles/theme';
 import arrowDown from 'assets/icons/arrowdown.svg';
 import arrowUp from 'assets/icons/arrowUp.svg';
 import add from 'assets/icons/add.svg';
+import { onMobile } from 'styles/mediaQuery';
 
 function Reaction({ id }) {
   const { isOpen, toggleDropdown } = useReactionToggleStore();
@@ -90,6 +91,10 @@ const StyledWrapper = styled.div`
   align-items: center;
 
   height: 52px;
+
+  ${onMobile} {
+    padding-right: 0px;
+  }
 `;
 
 const StyledReaction = styled.div`

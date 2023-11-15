@@ -8,7 +8,7 @@ function SendersInfo({ count, profileImages }) {
       {count > 0 && (
         <StyledProfileImgs>
           {profileImages.slice(0, 4).map((item, index) => (
-            <StyledProfileItem key={index} url={item} />
+            <StyledProfileItem key={index} $url={item} />
           ))}
         </StyledProfileImgs>
       )}

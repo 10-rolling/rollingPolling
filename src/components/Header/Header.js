@@ -6,7 +6,7 @@ import SharedUrl from 'components/Header/SharedUrl';
 import useMessagesInfo from 'hooks/useMessagesInfo';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-import { onTablet } from 'styles/mediaQuery';
+import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function Header() {
   const { id } = useParams();
@@ -22,6 +22,7 @@ function Header() {
       <StyledHeaderContent>
         <SendersInfo count={count} profileImages={profileImages} />
         <Reactions id={id} />
+        <StyledOnlyMobileBar />
         <SharedUrl />
       </StyledHeaderContent>
     </StyledWrapper>
@@ -43,12 +44,18 @@ const StyledWrapper = styled.div`
     scale: 0.9;
     z-index: 5;
   }
+  ${onMobile} {
+    justify-content: center;
+  }
 `;
 
 const StyledReceiver = styled.div`
   width: 227px;
   font-size: 1.75rem;
   font-weight: ${theme.fontWeight.bold};
+  ${onMobile} {
+    display: none;
+  }
 `;
 
 const StyledHeaderContent = styled.div`
@@ -56,4 +63,15 @@ const StyledHeaderContent = styled.div`
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
+`;
+
+const StyledOnlyMobileBar = styled.div`
+  display: none;
+  width: 1px;
+  height: 28px;
+
+  ${onMobile} {
+    display: block;
+    border: 1px solid ${theme.colors.gray200};
+  }
 `;

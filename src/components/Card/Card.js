@@ -42,7 +42,7 @@ function Card({ id, img, name, content, date, category, font, showModal }) {
         )}
       </StyledFromWrapper>
       <StyledLine></StyledLine>
-      <StyledContent font={font}>{content}</StyledContent>
+      <StyledContent $font={font}>{content}</StyledContent>
       <StyledDate>{dateFormat(date)}</StyledDate>
     </StyledWrapper>
   );
@@ -120,25 +120,4 @@ const StyledDate = styled.span`
   font-size: 0.75rem;
   color: rgba(153, 153, 153, 1);
   margin-bottom: 25px;
-`;
-
-const StyledEditButton = styled.button`
-  position: absolute;
-  top: 28px;
-  left: 320px;
-
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  height: 42px;
-
-  border-radius: 6px;
-  border: 1px solid ${theme.colors.gray300};
-  background: ${theme.colors.white};
-
-  img {
-    width: 24px;
-    height: 24px;
-  }
 `;

@@ -1,20 +1,29 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import OutlinedButton from 'components/Button/OutlinedButton';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import { deleteAll } from 'libs/api';
+import useMessagesInfo from 'hooks/useMessagesInfo';
 import logo from 'assets/icons/logo.svg';
 import styled from 'styled-components';
 import { onMobile, onTablet } from 'styles/mediaQuery';
+import theme from 'styles/theme';
 
 function Nav({ hide, hideAll }) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { name } = useMessagesInfo();
+  const { pathname } = useLocation();
   return (
-    <StyledWrapper hideAll={hideAll}>
+    <StyledWrapper $hideAll={hideAll}>
+      <StyledChangeNav $hide={hide}>
+        <Link to="/">
+          <img src={logo} alt="로고" />
+        </Link>
+      </StyledChangeNav>
       <Link to="/">
-        <img src={logo} alt="로고" />
+        <StyledName $hide={hide}>To. {name}</StyledName>
       </Link>
-      <StyledLink to="/post" hide={hide}>
+      <StyledLink to="/post" $hide={hide}>
         <OutlinedButton
           content="롤링 페이퍼 만들기"
           size="smallest"
@@ -22,16 +31,18 @@ function Nav({ hide, hideAll }) {
           height="35px"
         />
       </StyledLink>
-      {location.pathname.endsWith('/edit') ? (
-        <PrimaryButton
-          content="삭제하기"
-          size="small"
-          width="92px"
-          onClick={() => {
-            deleteAll(id);
-            navigate('/');
-          }}
-        />
+      {pathname.endsWith('/edit') ? (
+        <StyledButton>
+          <PrimaryButton
+            content="삭제하기"
+            size="small"
+            width="100%"
+            onClick={() => {
+              deleteAll(id);
+              navigate('/');
+            }}
+          />
+        </StyledButton>
       ) : (
         <></>
       )}
@@ -54,10 +65,41 @@ const StyledWrapper = styled.nav`
   }
 
   ${onMobile} {
-    display: ${(props) => (props.hideAll ? 'none' : '')};
+    display: ${(props) => (props.$hideAll ? 'none' : '')};
   }
 `;
 
 const StyledLink = styled(Link)`
-  display: ${(props) => (props.hide ? 'none' : '')};
+  display: ${(props) => (props.$hide ? 'none' : '')};
+`;
+
+const StyledButton = styled.div`
+  ${onTablet} {
+    position: absolute;
+    width: 90%;
+    left: 40px;
+    bottom: 24px;
+  }
+
+  ${onMobile} {
+    left: 18px;
+    z-index: 2;
+  }
+`;
+
+const StyledChangeNav = styled.div`
+  ${onMobile} {
+    display: ${(props) => (props.$hide ? 'none' : 'block')};
+  }
+`;
+
+const StyledName = styled.div`
+  display: none;
+  ${onMobile} {
+    display: ${(props) => (props.$hide ? 'block' : 'none')};
+    width: 227px;
+    font-size: 1.125rem;
+    font-weight: ${theme.fontWeight.bold};
+    color: ${theme.colors.gray800};
+  }
 `;

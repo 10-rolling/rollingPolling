@@ -8,17 +8,25 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: "Noto Sans KR", sans-serif;
     font-weight: ${theme.fontWeight.normal};
+    &::-webkit-scrollbar {
+    display: none; 
+    }
   }
 
   html,
   body {
     background-color: ${theme.colors.white};
     color: ${theme.colors.black};
+    
     }
     
     button{
       cursor: pointer;
     }
+  
+  a {
+    text-decoration: none;
+  }
 `;
 
 export default GlobalStyle;
