@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import OutlinedButton from 'components/Button/OutlinedButton';
 import PrimaryButton from 'components/Button/PrimaryButton';
 import { deleteAll } from 'libs/api';
-import logo from 'assets/images/logo.png';
+import logo from 'assets/icons/logo.svg';
 import styled from 'styled-components';
 import { onMobile, onTablet } from 'styles/mediaQuery';
 
