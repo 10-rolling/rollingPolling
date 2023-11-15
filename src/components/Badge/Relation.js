@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 function Relation({ category }) {
   return (
-    <StyledWrapper $background={RELATION[category].backgroundColor}>
+    <StyledWrapper background={RELATION[category].backgroundColor}>
       <StyledCategory color={RELATION[category].color}>
         {category}
       </StyledCategory>
