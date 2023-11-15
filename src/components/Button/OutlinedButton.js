@@ -19,6 +19,7 @@ function OutlinedButton({
       height={height}
       disabled={disabled}
       onClick={onClick}
+      content={content}
     >
       {img && <img src={img} alt="버튼 아이콘" />}
       {content}
@@ -70,9 +71,9 @@ const StyledWrapper = styled.button`
   }
 
   ${onMobile} {
-    font-size: 0;
-    width: 45px;
-    padding: 6px 8px;
+    font-size: ${(props) => (props.content === '추가' ? '0' : '')};
+    width: ${(props) => (props.content === '추가' ? '45px' : '145px')};
+    padding: ${(props) => (props.content === '추가' ? '6px 8px' : '8px 16px')};
     gap: 0;
   }
 `;

@@ -14,12 +14,14 @@ function Nav({ hide, hideAll }) {
   const { name } = useMessagesInfo();
   return (
     <StyledWrapper hideAll={hideAll}>
-      <StyledChangeNav>
+      <StyledChangeNav hide={hide}>
         <Link to="/">
           <img src={logo} alt="로고" />
         </Link>
       </StyledChangeNav>
-      <StyledName>To. {name}</StyledName>
+      <Link to="/">
+        <StyledName hide={hide}>To. {name}</StyledName>
+      </Link>
       <StyledLink to="/post" hide={hide}>
         <OutlinedButton
           content="롤링 페이퍼 만들기"
@@ -86,16 +88,17 @@ const StyledButton = styled.div`
 
 const StyledChangeNav = styled.div`
   ${onMobile} {
-    display: none;
+    display: ${(props) => (props.hide ? 'none' : 'block')};
   }
 `;
 
 const StyledName = styled.div`
   display: none;
   ${onMobile} {
-    display: block;
+    display: ${(props) => (props.hide ? 'block' : 'none')};
     width: 227px;
-    font-size: 1.75rem;
+    font-size: 1.125rem;
     font-weight: ${theme.fontWeight.bold};
+    color: ${theme.colors.gray800};
   }
 `;
