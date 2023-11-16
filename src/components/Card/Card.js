@@ -42,7 +42,7 @@ function Card({ id, img, name, content, date, category, font, showModal }) {
         )}
       </StyledFromWrapper>
       <StyledLine></StyledLine>
-      <StyledContent $font={font}>{content}</StyledContent>
+      <StyledContent font={font}>{content}</StyledContent>
       <StyledDate>{dateFormat(date)}</StyledDate>
     </StyledWrapper>
   );

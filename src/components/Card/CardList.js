@@ -26,7 +26,7 @@ function CardList({ id, color, img, name, num, reactions }) {
           <StyledName>To. {name}</StyledName>
           <StyledProfileWrapper>
             {profileImages.slice(0, 4).map((item, index) => (
-              <StyledProfileItem key={index} $url={item} />
+              <StyledProfileItem key={index} url={item} />
             ))}
           </StyledProfileWrapper>
 
