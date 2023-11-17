@@ -42,6 +42,8 @@ const StyledToast = styled.div`
 
   background: rgba(0, 0, 0, 0.8);
 
+  z-index: 2;
+
   ${onTablet} {
     bottom: -90vh;
   }
