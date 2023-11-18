@@ -43,8 +43,7 @@ function SendMessage() {
   const { inputName, setInputName } = useInputName();
   const { profileImg, loadProfileImg } = useProfileImg();
   const { createCheck, checkContents } = useCreateCheck();
-  const { changeProfileImg, setChangeProfileImg, cleanProfileImg } =
-    useChangeProfileImg();
+  const { changeProfileImg, setChangeProfileImg } = useChangeProfileImg();
 
   const makeMessage = async () => {
     await postMessage(
@@ -60,7 +59,6 @@ function SendMessage() {
 
   useEffect(() => {
     loadProfileImg();
-    return cleanProfileImg();
   }, []);
 
   useEffect(() => {
