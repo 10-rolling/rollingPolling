@@ -14,6 +14,7 @@ import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function PostListEdit() {
   const { id } = useParams();
+  const [ref, inView] = useInView();
   const { color, setColor } = useColorToCode();
   const [isImage, setIsImage] = useState(false);
   const {
@@ -25,8 +26,6 @@ function PostListEdit() {
     offset,
     setOffset,
   } = useUserInfo();
-  const isTrue = true;
-  const [ref, inView] = useInView();
 
   const init = (result) => {
     const { backgroundImageURL, backgroundColor } = result;
@@ -75,7 +74,7 @@ function PostListEdit() {
 
   return (
     <>
-      <Nav hide={isTrue} />
+      <Nav hide />
       <Header />
       <StyledWrapper
         $isImage={isImage}

@@ -15,14 +15,14 @@ function Main() {
       <Nav />
       <StyledWrapper>
         <StyledItemWrapper>
-          <StyldContentWrapper>
+          <StyledContentWrapper>
             <Point num="01" />
             <Explain
               title="누구나 손쉽게, 온라인"
               brTitle="롤링 페이퍼를 만들 수 있어요"
               subTitle="로그인 없이 자유롭게 만들어요."
             />
-          </StyldContentWrapper>
+          </StyledContentWrapper>
           <StyledImgWrapper>
             <StyledImg src={exampleCard} alt="예시 이미지" />
           </StyledImgWrapper>
@@ -32,14 +32,14 @@ function Main() {
           <StyledImgWrapper>
             <StyledImg src={exampleEmoji} alt="예시 이미지" />
           </StyledImgWrapper>
-          <StyldContentWrapper>
+          <StyledContentWrapper>
             <Point num="02" />
             <Explain
               title="서로에게 이모지로 감정을"
               brTitle="표현해보세요"
               subTitle="롤링 페이퍼에 이모지를 추가할 수 있어요."
             />
-          </StyldContentWrapper>
+          </StyledContentWrapper>
         </StyledImgLeftWrapper>
         <StyledButtonWrapper>
           <Link to="/list">
@@ -107,7 +107,7 @@ const StyledImgLeftWrapper = styled(StyledItemWrapper)`
   }
 `;
 
-const StyldContentWrapper = styled.div`
+const StyledContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 13px;

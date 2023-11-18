@@ -3,7 +3,6 @@ import Relation from 'components/Badge/Relation';
 import OutlinedButton from 'components/Button/OutlinedButton';
 import { dateFormat } from 'utils/dateFormat';
 import { deleteMessage } from 'libs/api';
-import useEditFlag from 'hooks/useEditFlag';
 import useUserInfo from 'hooks/useUserInfo';
 import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
