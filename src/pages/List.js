@@ -16,9 +16,6 @@ function List() {
     setData(result.results);
   };
 
-  const PopularData = Popular([...data]);
-  const LatestData = Latest([...data]);
-
   useEffect(() => {
     messagesInfo();
   }, []);
@@ -29,10 +26,10 @@ function List() {
       <StyledWrapper>
         <StyledInWrapper>
           <PaperCategory title="인기 롤링 페이퍼" emogi="🔥" />
-          <CardListSlider data={PopularData} />
+          <CardListSlider data={Popular([...data])} />
 
           <PaperCategory title="최근에 만든 롤링 페이퍼" emogi="⭐️" />
-          <CardListSlider data={LatestData} />
+          <CardListSlider data={Latest([...data])} />
 
           <StyledBtnWrapper>
             <Link to="/post">
