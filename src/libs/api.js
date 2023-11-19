@@ -85,7 +85,7 @@ async function postMessage(
   selectFont
 ) {
   try {
-    const response = await instance.post(`/1-10/recipients/${id}/messages/s`, {
+    const response = await instance.post(`/1-10/recipients/${id}/messages/`, {
       sender: inputName,
       profileImageURL: profileImg,
       relationship: relationShip,
