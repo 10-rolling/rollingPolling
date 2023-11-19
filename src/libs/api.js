@@ -61,7 +61,6 @@ async function deleteMessage(id) {
   try {
     const response = await instance.delete(`/1-10/messages/${id}/`);
     const result = response.status;
-    console.log('delete : ', response);
     return result;
   } catch (error) {
     console.error(error);
