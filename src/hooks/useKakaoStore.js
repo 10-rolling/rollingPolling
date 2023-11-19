@@ -19,7 +19,7 @@ const useKakaoStore = create((set) => ({
         title: 'rollingPolling',
         description: '#롤링폴링 #롤링페이퍼 #sns',
         imageUrl:
-          'https://github.com/10-rolling/rollingPolling/assets/52947668/551a7c42-5e5c-4424-a24e-385491585b85',
+          'https://github.com/10-rolling/rollingPolling/assets/63100352/f7c837f5-ecd9-4209-9803-d98700289926',
         link: {
           mobileWebUrl: 'https://rollingpolling.netlify.app/',
           webUrl: 'https://rollingpolling.netlify.app/',

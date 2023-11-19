@@ -43,8 +43,7 @@ function SendMessage() {
   const { inputName, setInputName } = useInputName();
   const { profileImg, loadProfileImg } = useProfileImg();
   const { createCheck, checkContents } = useCreateCheck();
-  const { changeProfileImg, setChangeProfileImg, cleanProfileImg } =
-    useChangeProfileImg();
+  const { changeProfileImg, setChangeProfileImg } = useChangeProfileImg();
 
   const makeMessage = async () => {
     await postMessage(
@@ -60,7 +59,6 @@ function SendMessage() {
 
   useEffect(() => {
     loadProfileImg();
-    return cleanProfileImg();
   }, []);
 
   useEffect(() => {
@@ -71,7 +69,6 @@ function SendMessage() {
     <>
       <Nav hide hideAll />
       <StyledWrapper>
-        {/* From. */}
         <StyledInWrapper>
           <Label content={FROM} size="large" />
           <Input
@@ -81,7 +78,6 @@ function SendMessage() {
             onChange={setInputName}
           />
         </StyledInWrapper>
-        {/* 프로필 이미지 */}
         <StyledInWrapper>
           <Label content={PROFILE_IMG} size="large" />
           <StyledImgWrapper>
@@ -100,17 +96,14 @@ function SendMessage() {
             </StyledProfileImgWrapper>
           </StyledImgWrapper>
         </StyledInWrapper>
-        {/* 상대와의 관계 */}
         <StyledInWrapper>
           <Label content={RELATIONSHIP} size="large" />
           <Dropdown placeholder={DROPDOWN_ITEMS_DEFAULT} />
         </StyledInWrapper>
-        {/* 내용을 입력해 주세요 */}
         <StyledInWrapper>
           <Label content={ENTER_CONTENT} size="large" />
           <Editor />
         </StyledInWrapper>
-        {/* 폰트 선택 */}
         <StyledInWrapper>
           <Label content={FONT_SELECT} size="large" />
           <Dropdown
@@ -118,7 +111,6 @@ function SendMessage() {
             placeholder={DROPDOWN_FONT_DEFAULT}
           />
         </StyledInWrapper>
-        {/* 생성하기 */}
         <StyledButtonWrapper>
           <PrimaryButton
             content={CREATE}

@@ -16,6 +16,12 @@ import { onMobile, onTablet } from 'styles/mediaQuery';
 
 function PostList() {
   const { id } = useParams();
+  const [ref, inView] = useInView();
+  const [offset, setOffset] = useState(0);
+  const { color, setColor } = useColorToCode();
+  const [isImage, setIsImage] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState([]);
   const {
     userInfo,
     setUserInfo,
@@ -23,13 +29,6 @@ function PostList() {
     setRecentMessages,
     updateRecentMessages,
   } = useUserInfo();
-  const { color, setColor } = useColorToCode();
-  const [isImage, setIsImage] = useState(false);
-  const isTrue = true;
-  const [showModal, setShowModal] = useState(false);
-  const [modalData, setModalData] = useState([]);
-  const [ref, inView] = useInView();
-  const [offset, setOffset] = useState(0);
 
   const init = (result) => {
     const { backgroundImageURL, backgroundColor } = result;
@@ -82,7 +81,7 @@ function PostList() {
 
   return (
     <>
-      <Nav hide={isTrue} />
+      <Nav hide />
       <Header />
       <StyledWrapper
         $isImage={isImage}

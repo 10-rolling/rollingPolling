@@ -71,7 +71,7 @@ const StyledImgWrapper = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  filter: brightness(60%);
 `;
 
 const StyledCardInWrapper = styled.div`
