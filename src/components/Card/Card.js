@@ -4,6 +4,7 @@ import OutlinedButton from 'components/Button/OutlinedButton';
 import { dateFormat } from 'utils/dateFormat';
 import { deleteMessage } from 'libs/api';
 import useUserInfo from 'hooks/useUserInfo';
+import { MESSAGE_DELETE_STATUS } from 'constants/url';
 import deleted from 'assets/icons/deleted.svg';
 import styled from 'styled-components';
 import theme from 'styles/theme';
@@ -12,6 +13,14 @@ import { onTablet } from 'styles/mediaQuery';
 function Card({ id, img, name, content, date, category, font, showModal }) {
   const location = useLocation();
   const { deleteMessages } = useUserInfo();
+
+  const handleDelete = async (id) => {
+    await deleteMessage(id).then((result) => {
+      if (result === MESSAGE_DELETE_STATUS) {
+        deleteMessages(id);
+      }
+    });
+  };
 
   return (
     <StyledWrapper onClick={showModal}>
@@ -32,8 +41,7 @@ function Card({ id, img, name, content, date, category, font, showModal }) {
             width="40px"
             height="40px"
             onClick={() => {
-              deleteMessages(id);
-              deleteMessage(id);
+              handleDelete(id);
             }}
           />
         ) : (

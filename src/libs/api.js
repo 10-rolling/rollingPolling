@@ -59,7 +59,10 @@ async function postReaction(id, emoji) {
 
 async function deleteMessage(id) {
   try {
-    await instance.delete(`/1-10/messages/${id}/`);
+    const response = await instance.delete(`/1-10/messages/${id}/`);
+    const result = response.status;
+    console.log('delete : ', response);
+    return result;
   } catch (error) {
     console.error(error);
   }
