@@ -53,15 +53,17 @@ async function postReaction(id, emoji) {
     const result = response.data;
     return result;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
 async function deleteMessage(id) {
   try {
-    await instance.delete(`/1-10/messages/${id}/`);
+    const response = await instance.delete(`/1-10/messages/${id}/`);
+    const result = response.status;
+    return result;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -69,7 +71,7 @@ async function deleteAll(id) {
   try {
     await instance.delete(`/1-10/recipients/${id}/`);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -82,15 +84,17 @@ async function postMessage(
   selectFont
 ) {
   try {
-    await instance.post(`/1-10/recipients/${id}/messages/`, {
+    const response = await instance.post(`/1-10/recipients/${id}/messages/`, {
       sender: inputName,
       profileImageURL: profileImg,
       relationship: relationShip,
       content: content,
       font: selectFont,
     });
+    const result = response.data;
+    return result;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -111,7 +115,7 @@ async function getBackgroundImg() {
  */
 async function createRecipient(param) {
   const { name, backgroundColor = 'beige', backgroundImageURL } = param;
-  const url = `/1-10/recipients/`;
+  const url = `/1-10/recipients/s`;
 
   try {
     const response = await instance.post(url, {

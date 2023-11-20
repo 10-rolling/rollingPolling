@@ -53,8 +53,11 @@ function SendMessage() {
       content,
       relationShip,
       selectFont
-    );
-    navigate(`/post/${id}`);
+    ).then((result) => {
+      if (result?.recipientId) {
+        navigate(`/post/${result.recipientId}`);
+      }
+    });
   };
 
   useEffect(() => {
